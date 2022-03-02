@@ -1,0 +1,37 @@
+{
+  "id": "",
+  "name": "",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "68235",
+      "name": "分类",
+      "font_class": "fenlei",
+      "unicode": "f00a6",
+      "unicode_decimal": 983206
+    },
+    {
+      "icon_id": "76989",
+      "name": "分类",
+      "font_class": "fenlei1",
+      "unicode": "f00d6",
+      "unicode_decimal": 983254
+    },
+    {
+      "icon_id": "630126",
+      "name": "眼睛",
+      "font_class": "yanjing",
+      "unicode": "e661",
+      "unicode_decimal": 58977
+    },
+    {
+      "icon_id": "668858",
+      "name": "分类",
+      "font_class": "fenlei2",
+      "unicode": "e675",
+      "unicode_decimal": 58997
+    }
+  ]
+}

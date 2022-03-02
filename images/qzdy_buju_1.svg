@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Creator: CorelDRAW 2020 (64-Bit) -->
+<svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" width="104.643mm" height="74.4537mm" version="1.1" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+viewBox="0 0 736.53 524.04"
+ xmlns:xlink="http://www.w3.org/1999/xlink"
+ xmlns:xodm="http://www.corel.com/coreldraw/odm/2003">
+ <defs>
+  <style type="text/css">
+   <![CDATA[
+    .str1 {stroke:#C9CACA;stroke-width:1.41;stroke-miterlimit:22.9256}
+    .str0 {stroke:#332C2B;stroke-width:1.41;stroke-miterlimit:22.9256}
+    .fil3 {fill:none}
+    .fil2 {fill:#FEFEFE}
+    .fil1 {fill:#332C2B}
+    .fil0 {fill:#F1F3F4}
+   ]]>
+  </style>
+   <clipPath id="id0">
+    <path d="M-0 0l736.53 0 0 524.04 -736.53 0 0 -524.04z"/>
+   </clipPath>
+    <clipPath id="id1">
+     <path d="M-0 0l736.53 0 0 510.08 -736.53 0 0 -510.08z"/>
+    </clipPath>
+    <clipPath id="id2">
+     <path d="M-0 0l736.53 0 0 524.04 -736.53 0 0 -524.04z"/>
+    </clipPath>
+ </defs>
+ <g id="图层_x0020_1">
+  <metadata id="CorelCorpID_0Corel-Layer"/>
+  <g>
+  </g>
+  <g style="clip-path:url(#id0)">
+   <g>
+   </g>
+   <g style="clip-path:url(#id1)">
+    <image x="-137.07" y="0" width="1010.68" height="510.08" xlink:href="qzdy_buju_1_Images\qzdy_buju_1_ImgID1.png"/>
+   </g>
+   <g style="clip-path:url(#id2)">
+    <rect class="fil0 str0" x="-137.07" width="1010.68" height="541.8"/>
+    <rect class="fil1 str0" x="-137.07" width="1010.68" height="31.61"/>
+    <rect class="fil2 str1" x="67.81" y="113.73" width="444.54" height="98.7" rx="5.33" ry="5.33"/>
+    <rect class="fil2 str1" x="67.81" y="217.6" width="444.54" height="98.7" rx="5.33" ry="5.33"/>
+    <rect class="fil2 str1" x="67.81" y="321.47" width="444.54" height="98.7" rx="5.33" ry="5.33"/>
+    <rect class="fil2 str1" x="67.81" y="425.35" width="444.54" height="98.7" rx="5.33" ry="5.33"/>
+    <rect class="fil2 str1" x="517.68" y="114.72" width="142.13" height="138.57" rx="6.47" ry="6.83"/>
+    <rect class="fil2 str1" x="517.64" y="262.41" width="142.13" height="57.8" rx="6.47" ry="2.85"/>
+    <rect class="fil2 str1" x="516.81" y="327.99" width="142.13" height="126.06" rx="6.47" ry="6.21"/>
+    <rect class="fil2 str1" x="516.77" y="463.84" width="142.13" height="46.24" rx="6.47" ry="2.28"/>
+    <rect class="fil2" x="-137.07" y="31.61" width="1010.68" height="71.85"/>
+    <polygon class="fil3 str1" points="-23.99,103.46 51.03,60.83 121.3,103.46 157.62,55.3 350.28,103.46 372.39,48.19 475.04,103.46 611.64,57.67 733.23,103.46 "/>
+   </g>
+  </g>
+  <polygon class="fil3" points="-0,0 736.53,0 736.53,524.04 -0,524.04 "/>
+ </g>
+</svg>

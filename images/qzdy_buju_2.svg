@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Creator: CorelDRAW 2020 (64-Bit) -->
+<svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" width="104.643mm" height="74.4537mm" version="1.1" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+viewBox="0 0 643.36 457.75"
+ xmlns:xlink="http://www.w3.org/1999/xlink"
+ xmlns:xodm="http://www.corel.com/coreldraw/odm/2003">
+ <defs>
+  <style type="text/css">
+   <![CDATA[
+    .str1 {stroke:#C9CACA;stroke-width:1.23;stroke-miterlimit:22.9256}
+    .str0 {stroke:#332C2B;stroke-width:1.23;stroke-miterlimit:22.9256}
+    .fil3 {fill:none}
+    .fil2 {fill:#FEFEFE}
+    .fil1 {fill:#332C2B}
+    .fil0 {fill:#F1F3F4}
+   ]]>
+  </style>
+   <clipPath id="id0">
+    <path d="M-0 0l643.36 0 0 457.75 -643.36 0 0 -457.75z"/>
+   </clipPath>
+    <clipPath id="id1">
+     <path d="M-0 0l643.36 0 0 445.55 -643.36 0 0 -445.55z"/>
+    </clipPath>
+    <clipPath id="id2">
+     <path d="M-0 0l643.36 0 0 457.75 -643.36 0 0 -457.75z"/>
+    </clipPath>
+ </defs>
+ <g id="图层_x0020_1">
+  <metadata id="CorelCorpID_0Corel-Layer"/>
+  <g>
+  </g>
+  <g style="clip-path:url(#id0)">
+   <g>
+   </g>
+   <g style="clip-path:url(#id1)">
+    <image x="-113.87" y="0" width="882.83" height="445.55" xlink:href="qzdy_buju_2_Images\qzdy_buju_2_ImgID1.png"/>
+   </g>
+   <g style="clip-path:url(#id2)">
+    <rect class="fil0 str0" x="-113.87" width="882.83" height="470.55"/>
+    <rect class="fil1 str0" x="-113.87" width="882.83" height="27.61"/>
+    <rect class="fil2 str1" x="458.06" y="100.2" width="124.15" height="121.04" rx="5.65" ry="5.96"/>
+    <rect class="fil2 str1" x="458.02" y="229.22" width="124.15" height="50.49" rx="5.65" ry="2.49"/>
+    <rect class="fil2 str1" x="457.29" y="286.5" width="124.15" height="110.11" rx="5.65" ry="5.43"/>
+    <rect class="fil2 str1" x="457.26" y="405.16" width="124.15" height="40.39" rx="5.65" ry="1.99"/>
+    <rect class="fil2" x="-113.87" y="27.61" width="882.83" height="62.76"/>
+    <polygon class="fil3 str1" points="-15.09,90.38 50.44,53.13 111.82,90.38 143.55,48.3 311.84,90.38 331.15,42.1 420.81,90.38 540.13,50.37 646.34,90.38 "/>
+    <rect class="fil2 str1" x="64.44" y="101.83" width="127.6" height="116.91" rx="2.43" ry="2.43"/>
+    <rect class="fil2 str1" x="64.44" y="227.73" width="127.6" height="116.91" rx="2.43" ry="2.43"/>
+    <rect class="fil2 str1" x="64.44" y="353.64" width="127.6" height="116.91" rx="2.43" ry="2.43"/>
+    <rect class="fil2 str1" x="195.1" y="101.83" width="127.6" height="116.91" rx="2.43" ry="2.43"/>
+    <rect class="fil2 str1" x="195.1" y="227.73" width="127.6" height="116.91" rx="2.43" ry="2.43"/>
+    <rect class="fil2 str1" x="195.1" y="353.64" width="127.6" height="116.91" rx="2.43" ry="2.43"/>
+    <rect class="fil2 str1" x="325.77" y="101.83" width="127.6" height="116.91" rx="2.43" ry="2.43"/>
+    <rect class="fil2 str1" x="325.77" y="227.73" width="127.6" height="116.91" rx="2.43" ry="2.43"/>
+    <rect class="fil2 str1" x="325.77" y="353.64" width="127.6" height="116.91" rx="2.43" ry="2.43"/>
+   </g>
+  </g>
+  <polygon class="fil3" points="-0,0 643.36,0 643.36,457.75 -0,457.75 "/>
+ </g>
+</svg>

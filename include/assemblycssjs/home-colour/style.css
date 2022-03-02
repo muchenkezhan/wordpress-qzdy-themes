@@ -1,0 +1,81 @@
+.header{
+background-color: rgba(255,255,255,0.97);
+-webkit-box-shadow: 0 0.3125rem 0.3125rem -0.3125rem rgba(0,0,0,0.117);
+-moz-box-shadow: 0 0.3125rem 0.3125rem -0.3125rem rgba(0,0,0,0.117);
+box-shadow: 0 0.3125rem 0.3125rem -0.3125rem rgba(0,0,0,0.117);
+}
+.layui-header .layui-main a{
+color: rgba(0, 0, 0, 0.85);
+}
+.layui-main .layui-nav li:hover a{color: rgba(0, 0, 0, 0.85);}
+.layui-nav-child {
+  background-color: rgba(255, 255, 255, 0.79);
+}
+/*侧边栏*/
+.layui-side-scroll .login-cbl a {border: 1px solid #000;}
+.layui-bg-black .layui-side-scroll{color: #000 !important;}
+.layui-nav {
+  background-color: #FFFFFF5C;
+  color: #000;}
+  .layui-bg-black {
+  background-color: #fff !important;}
+  .layui-side-scroll #menu-menu-1 li:hover a{color:rgba(0, 0, 0, 0.85);}
+  .layui-nav-itemed > a{color:rgba(0, 0, 0, 0.85);}
+  .layui-nav-itemed > .layui-nav-child {
+background-color: #f0f0f0 !important;}
+#menu-menu-1 li.current-menu-item{background-color: #f0f0f0;}
+#menu-menu-1 li.layui-nav-itemed{background-color: #dddcdc;}
+#menu-menu-1 li.layui-nav-itemed a{color:rgba(0, 0, 0, 0.85);}
+/*返回按钮*/
+.layui-fixbar li {
+  width: 50px;
+  height: 50px;
+  line-height: 50px;
+  margin-bottom: 1px;
+  text-align: center;
+  cursor: pointer;
+  font-size: 30px;
+  background-color: #FFFFFFC4;
+  color: #000;
+  border-radius: 50px;
+  opacity: .95;
+}
+/**/
+.site-mobile .site-tree-mobile {display: block !important;}
+/*body模糊*/
+/*body{*/
+/*     background-size: cover;*/
+/*            box-sizing: border-box;*/
+/*            z-index: 1;*/
+/*}*/
+/*body:after {*/
+/*content: "";*/
+/*width: 100%;*/
+/*height: 100%;*/
+/*position: fixed;*/
+/*left: 0;*/
+/*top: 10px;*/
+/*background: inherit;*/
+/*filter: blur(2px);*/
+/*z-index: -802;*/
+/*}*/
+/*底部白色*/
+.copyright_link,.copyright{background-color:#fff;}
+.copyright_link,.copyright{color: #000;}
+/*导航拟态UI*/
+/*#topbar{*/
+/*     background-size: cover;*/
+/*            box-sizing: border-box;*/
+/*            z-index: 1;*/
+/*}*/
+/*#topbar:after {*/
+/*content: "";*/
+/*width: 100%;*/
+/*height: 100%;*/
+/*position: fixed;*/
+/*left: 0;*/
+/*top: 10px;*/
+/*background: inherit;*/
+/*filter: blur(10px);*/
+/*z-index: -802;*/
+/*}*/
