@@ -1,21 +1,14 @@
 <?php 
 /* template name: 页面模板--友人帐
 description: template for Git theme 
-
-//网站头部 
-<!--内容-->*/
+*/
 ?>
 <?php get_header();?>
-<!--上面是头部-->
 <div class="layui-content">
 	<div class="layui-container">
 		<div class="layui-row layui-col-space15 main">
-			<!--内容页面上的分类提示-->
-
-			<!--提示结束-->
 			<div class="layui-col-md12 layui-col-lg12">
 
-				<!--内容开始-->
 				<div class="title-article">
 					<h1><?php the_title(); ?></h1>
 					<hr />
@@ -25,11 +18,6 @@ description: template for Git theme
 						style="min-height: 50px;">
 						<div style="overflow: hidden;">
 							<?php the_content(); ?>
-
-
-
-
-
 							<?php 
         	if(!empty(_qzdy('opt-yrz-title'))){
         foreach (_qzdy('opt-yrz-title') as $key10){?>

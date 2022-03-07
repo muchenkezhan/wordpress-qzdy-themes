@@ -33,7 +33,7 @@ CSF::createSection( $prefix, array(
 				'id'    => 'zero-header-classification-banner-imgurl',
 				'type'  => 'upload',
 				'title' => '头部banner图',
-				'default' =>  'http://file.darcyq.com/image/2021/WechatIMG206.png',
+
 			),
 			    array(
         'id'    => 'is_filter',

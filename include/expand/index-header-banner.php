@@ -1,6 +1,6 @@
  <?php if(!empty(_qzdy('zero-header-gbqzbjan'))){?>
      <?php if(_qzdy('opt-index-banner-moxin') =='opt-index-xbanner') {?>
-     <div id="header_bg" style="height:<?php echo qt_header_kggd(); ?>; background-image: url(<?php echo qt_header_kgtp(); ?>);"></div>
+     <div id="header_bg" style="height:<?php echo qt_header_kggd(); ?>; background-image: url(<?php qt_header_kgtp(); ?>);"></div>
      <?php }?>
      
     <?php if(_qzdy('opt-index-banner-moxin') =='opt-index-dbanner') {?>

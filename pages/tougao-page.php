@@ -110,12 +110,12 @@ if( isset($_POST['tougao_form']) && $_POST['tougao_form'] == 'send')
         <input class="layui-input" type="text" size="40" value="" name="tougao_authoremail" />
     </div> </div>
                    
-    <div style="text-align: left; padding-top: 10px;">
-        <label>您的博客:</label>
-    </div>
-    <div>
-        <input class="layui-input" type="text" size="40" value="" name="tougao_authorblog" />
-    </div>
+    <!--<div style="text-align: left; padding-top: 10px;">-->
+    <!--    <label>您的博客:</label>-->
+    <!--</div>-->
+    <!--<div>-->
+    <!--    <input class="layui-input" type="text" size="40" value="" name="tougao_authorblog" />-->
+    <!--</div>-->
                     
     <div style="text-align: left; padding-top: 10px;">
         <label>文章标题:*</label>

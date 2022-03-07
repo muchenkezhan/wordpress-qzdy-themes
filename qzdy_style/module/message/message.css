@@ -1,0 +1,527 @@
+﻿
+/**右侧信息通知************************/
+/* 消息提示容器 */
+.l-message-right
+{
+    top: 10px;
+    right: 0px;
+    z-index: 1227;
+    /* border: 1px red solid; */
+    width: 335px;
+    margin-right: 10px;
+    position: fixed;
+}
+
+/* 弹出提示容器 */
+.l-message-right-notice
+{
+    margin-bottom: 10px;
+    padding: 16px;
+    border-radius: 4px;
+    box-shadow: 0 1px 6px rgb(0 0 0 / 20%);
+    background: #fff;
+    line-height: 1;
+    position: relative;
+    overflow: hidden;
+}
+
+.right-show
+{
+    animation: fadeInRight .5s forwards;
+}
+
+@keyframes fadeInRight
+{
+    from
+    {
+        opacity: 0;
+        -webkit-transform: translate(1000px, 0);
+        transform: translate(1000px, 0);
+    }
+
+    to
+    {
+        opacity: 1;
+        -webkit-transform: translate(0, 0);
+        transform: translate(0, 0);
+    }
+}
+
+
+/* 弹出提示移除效果 */
+.l-message-right-notice-remove
+{
+    animation: fadeOutRight .5s forwards;
+}
+
+@keyframes fadeOutRight
+{
+    from
+    {
+        opacity: 1;
+        -webkit-transform: translate(0, 0);
+        transform: translate(0, 0);
+    }
+
+    to
+    {
+        opacity: 0;
+        -webkit-transform: translate(1000px, 0);
+        transform: translate(1000px, 0);
+    }
+}
+
+
+/* 弹出文本 */
+.l-message-right-notice-content-text
+{
+    display: inline-block;
+    padding-right: 35px;
+}
+
+/* 一般提示 */
+.notice-info > .l-message-right-notice-content-text > span:first-child
+{
+    color: rgb(40, 104, 240);
+    display: inline-block;
+}
+
+/* 警告提示 */
+.notice-warning > .l-message-right-notice-content-text > span:first-child
+{
+    color: rgb(255, 178, 62);
+    display: inline-block;
+}
+
+/* 错误提示 */
+.notice-error > .l-message-right-notice-content-text > span:first-child
+{
+    color: rgb(237, 64, 20);
+    display: inline-block;
+}
+
+/* 成功提示 */
+.notice-success > .l-message-right-notice-content-text > span:first-child
+{
+    color: rgb(25, 190, 107);
+    display: inline-block;
+}
+
+/* 提示信息 */
+.l-message-notice-content-text > span:last-child
+{
+    margin-left: 10px;
+}
+
+/* 删除内容 */
+/*.l-message-notice-content-x
+{
+    position: absolute;
+    right: 10px;
+    cursor: pointer;
+}*/
+
+/* 删除图标 */
+/*.l-message-notice-content-x > span
+{
+    color: gray;
+    font-size: 10px;
+    top: -1px;
+}*/
+
+
+/*标题*/
+.l-message-right-notice-title
+{
+    margin-left: 10px;
+    font-size: 16px;
+    line-height: 19px;
+    color: #17233d;
+    padding-right: 10px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/*内容*/
+.l-message-right-notice-desc
+{
+    margin-top: 10px;
+    margin-left: 24px;
+    font-size: 14px;
+    color: #515a6e;
+    text-align: justify;
+    line-height: 1.5;
+}
+
+
+/**居中信息通知*/
+/* 消息提示容器 */
+.l-message-center
+{
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    top: 10px;
+    user-select: none;
+    z-index: 1227;
+    width: 335px;
+    position: fixed;
+}
+
+/* 弹出提示容器 */
+.l-message-center-notice
+{
+    margin-bottom: 10px;
+    padding: 16px;
+    border-radius: 4px;
+    box-shadow: 0 1px 6px rgb(0 0 0 / 20%);
+    background: #fff;
+    line-height: 1;
+    position: relative;
+    overflow: hidden;
+}
+
+.center-show
+{
+    animation: fadeInCenter .5s forwards;
+}
+
+@keyframes fadeInCenter
+{
+    from
+    {
+        opacity: 0;
+        -webkit-transform: translate(0, -1000px);
+        transform: translate(0, -1000px);
+    }
+
+    to
+    {
+        opacity: 1;
+        -webkit-transform: translate(0, 0);
+        transform: translate(0, 0);
+    }
+}
+
+
+/* 弹出提示移除效果 */
+.l-message-center-notice-remove
+{
+    animation: fadeOutCenter .5s forwards;
+}
+
+@keyframes fadeOutCenter
+{
+    from
+    {
+        opacity: 1;
+        -webkit-transform: translate(0, 0);
+        transform: translate(0, 0);
+    }
+
+    to
+    {
+        opacity: 0;
+        -webkit-transform: translate(0, -1000px);
+        transform: translate(0, -1000px);
+    }
+}
+
+
+/* 弹出文本 */
+.l-message-center-notice-content-text
+{
+    display: inline-block;
+    padding-right: 35px;
+}
+
+/* 一般提示 */
+.notice-info > .l-message-center-notice-content-text > span:first-child
+{
+    color: rgb(40, 104, 240);
+    display: inline-block;
+}
+
+/* 警告提示 */
+.notice-warning > .l-message-center-notice-content-text > span:first-child
+{
+    color: rgb(255, 178, 62);
+    display: inline-block;
+}
+
+/* 错误提示 */
+.notice-error > .l-message-center-notice-content-text > span:first-child
+{
+    color: rgb(237, 64, 20);
+    display: inline-block;
+}
+
+/* 成功提示 */
+.notice-success > .l-message-center-notice-content-text > span:first-child
+{
+    color: rgb(25, 190, 107);
+    display: inline-block;
+}
+
+/* 提示信息 */
+.l-message-notice-content-text > span:last-child
+{
+    margin-left: 10px;
+}
+
+/* 删除内容 */
+.l-message-notice-content-x
+{
+    position: absolute;
+    right: 10px;
+    cursor: pointer;
+}
+
+/* 删除图标 */
+.l-message-notice-content-x > span
+{
+    color: gray;
+    font-size: 10px;
+}
+
+
+/*标题*/
+.l-message-center-notice-title
+{
+    margin-left: 10px;
+    font-size: 16px;
+    line-height: 19px;
+    color: #17233d;
+    padding-right: 10px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/*内容*/
+.l-message-center-notice-desc
+{
+    margin-top: 10px;
+    margin-left: 24px;
+    font-size: 14px;
+    color: #515a6e;
+    text-align: justify;
+    line-height: 1.5;
+}
+
+
+/*模态框**********************************************************************************************************/
+
+.l-message-center-confirm-floor {
+    text-align: right;
+    margin-top: 10px;
+}
+
+
+.l-message-center-confirm-floor>span {
+    margin-right: 10px;
+    display: inline-block;
+    font-size: 12px !important;
+    color: #515a6e;
+    right: 20px;
+    cursor: pointer;
+}
+
+
+
+.l-message-center-confirm-floor>span:hover {
+    color: rgb(45, 140, 240);
+}
+
+.l-message-center-confirm-floor>button {
+
+    font-weight: 400;
+    text-align: center;
+    vertical-align: middle;
+    font-size: 14px;
+    padding: 5px;
+    color: #fff;
+    background-color: #2d8cf0;
+    border-color: #2d8cf0;
+    text-transform: none;
+    overflow: visible;
+    display: inline-block;
+    cursor: pointer;
+    background-image: none;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    user-select: none;
+    transition: color .2s linear, background-color .2s linear, border .2s linear, box-shadow .2s linear;
+}
+
+.l-message-center-confirm-floor>button:hover {
+    background-color: rgb(87, 163, 243);
+}
+
+.l-message-confirm-modalwrap
+{
+    z-index: 1278;
+    position: fixed;
+    overflow: auto;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    -webkit-overflow-scrolling: touch;
+    outline: 0;
+    background: rgba(0,0,0,0.4);
+}
+
+.l-message-confirm-center
+{
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    top: 10px;
+    user-select: none;
+    z-index: 1227;
+    width: 335px;
+    position: fixed;
+}
+
+/* 弹出提示容器 */
+.l-message-center-confirm
+{
+    margin-bottom: 10px;
+    padding: 16px;
+    border-radius: 4px;
+    box-shadow: 0 1px 6px rgb(0 0 0 / 20%);
+    background: #fff;
+    line-height: 1;
+    position: relative;
+    overflow: hidden;
+}
+
+.confirm-show
+{
+    animation: confirmfadeInCenter .5s forwards;
+}
+
+@keyframes confirmfadeInCenter
+{
+    from
+    {
+        opacity: 0;
+         
+    }
+    to
+    {
+        opacity: 1;
+       
+    }
+}
+
+
+/* 弹出提示移除效果 */
+.l-message-center-confirm-remove
+{
+    animation: confirmfadeOutCenter .5s forwards;
+}
+
+@keyframes confirmfadeOutCenter
+{
+    from
+    {
+        opacity: 1;
+       
+    }
+
+    to
+    {
+        opacity: 0;
+    }
+}
+/* 弹出文本 */
+.l-message-center-confirm-content-text
+{
+    display: inline-block;
+    padding-right: 35px;
+}
+
+/* 一般提示 */
+.confirm-info > .l-message-center-confirm-content-text > span:first-child
+{
+    color: rgb(40, 104, 240);
+    display: inline-block;
+}
+
+/* 警告提示 */
+.confirm-warning > .l-message-center-confirm-content-text > span:first-child
+{
+    color: rgb(255, 178, 62);
+    display: inline-block;
+}
+
+/* 错误提示 */
+.confirm-error > .l-message-center-confirm-content-text > span:first-child
+{
+    color: rgb(237, 64, 20);
+    display: inline-block;
+}
+
+/* 成功提示 */
+.confirm-success > .l-message-center-confirm-content-text > span:first-child
+{
+    color: rgb(25, 190, 107);
+    display: inline-block;
+}
+/* 询问提示 */
+.confirm-question > .l-message-center-confirm-content-text > span:first-child
+{
+    color: rgb(255, 178, 62);
+    display: inline-block;
+}
+
+/* 提示信息 */
+.l-message-confirm-content-text > span:last-child
+{
+    margin-left: 10px;
+}
+ 
+
+/* 删除内容 */
+.l-message-confirm-content-x
+{
+    position: absolute;
+    right: 10px;
+    cursor: pointer;
+}
+
+/* 删除图标 */
+.l-message-confirm-content-x > span
+{
+    color: gray;
+    font-size: 10px;
+    top: -1px;
+}
+
+
+/*标题*/
+.l-message-center-confirm-title
+{
+    margin-left: 7px;
+    font-size: 15px;
+    line-height: 19px;
+    color: #17233d;
+    padding-right: 10px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/*内容*/
+.l-message-center-confirm-desc
+{
+    margin-top: 10px;
+    margin-left: 24px;
+    font-size: 14px;
+    color: #515a6e;
+    text-align: justify;
+    line-height: 1.5;
+}

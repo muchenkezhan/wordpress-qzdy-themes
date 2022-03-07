@@ -73,7 +73,6 @@ function heimu($atts,$content=null,$code=""){
     return $return;
 }
 add_shortcode('heimu','heimu');
-
 function bilibili($atts,$content=null,$code=""){
     extract(shortcode_atts(array("danmaku"=>'1'),$atts));
     extract(shortcode_atts(array("page"=>'1'),$atts));
@@ -104,7 +103,13 @@ function youtube($atts,$content=null,$code=""){
     return $return;
 }
 add_shortcode('youtube','youtube');
-
+function qzdypre($atts,$content=null,$code=""){
+    $return = '<pre lay-title="</>" lay-skin="notepad">';
+    $return .= $content;
+    $return .= '</pre>';
+    return $return;
+}
+add_shortcode('qzdypre','qzdypre');
 add_action('init','more_button_a');
 function more_button_a(){
    if(!current_user_can('edit_posts')&&!current_user_can('edit_pages')) return;
@@ -124,6 +129,7 @@ function more_button_b(){
 function register_button($buttons){
     array_push($buttons," ","title");
     array_push($buttons," ","highlight");
+    array_push($buttons," ","qzdypre");
     array_push($buttons," ","accordion");
     array_push($buttons," ","heimu");
     array_push($buttons," ","kbd");
@@ -140,13 +146,12 @@ function register_button_b($buttons){
     array_push($buttons," ","info");
     array_push($buttons," ","warning");
     array_push($buttons," ","danger");
-
-
     return $buttons;
 }
 function add_plugin($plugin_array){
     $plugin_array['title'] = get_bloginfo('template_url').'/include/buttons/more.js';
     $plugin_array['highlight'] = get_bloginfo('template_url').'/include/buttons/more.js';
+        $plugin_array['qzdypre'] = get_bloginfo('template_url').'/include/buttons/more.js';
     $plugin_array['accordion'] = get_bloginfo('template_url').'/include/buttons/more.js';
     $plugin_array['heimu'] = get_bloginfo('template_url').'/include/buttons/more.js';
     $plugin_array['kbd'] = get_bloginfo('template_url').'/include/buttons/more.js';
@@ -163,8 +168,6 @@ function add_plugin_b($plugin_array){
     $plugin_array['info'] = get_bloginfo('template_url').'/include/buttons/more.js';
     $plugin_array['warning'] = get_bloginfo('template_url').'/include/buttons/more.js';
     $plugin_array['danger'] = get_bloginfo('template_url').'/include/buttons/more.js';
-
-
     return $plugin_array;
 }
 function add_more_buttons($buttons){
@@ -175,4 +178,3 @@ function add_more_buttons($buttons){
     return $buttons;
 }
 add_filter("mce_buttons_2","add_more_buttons");
-

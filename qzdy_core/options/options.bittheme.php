@@ -1,9 +1,7 @@
 <?php
     if( class_exists( 'CSF' ) ) {
     $tips_6_2 = '';
-    //// Set a unique slug-like ID
     $prefix = 'my_framework';
-    //// Create options
     CSF::createOptions( $prefix, array(
     'menu_title' => 'Qzdy主题设置',
     'menu_slug' => 'my-framework',
@@ -18,7 +16,8 @@
 	) );
 	CSF::createSection( $prefix, array(
 		'parent'      => 'zero_x',
-		'title'  => 'banner模式切换',
+		'title'  => '头部背景图',
+		'icon'  => 'fa fa-images',
 		'fields' => array(
 		    		    array(
       'id'    => 'zero-header-gbqzbjan',
@@ -28,7 +27,6 @@
        'subtitle' => '导航栏背后的图片',
        'default' => true,
     ),
-		    
 		 array(
       'id'      => 'opt-index-banner-moxin',
       'type'    => 'radio',
@@ -40,10 +38,6 @@
       ),
       'default' => 'opt-index-xbanner',
     ),
-    
-    
-    
-    
     		 array(
       'id'      => 'opt-index-header-color-box',
       'type'    => 'radio',
@@ -61,7 +55,6 @@
 				'type'  => 'upload',
 				'title' => '大图带文字banner',
                 'default' =>  get_template_directory_uri().'/images/bg_pic.jpg',
-				
 			),
 			array(
 				'id'    => 'zero-footer-qzbj',
@@ -82,7 +75,6 @@
                 ),
 	)
 	) );
-	    
     CSF::createSection( $prefix, array(
     'parent'      => 'zero_x',
     'title' => '排除分类ID',
@@ -96,7 +88,6 @@
 			),
     )
     ) );
-	    
     CSF::createSection( $prefix, array(
     'parent'      => 'zero_x',
     'title' => '搜索相关',
@@ -115,9 +106,8 @@
                 ),
     )
     ) );
-    // Q-Q交-流群：9173673-58
+// Q-Q交-流群：9173673-58
 // Field: 文章内页设置
-//
 CSF::createSection($prefix, array(
     'title'  => '分类页筛选',
     'icon'   => 'fa fa-circle',
@@ -154,7 +144,6 @@ CSF::createSection($prefix, array(
             ),
             'dependency' => array('is_filter_item_cat', '==', 'true'),
         ),
-        
         array(
             'id'         => 'is_filter_item_cat2',
             'type'       => 'switcher',
@@ -177,13 +166,12 @@ CSF::createSection($prefix, array(
             'title'   => '分类筛选排序方式'.$tips_6_2,
             'inline'  => true,
             'options' => array(
-                'id'    => esc_html__('分类ID', 'cao'),
-                'name' => esc_html__( '分类名称', 'cao' ),
-                'count' => esc_html__('文章数量', 'cao'),
+                'id'    => '分类ID',
+                'name' => '分类名称',
+                'count' => '文章数量',
             ),
             'default' => 'id',
         ),
-
         array(
             'id'         => 'is_filter_item_tags',
             'type'       => 'switcher',
@@ -199,65 +187,62 @@ CSF::createSection($prefix, array(
             'default' => '10',
             'dependency' => array('is_filter_item_tags', '==', 'true'),
         ),
-        array(
-            'id'      => 'is_custom_post_meta_opt',
-            'type'    => 'switcher',
-            'title'   => '高级自定义文章字段属性',
-            'desc'    => '主要用于增强筛选细化资源，高级自定义文章字段属性<b><font color="red">每个字段名称，必须有两个或两个字段选项，否则会报错</font></b>',
-            'default' => false,
-        ),
-        array(
-            'id'         => 'custom_post_meta_opt',
-            'type'       => 'group',
-            'title'      => '自定义字段设置',
-            'max'        => '50',
-            'fields'     => array(
-                
-                array(
-                    'id'      => 'meta_name',
-                    'type'    => 'text',
-                    'title'   => '字段名称',
-                    'default' => '字段1',
-                ),
-                array(
-                    'id'      => 'meta_ua',
-                    'type'    => 'text',
-                    'title'   => '字段英文标识',
-                    'default' => 'my_meta_1',
-                ),
-                array(
-                    'id'          => 'meta_category',
-                    'type'        => 'select',
-                    'title'       => '只在该分类下显示高级筛选属性',
-                    'placeholder' => '全部显示',
-                    'chosen'      => true,
-                    'multiple'    => true,
-                    'options'     => 'categories',
-                ),
-                array(
-                    'id'     => 'meta_opt',
-                    'type'   => 'group',
-                    'title'  => '字段选项',
-                    'fields' => array(
-                        array(
-                            'id'      => 'opt_name',
-                            'type'    => 'text',
-                            'title'   => '选项中文名称',
-                            'default' => '字段选项1',
-                        ),
-                        array(
-                            'id'      => 'opt_ua',
-                            'type'    => 'text',
-                            'title'   => '选项英文标识',
-                            'default' => 'opt_1',
-                        ),
-                    ),
-                ),
-
-            ),
-            'dependency' => array('is_custom_post_meta_opt', '==', 'true'),
-        ),
-
+        // array(
+        //     'id'      => 'is_custom_post_meta_opt',
+        //     'type'    => 'switcher',
+        //     'title'   => '高级自定义文章字段属性',
+        //     'desc'    => '主要用于增强筛选细化资源，高级自定义文章字段属性<b><font color="red">每个字段名称，必须有两个或两个字段选项，否则会报错</font></b>',
+        //     'default' => false,
+        // ),
+        // array(
+        //     'id'         => 'custom_post_meta_opt',
+        //     'type'       => 'group',
+        //     'title'      => '自定义字段设置',
+        //     'max'        => '50',
+        //     'fields'     => array(
+        //         array(
+        //             'id'      => 'meta_name',
+        //             'type'    => 'text',
+        //             'title'   => '字段名称',
+        //             'default' => '字段1',
+        //         ),
+        //         array(
+        //             'id'      => 'meta_ua',
+        //             'type'    => 'text',
+        //             'title'   => '字段英文标识',
+        //             'default' => 'my_meta_1',
+        //         ),
+        //         array(
+        //             'id'          => 'meta_category',
+        //             'type'        => 'select',
+        //             'title'       => '只在该分类下显示高级筛选属性',
+        //             'placeholder' => '全部显示',
+        //             'chosen'      => true,
+        //             'multiple'    => true,
+        //             'options'     => 'categories',
+        //         ),
+        //         array(
+        //             'id'     => 'meta_opt',
+        //             'type'   => 'group',
+        //             'title'  => '字段选项',
+        //             'fields' => array(
+        //                 array(
+        //                     'id'      => 'opt_name',
+        //                     'type'    => 'text',
+        //                     'title'   => '选项中文名称',
+        //                     'default' => '字段选项1',
+        //                 ),
+        //                 array(
+        //                     'id'      => 'opt_ua',
+        //                     'type'    => 'text',
+        //                     'title'   => '选项英文标识',
+        //                     'default' => 'opt_1',
+        //                 ),
+        //             ),
+        //         ),
+        //     ),
+        //     'dependency' => array('is_custom_post_meta_opt', '==', 'true'),
+        // ),
     ),
 ));
 // 作者博客：https://www.aj0.cn/
@@ -267,13 +252,11 @@ CSF::createSection($prefix, array(
     'icon'  => 'fas fa-store',
     'fields' => array(
     //// A text fieldarray('id' => 'opt-text','type' => 'text','title' => 'Simple Text',
-                   
         array(
       'type'    => 'notice',
       'style'   => 'info',
       'content' => '网站图片设置',
     ),
-
 			array(
 				'id'    => 'zero-header-favicon',
 				'type'  => 'upload',
@@ -286,7 +269,6 @@ CSF::createSection($prefix, array(
 				'type'  => 'upload',
 				'title' => '网站背景图片',
 				 'subtitle' => '网站全局背景图-为空默认为乳白色',
-
 			),
 		array(
       'id'    => 'zero-index-js-to-footer',
@@ -296,8 +278,6 @@ CSF::createSection($prefix, array(
        'subtitle' => '默认开启背景特效',
        'default' => true,
          ),
-
-    
         		 array(
       'id'      => 'zero-index-texiao-box',
       'type'    => 'radio',
@@ -310,12 +290,112 @@ CSF::createSection($prefix, array(
       ),
       'default' => 'zero-index-texiao-guanbi',
     ),
-    
-    
-    
     ),
     )
      );
+      CSF::createSection( $prefix, array(
+    'parent'      => 'zero_x',
+    'title' => '首页模板切换',
+    'icon'  => 'far fa-clone',
+    'fields' => array(
+    array(
+      'id'      => 'opt-index-buju',
+      'type'    => 'image_select',
+      'title'   => '首页模板切换',
+      'inline'  => 'opt_img',
+      'options' => array(
+        'opt_blog' =>  get_template_directory_uri().'/images/qzdy_buju_1.svg',
+        'opt_img' => get_template_directory_uri().'/images/qzdy_buju_2.svg',
+      ),
+      'default' => 'opt_blog',
+    ),
+    array(
+      'id'      => 'opt-index-sidebar-position',
+      'type'    => 'radio',
+      'title'   => '侧边栏位置',
+      'inline'  => 'opt-sidebar-right',
+      'options' => array(
+        'opt-sidebar-left' => '左侧',
+        'opt-sidebar-right' => '右侧',
+      ),
+      'default' => 'opt-sidebar-right',
+    ),
+    
+    )
+    ) );
+CSF::createSection( $prefix, array(
+    'parent'      => 'zero_x',
+    'title' => '首页置顶文章',
+    'icon'  => 'fas fa-sort-amount-up-alt',
+    'fields' => array(
+        		    array(
+      'id'    => 'zero-index-zhidibng',
+      'type'  => 'switcher',
+      'title' => '开启首页置顶',
+      'label' => '开启首页置顶',
+       'subtitle' => '轮播图下面的四篇置顶文章',
+       'default' => false,
+    ),
+                    array(
+      'id'          => 'zero-index-topping-box',
+      'type'        => 'select',
+      'title'       => '设置需要置顶的文章',
+      'chosen'      => true,
+      'multiple'    => true,
+      'sortable'    => true,
+      'ajax'        => true,
+      'options'     => 'posts',
+      'placeholder' => '请搜索文章名称两字以上',
+    ),
+)
+) );
+CSF::createSection( $prefix, array(
+    'parent'      => 'zero_x',
+    'title' => '幻灯片设置',
+    'icon'  => 'fas fa-upload',
+    'fields' => array(
+        array(
+      'id'    => 'zero-index-bannerkg',
+      'type'  => 'switcher',
+      'title' => '开启幻灯片',
+      'label' => '开启幻灯片',
+       'subtitle' => '默认关闭轮播图',
+       'default' => false,
+        ),
+        array(
+      'id'    => 'zero-index-bannerkg-wzgn',
+      'type'  => 'switcher',
+      'title' => '关闭图片文字',
+      'label' => '开启图片文字',
+       'subtitle' => '默认开启图片文字',
+       'default' => true,
+        ),
+        array(
+            'id'     => 'opt-group-topping-zhiding',
+            'type'   => 'group',
+            'title'  => '首页幻灯片设置',
+            'max' => 4,
+            'fields' => array(
+                array(
+                    'id'    => 'opt-group-topping-title',
+                    'type'  => 'text',
+                    'title' => '标题',
+                ),
+               array(
+		    	    'id'    => 'zero-banner-topping-img',
+		    	    'type'  => 'upload',
+			       'title' => '图片地址',
+			         'default' => '',
+		    	),
+                array(
+                     'id'    => 'opt-text-topping-url',
+                     'type'  => 'text',
+                     'title' => '跳转地址',
+                ),
+               )
+            ),
+    )
+    ) );
         CSF::createSection( $prefix, array(
     'parent'      => 'zero_x',
     'title' => '登陆设置',
@@ -358,7 +438,53 @@ CSF::createSection($prefix, array(
     )
      );
     // ------------------erji
-    
+CSF::createSection( $prefix, array(
+		'title'  => '后台优化(建议)',
+		'icon'  => 'fas fa-wrench',
+		'description' => '没开启的强烈建议开启，不要安装插件禁用！打钩开启禁用',
+		'fields' => array(
+array(
+      'id'    => 'zero-ht-jyxbxgj',
+      'type'  => 'checkbox',
+      'title' => '后台小工具',
+      'subtitle' => '禁用之后有明显的速度提升',
+      'label' => '禁用新版小工具.',
+      'default' => true,
+    ),
+    array(
+      'id'    => 'zero-ht-jyxbbjq',
+      'type'  => 'checkbox',
+      'title' => '后台新版本编辑器',
+      'subtitle' => '禁用之后有明显的速度提升',
+      'label' => '禁用新版编辑器.',
+      'default' => true,
+    ),
+    array(
+      'id'    => 'zero-ht-htkqzdttx',
+      'type'  => 'checkbox',
+      'title' => '开启自定义头像功能',
+      'subtitle' => '开启之后在侧边栏：用户>个人资料>最下方  上传图片',
+      'label' => '开启自定义头像功能',
+      'default' => true,
+    ),
+    array(
+      'id'    => 'zero-wzl-category',
+      'type'  => 'checkbox',
+      'title' => '禁用分类链接中category',
+    //   'subtitle' => '开启之后在侧边栏：用户>个人资料>最下方  上传图片',
+      'label' => '禁用分类链接中category',
+      'default' => false,
+    ),
+        array(
+      'id'    => 'zero-bjq-zengqiang',
+      'type'  => 'checkbox',
+      'title' => '编辑器增强',
+      'subtitle' => '一些配置不好的服务器开启可能会感到xu微的卡',
+      'label' => '默认开启',
+      'default' => true,
+    ),
+	)
+	) );
                CSF::createSection( $prefix, array(
     'title' => 'LOGO设置',
     'icon'  => 'far fa-image',
@@ -508,38 +634,29 @@ CSF::createSection($prefix, array(
           'opt-group-5-sublevel-1' => array(
             array(
               'opt-text' => 'Sub Level 1',
-
             ),
-
           ),
         ),
-
-
       )
     ),
-
-
-
     )
-
     ) );
         CSF::createSection( $prefix, array(
     'title' => 'SEO设置',
     'icon'  => 'fas fa-spider',
     'fields' => array(
-       									array(
+       			array(
 				'id'    => 'zero-footer-wzgjc',
 				'type'  => 'text',
 				'title' => '网站关键词',
 				'default' => '技术博客,资源网,个人博客网站',
 			), 
-       									array(
+       			array(
 				'id'    => 'zero-footer-wzms',
 				'type'  => 'text',
 				'title' => '网站描述',
 				'default' => '定期分享技术教程以及网络资源',
 			), 
-
     )
     ) );
             CSF::createSection( $prefix, array(
@@ -636,7 +753,6 @@ CSF::createSection($prefix, array(
 				'id'    => 'zero-smtp-fjyx',
 				'type'  => 'text',
 				'title' => '发信邮箱',
-
 			), 
        			array(
 				'id'    => 'zero-smtp-ps',
@@ -647,129 +763,22 @@ CSF::createSection($prefix, array(
                 'autocomplete' => 'off',
             ),
 			), 
-
     )
     ) );
-      CSF::createSection( $prefix, array(
-    'title' => '首页模板切换',
-    'icon'  => 'far fa-clone',
-    'fields' => array(
-    array(
-      'id'      => 'opt-index-buju',
-      'type'    => 'image_select',
-      'title'   => '首页模板切换',
-      'inline'  => 'opt_img',
-      'options' => array(
-        'opt_blog' =>  get_template_directory_uri().'/images/qzdy_buju_1.svg',
-        'opt_img' => get_template_directory_uri().'/images/qzdy_buju_2.svg',
-      ),
-      'default' => 'opt_blog',
-    ),
-    
-    array(
-      'id'      => 'opt-index-sidebar-position',
-      'type'    => 'radio',
-      'title'   => '侧边栏位置',
-      'inline'  => 'opt-sidebar-right',
-      'options' => array(
-        'opt-sidebar-left' => '左侧',
-        'opt-sidebar-right' => '右侧',
-      ),
-      'default' => 'opt-sidebar-right',
-    ),
-    
-    )
-    ) );
-CSF::createSection( $prefix, array(
-    'title' => '首页置顶文章',
-    'icon'  => 'fas fa-sort-amount-up-alt',
-    'fields' => array(
-        		    array(
-      'id'    => 'zero-index-zhidibng',
-      'type'  => 'switcher',
-      'title' => '开启首页置顶',
-      'label' => '开启首页置顶',
-       'subtitle' => '轮播图下面的四篇置顶文章',
-       'default' => false,
-    ),
-                    array(
-      'id'          => 'zero-index-topping-box',
-      'type'        => 'select',
-      'title'       => '设置需要置顶的文章',
-      'chosen'      => true,
-      'multiple'    => true,
-      'sortable'    => true,
-      'ajax'        => true,
-      'options'     => 'posts',
-      'placeholder' => '请搜索文章名称两字以上',
-    ),
-
-
-
-)
-) );
-CSF::createSection( $prefix, array(
-    'title' => '幻灯片设置',
-    'icon'  => 'fas fa-upload',
-    'fields' => array(
-        array(
-      'id'    => 'zero-index-bannerkg',
-      'type'  => 'switcher',
-      'title' => '开启幻灯片',
-      'label' => '开启幻灯片',
-       'subtitle' => '默认关闭轮播图',
-       'default' => false,
-        ),
-        array(
-      'id'    => 'zero-index-bannerkg-wzgn',
-      'type'  => 'switcher',
-      'title' => '关闭图片文字',
-      'label' => '开启图片文字',
-       'subtitle' => '默认开启图片文字',
-       'default' => true,
-        ),
-        array(
-            'id'     => 'opt-group-topping-zhiding',
-            'type'   => 'group',
-            'title'  => '首页幻灯片设置',
-            'max' => 4,
-            'fields' => array(
-                array(
-                    'id'    => 'opt-group-topping-title',
-                    'type'  => 'text',
-                    'title' => '标题',
-                ),
-               array(
-		    	    'id'    => 'zero-banner-topping-img',
-		    	    'type'  => 'upload',
-			       'title' => '图片地址',
-			         'default' => '',
-		    	),
-                array(
-                     'id'    => 'opt-text-topping-url',
-                     'type'  => 'text',
-                     'title' => '跳转地址',
-                ),
-               )
-            ),
-    )
-    ) );
-
 CSF::createSection( $prefix, array(
 		'id'    => 'zero_w',
 		'title' => '拓展功能',
 		'icon'  => 'fa fa-plus-circle',
 		
 	) );
-
 CSF::createSection( $prefix, array(
 		'parent'      => 'zero_w',
-		'title'  => '友情链接',
+		'title'  => '友情链接(弃用)',
 		'fields' => array(
 		     array(
                   'type'    => 'notice',
                   'style'   => 'info',
-                  'content' => '注意：如果是新安装的主题需要在。侧边栏的 外观》小工具》找到：\'Qzdy-友情链接\'工具添加上',
+                  'content' => '注意：此款友情链接功能在4.8版本起已弃用，但还是保留此选项；新款友情链接在 侧边栏 -> 链接  如有使用的小伙伴尽快将数据迁移到另一个友情链接',
                  ),
             array(
               'id'       => 'opt-cbl-cblyqlj',
@@ -782,56 +791,6 @@ CSF::createSection( $prefix, array(
                   ),
                   'default' =>'<a target="_blank" href="https://www.aj0.cn/">秋知德雨</a>',
                  ),
-	)
-	) );
-
-CSF::createSection( $prefix, array(
-		'parent'      => 'zero_w',
-		'title'  => '后台优化(建议)',
-		'description' => '没开启的强烈建议开启，不要安装插件禁用！打钩开启禁用',
-		'fields' => array(
-
-array(
-      'id'    => 'zero-ht-jyxbxgj',
-      'type'  => 'checkbox',
-      'title' => '后台小工具',
-      'subtitle' => '禁用之后有明显的速度提升',
-      'label' => '禁用新版小工具.',
-      'default' => true,
-    ),
-    array(
-      'id'    => 'zero-ht-jyxbbjq',
-      'type'  => 'checkbox',
-      'title' => '后台新版本编辑器',
-      'subtitle' => '禁用之后有明显的速度提升',
-      'label' => '禁用新版编辑器.',
-      'default' => true,
-    ),
-    array(
-      'id'    => 'zero-ht-htkqzdttx',
-      'type'  => 'checkbox',
-      'title' => '开启自定义头像功能',
-      'subtitle' => '开启之后在侧边栏：用户>个人资料>最下方  上传图片',
-      'label' => '开启自定义头像功能',
-      'default' => true,
-    ),
-
-    array(
-      'id'    => 'zero-wzl-category',
-      'type'  => 'checkbox',
-      'title' => '禁用分类链接中category',
-    //   'subtitle' => '开启之后在侧边栏：用户>个人资料>最下方  上传图片',
-      'label' => '禁用分类链接中category',
-      'default' => false,
-    ),
-        array(
-      'id'    => 'zero-bjq-zengqiang',
-      'type'  => 'checkbox',
-      'title' => '编辑器增强',
-      'subtitle' => '一些配置不好的服务器开启可能会感到xu微的卡',
-      'label' => '默认开启',
-      'default' => true,
-    ),
 	)
 	) );
         CSF::createSection( $prefix, array(
@@ -862,7 +821,6 @@ array(
       'placeholder' => '如：rzdy_css qzdy-2 qzdy  qzdyqzdy...'
     ),
     )
-
     ) );
 CSF::createSection( $prefix, array(
     'parent'=> 'zero_w',
@@ -897,12 +855,11 @@ CSF::createSection( $prefix, array(
       'label' => '默认开底部友情链接',
        'subtitle' => '可选择使用侧边栏友情链接功能还是底部功能，如需使用侧边栏友情链接，请前往-》外观-》小工具-》选择友情链接工具即可',
        'default' => true,
-    ),
+        ),
 				array(
 				'id'    => 'zero-footer-gxbba',
 				'type'  => 'text',
 				'title' => '工信部备案号',
-			
 			),
 				array(
 				'id'    => 'zero-footer-gaba',
@@ -930,7 +887,6 @@ CSF::createSection( $prefix, array(
                     'theme'  => 'dracula',
                     'mode'   => 'javascript',
                                      ),
-
                     ),
               	array(
 				'id'    => 'zero-footer-dibubq',
@@ -940,7 +896,6 @@ CSF::createSection( $prefix, array(
 			),
     )
     ) );
-    //
 // Field: backup
 //Q-Q交-流群：9173673-58
 CSF::createSection( $prefix, array(
@@ -951,7 +906,6 @@ CSF::createSection( $prefix, array(
     array(
       'type' => 'backup',
     ),
-
   )
 ) );
 CSF::createSection( $prefix, array(
@@ -961,9 +915,23 @@ CSF::createSection( $prefix, array(
     array(
       'type'    => 'content',
     //   哥哥你倒卖可以但是留个群或者博客吧，不然用户就算买了不会用还不是找你，我做你的免费售后Q-Q交-流群：9173673-58
-      'content' => 'Qzdy主题 简约 极致 <hr>关于：开发不易，请留个版权，QQ交流群：917367358(主题交流，更新建议)<hr>Theme Qzdy v4.7 | <span class="layui-badge"><a href="https://aj0.cn/?p=51" style="color: #fff;"  target="_blank">主题说明</a></span> | <span class="layui-badge layui-bg-black"><a href="https://gitee.com/MUCEO/qzdy" style="color: #fff;"  target="_blank">源码Gitee</a></span><hr class="layui-border-orange">当前版本 v4.7：<span class="layui-badge layui-bg-blue"><a href="https://gitee.com/MUCEO/qzdy" style="color: #fff;"  target="_blank">最新版本更新地址</a></span>',
+      'content' => 'Qzdy主题 简约 极致 <hr>关于：开发不易，请留个版权，QQ交流群：917367358(主题交流，更新建议)<hr>Theme Qzdy v4.8 | <span class="layui-badge"><a href="https://aj0.cn/?p=51" style="color: #fff;"  target="_blank">主题说明</a></span> | <span class="layui-badge layui-bg-black"><a href="https://gitee.com/MUCEO/qzdy" style="color: #fff;"  target="_blank">源码Gitee</a></span><hr class="layui-border-orange">当前版本 v4.8：<span class="layui-badge layui-bg-blue"><a href="https://gitee.com/MUCEO/qzdy" style="color: #fff;"  target="_blank">最新版本更新地址</a></span>',
     ),
+          array(
+        'type'    => 'subheading',
+        'content' => '更新源',
+      ),
+          array(
+        'id'          => 'qzdy_update_source',
+        'type'        => 'image_select',
+        'title' => '主题更新源',
+        'options'     => array(
+          'github'  => get_template_directory_uri().'/images/gxy/github.png',
+          'qzdy'  => get_template_directory_uri().'/images/gxy/qzdy.png',
+        ),
+        'desc' => '如果你使用的是架设在国内的服务器，请使用 AJ0.CN 官方源作为你的主题更新源',
+        'default'     => 'github'
+      ),
     )
     ) );
-    }
-?>
+    } ?>

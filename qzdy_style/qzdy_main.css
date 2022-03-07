@@ -853,7 +853,7 @@ color: #1e191973;
     margin-bottom: 10px;
     overflow: hidden;
 }
-
+/*友情链接小工具*/
  .link div a {
     display: inline-block;
     text-align: center;
@@ -870,6 +870,13 @@ color: #1e191973;
     height: 22px;
     line-height: 22px;
     font-size: 12px;
+}
+ .link div a img {
+width: 14px !important;
+height: 14px !important;
+vertical-align: middle;
+margin: -1px 5px 1px 1px;
+border-radius: 50%;
 }
 /*第二版卡片排版分类css*/
 /*卡片大小*/
@@ -1093,7 +1100,6 @@ object-fit: cover;
 width: 100%;
     height: 100%;
 }
-
 /*幻灯片*/
 /*幻灯片内边距*/
 .layui-carousel{
@@ -1106,7 +1112,13 @@ width: 100%;
 .title-article .title-msg span {font-size: 12px;}
 }
 .layui-icon {
-    color: #999;
+color: #999;
+}
+.site-tree-mobile .layui-icon {
+color: #999;
+position: absolute;
+top: 0;
+left: 0;
 }
 .layui-carousel > [carousel-item]{position:static;}
 .qzdylbtnbox{

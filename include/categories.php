@@ -8,9 +8,13 @@ class My_Widget_link extends WP_Widget {
 
 		parent::__construct(false,$name='Qzdy-友情链接',$widget_ops);  
 
+                //parent::直接使用父类中的方法
+                //$name 这个小工具的名称,
+                //$widget_ops 可以给小工具进行描述等等。
+                //$control_ops 可以对小工具进行简单的样式定义等等。
 	}
 
-	function form($instance) { 
+	function form($instance) { // 给小工具(widget) 添加表单内容
 		$title = esc_attr($instance['title']);
 		$title_link = esc_attr($instance['title_link']);
 	?>
@@ -22,10 +26,10 @@ class My_Widget_link extends WP_Widget {
 <input class="widefat" id="<?php echo $this->get_field_id('title_link'); ?>" name="<?php echo $this->get_field_name('title_link'); ?>" type="text" value="<?php echo $title_link; ?>" /></label></p>
 	<?php
     }
-	function update($new_instance, $old_instance) { 
+	function update($new_instance, $old_instance) { // 更新保存
 		return $new_instance;
 	}
-	function widget($args, $instance) { 
+	function widget($args, $instance) { // 输出显示在页面上
 	extract( $args );
         $title = apply_filters('widget_title', empty($instance['title']) ? __('友情链接') : $instance['title']);
         $title_link = apply_filters('widget_title', empty($instance['title_link']) ? __('title_link') : $instance['title_link']);
@@ -36,7 +40,17 @@ class My_Widget_link extends WP_Widget {
 <div class="link">
     <h3 class="title-sidebar"><i class="layui-icon iconfont iconlianjie"></i> <?php echo $title; ?><a style="float: right;color: #666;" href="<?php echo $title_link; ?>">申请</a></h3>
     <div>
-      <?php echo _qzdy('opt-cbl-cblyqlj'); ?>
+      
+
+                                <?php
+                                $bookmarks = get_bookmarks(array('orderby'=>'rand'));
+                                if(!empty($bookmarks)){
+                                    foreach($bookmarks as $bookmark){
+                                        $friendimg = $bookmark->link_image;
+                                        if(empty($friendimg)) $friendimg = get_stylesheet_directory_uri().'/images/yqlj.jpg';
+                                        echo '<a href="'.$bookmark->link_url.'" target="_blank"><img src="'.$friendimg.'"><span>'.$bookmark->link_name.'</span></a>';
+                                    }
+                                } ?>
     </div>
 </div>
               <?php echo $after_widget; ?>

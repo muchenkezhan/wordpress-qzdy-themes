@@ -23,7 +23,7 @@ if ( ! class_exists( 'CSF_Options' ) ) {
     public $args         = array(
 
       // framework title
-      'framework_title'         => 'Qzdy V4.7 <small>by AJ0.CN</small>',
+      'framework_title'         => 'Qzdy V4.8 <small>by AJ0.CN</small>',
       'framework_class'         => '',
 
       // menu settings
@@ -490,7 +490,7 @@ if ( ! class_exists( 'CSF_Options' ) ) {
     }
 
     public function add_admin_footer_text() {
-      $default = '感谢您在Wordpress使用主题 <a href="https://aj0.cn/" target="_blank">Qzdy V4.7</a>进行写作';
+      $default = '感谢您在Wordpress使用主题 <a href="https://aj0.cn/" target="_blank">Qzdy V4.8</a>进行写作';
       echo ( ! empty( $this->args['footer_credit'] ) ) ? $this->args['footer_credit'] : $default;
     }
 
@@ -562,11 +562,11 @@ if ( ! class_exists( 'CSF_Options' ) ) {
 
             echo '<div class="csf-form-result csf-form-success '. esc_attr( $notice_class ) .'">'. $notice_text .'</div>';
 
-            echo ( $this->args['show_form_warning'] ) ? '<div class="csf-form-result csf-form-warning">'. esc_html__( 'You have unsaved changes, save your changes!', 'csf' ) .'</div>' : '';
+            echo ( $this->args['show_form_warning'] ) ? '<div class="csf-form-result csf-form-warning">'. esc_html__( '您已修改了配置，请注意保存!', 'csf' ) .'</div>' : '';
 
             echo ( $has_nav && $this->args['show_all_options'] ) ? '<div class="csf-expand-all" title="'. esc_html__( 'show all settings', 'csf' ) .'"><i class="fas fa-outdent"></i></div>' : '';
 
-            echo ( $this->args['show_search'] ) ? '<div class="csf-search"><input type="text" name="csf-search" placeholder="'. esc_html__( 'Search...', 'csf' ) .'" autocomplete="off" /></div>' : '';
+            echo ( $this->args['show_search'] ) ? '<div class="csf-search"><input type="text"  name="csf-search" placeholder="'. esc_html__( '搜索...', 'csf' ) .'" autocomplete="off" /></div>' : '';
 
             echo '<div class="csf-buttons">';
             echo '<input type="submit" name="'. esc_attr( $this->unique ) .'[_nonce][save]" class="button button-primary csf-top-save csf-save'. esc_attr( $ajax_class ) .'" value="'. esc_html__( '保存', 'csf' ) .'" data-save="'. esc_html__( 'Saving...', 'csf' ) .'">';

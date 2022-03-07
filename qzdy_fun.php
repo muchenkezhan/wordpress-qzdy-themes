@@ -54,6 +54,21 @@ require get_template_directory() . '/include/bianjiqituozan.php';
 require get_template_directory() . '/include/qzdyeditor/down-meta.php';
 require get_template_directory() . '/include/qzdy_translate_id.php';
 require get_template_directory() . '/include/avatar/avatar.php';
+require 'include/update/plugin-update-checker.php';
+function UpdateCheck($url,$flag = 'qzdy'){
+    return Puc_v4_Factory::buildUpdateChecker(
+        $url,
+        __FILE__,
+      $flag
+    );
+ } 
+switch(_qzdy('qzdy_update_source')){
+    case 'github':
+        $myUpdateChecker = UpdateCheck('https://github.com/muchenkezhan/wordpress-qzdy-themes','wordpress-qzdy-themes');
+        break;
+    default:
+        $myUpdateChecker = UpdateCheck('https://www.aj0.cn/details.json');
+}
 function wpc_add_custom_admin_css() {
 echo '<link rel="stylesheet" href="', get_template_directory_uri() . '/qzdy_style/dist/css/layui.css"   media="all">';
 }
@@ -285,7 +300,6 @@ function _descriptions(){
     $my_content = mb_strimwidth($my_content,0,240,"..." );
     $my_content = ltrim($my_content);
     $my_content = preg_replace("/(\s|\ \;|　|\xc2\xa0)/","",$my_content);
-    // str_replace($search, $replace, $my_content);
 		$seo_descriptions = get_post_meta( get_the_ID(), 'opt-textseoms', true );
 		if(!empty($seo_descriptions)){
 		$description = $seo_descriptions;
@@ -351,14 +365,14 @@ function codedocs_add_classes_on_li($classes) { $classes[] = 'layui-nav-item'; r
 <?php 
 class Header_Menu_Walker extends Walker_Nav_Menu{	
 function start_lvl(&$output, $depth = 0, $args = array() ) {
-	$indent = ( $depth > 0 ? str_repeat( "\t", $depth ) : '' ); 
+	$indent = ( $depth > 0 ? str_repeat( "\t", $depth ) : '' );
     $display_depth = ( $depth + 1);
  
 	$classes = array( '', 
-	( $display_depth % 2 ? 'menu-odd' : 'menu-even' ), 
-	( $display_depth =1 ? '' : '' ), 
+	( $display_depth % 2 ? 'menu-odd' : 'menu-even' ),
+	( $display_depth =1 ? '' : '' ),
 	);
-	$class_names = implode( ' ', $classes );   
+	$class_names = implode( ' ', $classes );
  
 	$output .= "\n" . $indent . '<ul class="layui-nav-child layui-anim layui-anim-upbit">' . "\n";
 }
@@ -438,6 +452,7 @@ function qt_header_kggd() {
    }
 echo $qtwzpx;
 }
+
 function qt_header_kgtp() {
     $qt_header_tp = get_option('my_framework')['zero-header-gbqzbjan'];
 	if(!empty( $qt_header_tp)){
@@ -506,19 +521,19 @@ function qt_body_background() {
 echo $qtwzpx;
 }
 require get_stylesheet_directory(). '/include/mb_hot.php'; 
-require get_stylesheet_directory(). '/include/categories.php'; 
-require get_stylesheet_directory(). '/include/qzdy_label.php'; 
-require get_stylesheet_directory(). '/include/qzdy_column.php'; 
-require get_stylesheet_directory(). '/include/qzdy_personal.php'; 
-require get_stylesheet_directory(). '/include/widget-catpost.php'; 
-require get_stylesheet_directory(). '/include/widget-latest-classification.php'; 
+require get_stylesheet_directory(). '/include/categories.php';
+require get_stylesheet_directory(). '/include/qzdy_label.php';
+require get_stylesheet_directory(). '/include/qzdy_column.php';
+require get_stylesheet_directory(). '/include/qzdy_personal.php';
+require get_stylesheet_directory(). '/include/widget-catpost.php';
+require get_stylesheet_directory(). '/include/widget-latest-classification.php';
 require get_stylesheet_directory(). '/include/widget_yiyan.php';
 require get_stylesheet_directory(). '/include/widget_zuixinpinglun.php';
 require get_stylesheet_directory(). '/include/widget_qzdy_zhuanti.php';
 require get_stylesheet_directory(). '/include/widget_img_shuibiankankan.php';
 require get_stylesheet_directory(). '/include/qzdy_login.php';
 require get_stylesheet_directory(). '/include/qzdy_login_button.php';
-require get_stylesheet_directory(). '/include/qzdy_pinglunzuixing.php'; 
+require get_stylesheet_directory(). '/include/qzdy_pinglunzuixing.php';
 require get_stylesheet_directory(). '/include/qzdy_personal_left.php';
     class Select_Category_Template{
     	public function __construct() {
@@ -567,7 +582,6 @@ require get_stylesheet_directory(). '/include/qzdy_personal_left.php';
     		return $category_template;
     	}
     }
-     
     $cat_template = new Select_Category_Template();
 function show_category(){
     global $wpdb;
@@ -576,7 +590,7 @@ function show_category(){
     $request .= " WHERE $wpdb->term_taxonomy.taxonomy = 'category' ";
     $request .= " ORDER BY term_id asc";
     $categorys = $wpdb->get_results($request);
-    foreach ($categorys as $category) { //调用菜单
+    foreach ($categorys as $category) {
         $output = '分类名:【'.$category->name."】,ID:【".$category->term_id.'】；';
         echo $output;
     }
@@ -607,8 +621,7 @@ QTags.addButton( 'my_per_loginkejian', '登录回复可见', '[reply]登录回�
 function my_quicktags() {
 }
 </script>
-<?php
-}
+<?php }
 function paipk1_quicktags() { 
   if (wp_script_is('quicktags')){?>
   <script type="text/javascript">
@@ -621,8 +634,7 @@ function qzdy_prevent_theme() {
 $ssssa=_qzdy('opt-body-tzh1');
 $gsfgs=_qzdy('opt-body-tzh2');
 echo  ' ',$ssssa,' ',$gsfgs;
-}
-}
+}}
 function plc_comment_post( $incoming_comment ) {
         $incoming_comment['comment_content'] = htmlspecialchars($incoming_comment['comment_content']);
         $incoming_comment['comment_content'] = str_replace( "'",'', $incoming_comment['comment_content'] );
@@ -676,10 +688,10 @@ function fanly_custom_upload_name($file){
     $info   = pathinfo($file);
     $ext    = empty($info['extension']) ? '' : '.' . $info['extension'];
     $name   = basename($file, $ext);
-    if(preg_match("/[一-龥]/u",$file)){//中文换名
-        $file   = substr(md5($name), 0, 20) . rand(00,99) . $ext;//截取前20位MD5长度，加上两位随机
+    if(preg_match("/[一-龥]/u",$file)){
+        $file   = substr(md5($name), 0, 20) . rand(00,99) . $ext;
     }elseif(is_numeric($name)){//数字换名
-        $file   = substr(md5($name), 0, 20) . rand(00,99) . $ext;//截取前20位MD5长度，加上两位随机
+        $file   = substr(md5($name), 0, 20) . rand(00,99) . $ext;
     }
     return $file;
 }
@@ -695,18 +707,17 @@ $flkgg=get_term_meta($cat_ID,'_prefix_taxonomy_options',true);
 echo $layui_col_md;
 }
 function get_category_root_id($cat) {
-    $this_category = get_category($cat); 
-    while ($this_category->category_parent) 
+    $this_category = get_category($cat);
+    while ($this_category->category_parent)
     {
-        $this_category = get_category($this_category->category_parent); 
+        $this_category = get_category($this_category->category_parent);
     }
     return $this_category->term_id;
 }
-
 function get_category_deel($cat) {
 
-    $categories        = get_terms('category', array('hide_empty' => 0, 'parent' => 0)); 
-    $get_term_children = get_term_children($cat_ID, 'category'); 
+    $categories        = get_terms('category', array('hide_empty' => 0, 'parent' => 0));
+    $get_term_children = get_term_children($cat_ID, 'category');
 }
 function  qzdy_sidebar_switch_left() {
 global $wp_query;
@@ -716,6 +727,7 @@ if(!empty($flkgg['_zero-classification-cbl-kg']) && _qzdy('opt-index-sidebar-pos
 get_sidebar();
 }
 }
+// 
 function  qzdy_sidebar_switch_right() {
 global $wp_query;
 $cat_ID = get_query_var('cat');
@@ -725,17 +737,15 @@ get_sidebar();
 }
 }
 function  qzdy_classification_banner() {
-    if(!(is_404()) && (is_single()) || (is_page())){
 global $wp_query;
-$cat_ID = get_query_var('cat');
+$cat_ID  = get_query_var('cat');
 $flkgg=get_term_meta($cat_ID,'_prefix_taxonomy_options',true);
-if(!empty($flkgg['zero-header-classification-banner-imgurl'])){
+$banner= _qzdy('zero-header-classification-banner-morenbanner');
+if(!empty($flkgg['zero-header-classification-banner-imgurl'])  && !empty(is_category( $category ))){
 $banner=$flkgg['zero-header-classification-banner-imgurl'];
-}}
-if (is_home()) {
-  $banner= _qzdy('zero-header-classification-banner-morenbanner');
-} else{
-    $banner=_qzdy('zero-header-classification-banner-morenbanner');
+}
+elseif(empty($flkgg['zero-header-classification-banner-imgurl'])  && !empty(is_category( $category ))){
+$banner= _qzdy('zero-header-classification-banner-morenbanner');
 }
 echo $banner;
 }
@@ -770,7 +780,6 @@ function exclude_category_home( $query ) {
     }
     return $query;
 }
- 
 add_filter( 'pre_get_posts', 'exclude_category_home' );
 function comment_admin_title($comment){
 if($comment == 1){
@@ -804,7 +813,6 @@ echo '<a id="delete-'. $comment->comment_ID .'" href="' . wp_nonce_url("$url/wp-
 } ?>
 </span>
 <?php $commentOutput .= CID_return_comment_browser_by_id($comment->comment_ID);
-      $commentOutput .= CID_return_comment_flag_by_id($comment->comment_ID);
       echo $commentOutput;
 ?>
 <span class="comment-btn-reply">
@@ -907,7 +915,6 @@ overflow-x: hidden;}</style>';
     }else{
           echo'<style type="text/css">body{background:#f2f2f2;}</style>';
     }
-   
 }
 add_action('login_head', 'custom_login_head');
 function custom_loginlogo() {
@@ -942,7 +949,6 @@ add_action('init', 'no_category_base_permastruct');
 function no_category_base_permastruct() {
     global $wp_rewrite, $wp_version;
     if (version_compare($wp_version, '3.4', '<')) {
-        // For pre-3.4 support
         $wp_rewrite -> extra_permastructs['category'][0] = '%category%';
     } else {
         $wp_rewrite -> extra_permastructs['category']['struct'] = '%category%';
@@ -950,12 +956,11 @@ function no_category_base_permastruct() {
 }
 add_filter('category_rewrite_rules', 'no_category_base_rewrite_rules');
 function no_category_base_rewrite_rules($category_rewrite) {
-    //var_dump($category_rewrite); // For Debugging
     $category_rewrite = array();
     $categories = get_categories(array('hide_empty' => false));
     foreach ($categories as $category) {
         $category_nicename = $category -> slug;
-        if ($category -> parent == $category -> cat_ID)// recursive recursion
+        if ($category -> parent == $category -> cat_ID)
             $category -> parent = 0;
         elseif ($category -> parent != 0)
             $category_nicename = get_category_parents($category -> parent, false, '/', true) . $category_nicename;
@@ -1014,7 +1019,7 @@ function showCommentsWithUserAgent($comment, $args, $depth)
             echo '<i class="fas fa-user-check" data-toggle="tooltip" data-placement="auto top" title="" data-original-title="jxtxzzw"></i>';
         ?>
                 <?php if ($comment->pin_top == '1') echo '<i class="fas fa-thumbtack" data-toggle="tooltip" data-placement="auto top" data-original-title="置顶"></i>'; ?>
-        <?php CID_print_comment_flag();  ?>
+        <?php CID_print_comment_flag();?>
         <?php CID_print_comment_browser(); ?>
         <?php if ($comment->comment_approved == '0') : ?>
             <em class="comment-awaiting-moderation">
@@ -1037,3 +1042,4 @@ function showCommentsWithUserAgent($comment, $args, $depth)
     <?php endif; ?>
 <?php
 }
+add_filter( 'pre_option_link_manager_enabled', '__return_true' );

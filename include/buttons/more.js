@@ -137,7 +137,7 @@
     tinymce.create('tinymce.plugins.highlight', {
         init : function(ed, url) {
             ed.addButton('highlight', {
-                title : '代码高亮',
+                title : '白色代码高亮',
                 image : url+'/images/highlight.png',
                 onclick : function() {
                      ed.selection.setContent('<pre class="hl"><code class="">' + ed.selection.getContent() + '</code></pre>');
@@ -359,4 +359,19 @@
         },
     });
     tinymce.PluginManager.add('youtube', tinymce.plugins.youtube); 
+        tinymce.create('tinymce.plugins.qzdypre', {
+        init : function(ed, url) {
+            ed.addButton('qzdypre', {
+                title : '黑色代码高亮',
+                image : url+'/images/highlight.png',
+                onclick : function() {
+                     ed.selection.setContent('[qzdypre]' + ed.selection.getContent() + '[/qzdypre]');
+                }
+            });
+        },
+        createControl : function(n, cm) {
+            return null;
+        },
+    });
+    tinymce.PluginManager.add('qzdypre', tinymce.plugins.qzdypre); 
 })();
