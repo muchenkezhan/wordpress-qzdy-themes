@@ -5,7 +5,7 @@
 <div class="layui-col-md9 layui-col-lg9">
        <?php require get_template_directory() . '/home-yao.php'; ?>
 <!--置顶文章-->
-<?php if(is_home()&&!is_paged()){ ?>
+<?php if(is_home()&&!is_paged()&&is_sticky()){ ?>
 <?php
 $args = array(
 'posts_per_page' => -1,
