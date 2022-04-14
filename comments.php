@@ -8,6 +8,9 @@ if ( post_password_required() )
 return;
 ?>
 <div id="comments" class="responsesWrapper">
+<?php $post_info = get_post(get_the_ID(), ARRAY_A);
+if($post_info['comment_count']){
+?>
 <meta content="UserComments:<?php echo number_format_i18n( get_comments_number() );?>" itemprop="interactionCount">
 <h3 class="comments-title">共有 <span class="commentCount"><?php echo number_format_i18n( get_comments_number() );?></span> 条评论</h3>
 <ol class="commentlist">
@@ -26,6 +29,7 @@ $post_info = get_post(get_the_ID(), ARRAY_A);
 if(!$post_info['comment_count']){
 ?>
 <nav class="navigation comment-navigation u-textAlignCenter" data-fuck="<?php the_ID();?>">
+<?php } ?>
 <?php 
 if($post_info['comment_count']){
     paginate_comments_links(array('prev_next'=>true)); 
@@ -37,10 +41,11 @@ if($post_info['comment_count']){
 <?php } ?>
 <?php if(comments_open()) : ?>
 <div id="respond" class="respond" role="form">
-<h2 id="reply-title" class="comments-title"><?php comment_form_title( '', '回复给 %s' ); ?> <small>
-<?php cancel_comment_reply_link(); ?>
-</small></h2>
-
+    						        <?php
+$post_info = get_post(get_the_ID(), ARRAY_A);
+if($post_info['comment_count']){?>
+<h2 id="reply-title" class="comments-title"><?php comment_form_title( '', '回复给 %s' ); ?> <small><?php cancel_comment_reply_link(); ?></small></h2>
+<?php }?>
 <?php if ( get_option('comment_registration') && !is_user_logged_in()) : ?>
 <p>您必须 <a class="must_login_btn" href="<?php echo get_option('siteurl'); ?>/wp-login.php?redirect_to=<?php echo urlencode(get_permalink()); ?>">登陆</a>或<a class="must_login_btn" href="<?php echo get_option('home'); ?>/wp-login.php?action=register">注册</a> 后可评论</p>
 <?php else : ?>
@@ -57,7 +62,7 @@ if($post_info['comment_count']){
 <input class="form-control" id="author" type="text" tabindex="2" value="<?php echo $comment_author; ?>" name="author" placeholder="昵称[必填]" required>
 </label>
 <label id="author_email" for="email">
-<input class="form-control" id="email" type="text" tabindex="3" value="<?php echo $comment_author_email; ?>" name="email" placeholder="邮箱[必填]" required>
+<input class="form-control" id="email" type="email" tabindex="3" value="<?php echo $comment_author_email; ?>" name="email" placeholder="邮箱[必填]" required>
 </label>
 <label id="author_website" for="url">
 <input class="form-control" id="url" type="text" tabindex="4" value="<?php echo $comment_author_url; ?>" name="url" placeholder="网址(可不填)">

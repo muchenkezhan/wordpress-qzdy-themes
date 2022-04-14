@@ -2,13 +2,10 @@
  <!--上面是头部-->
 <div class="layui-content<?php echo qzdy_prevent_theme(); ?>">
 <div class="layui-container<?php echo qzdy_prevent_theme(); ?>">
-<div class="layui-row layui-col-space15 main<?php echo qzdy_prevent_theme(); ?>">
-<?php if(_qzdy('opt-index-sidebar-position') == 'opt-sidebar-left'){ ?>
-        <?php get_sidebar();?>
-        <?php } ?>
-        <?php _zero_wz_autoMenu_ml_kg(); ?>
-    <div class="layui-col-md9 layui-col-lg9<?php echo qzdy_prevent_theme(); ?>">
-            <!--内容页面上的分类提示-->
+<div class="layui-row flex layui-col-space15 <?php qzdy_sidebar_fangxiang();?> main<?php echo qzdy_prevent_theme(); ?>">
+<?php _zero_wz_autoMenu_ml_kg(); ?>
+<div class="layui-col-md9 layui-col-lg9<?php echo qzdy_prevent_theme(); ?>" <?php qzdy_sidebar_fangxiang(); ?>>
+<!--内容页面上的分类提示-->
 <div class="map"><?php if ( function_exists('ah_breadcrumb') ) ah_breadcrumb(); ?></div>
     <!--提示结束-->
         <!--内容开始-->
@@ -34,7 +31,6 @@
             <!--标签-->
             <!--个人资料-->
             <?php 
-
 	if(!empty($zero_footer_grxx = _qzdy('zero-footer-grxx'))){?>
             <div class="author-row ">
                 <div class="author-box flex-row align-center" data-v-730707dd="">
@@ -106,9 +102,7 @@ $zero_footer_plk = _qzdy('zero-footer-plk');
 </div>
 <?php } } ?>
 </div>
-<?php if(_qzdy('opt-index-sidebar-position') == 'opt-sidebar-right'){?>
 <?php get_sidebar();?>
-<?php } ?>
 </div>
 </div>
 </div>

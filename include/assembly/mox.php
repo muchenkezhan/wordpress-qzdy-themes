@@ -1,10 +1,14 @@
 <?php
 function ah_breadcrumb() {
+
+  // Check if is front/home page, return
   if ( is_front_page() ) {
     return;
   }
+
+  // Define
   global $post;
-  $custom_taxonomy  = ''; 
+  $custom_taxonomy  = ''; // If you have custom taxonomy place it here
 
   $defaults = array(
     'seperator'   =>  '/',
@@ -14,6 +18,8 @@ function ah_breadcrumb() {
   );
 
   $sep  = '<span class="seperator">'. esc_html( $defaults['seperator'] ) .'</span>';
+
+  // Start the breadcrumb with a link to your homepage
   echo '<ul id="'. esc_attr( $defaults['id'] ) .'" class="'. esc_attr( $defaults['classes'] ) .'">';
 
   // Creating home link

@@ -138,15 +138,15 @@ layui.define(['code', 'element', 'table', 'util', 'carousel', 'laytpl'], functio
   }();
     
 
-  //固定Bar
-  util.fixbar({
-    showHeight: 60
-    ,css: function(){
-      if(global.pageType === 'demo'){
-        return {bottom: 75}
-      }
-    }()
-  });
+//   //固定Bartop返回顶部
+//   util.fixbar({
+//     showHeight: 60
+//     ,css: function(){
+//       if(global.pageType === 'demo'){
+//         return {bottom: 75}
+//       }
+//     }()
+//   });
   
   //窗口scroll
   ;!function(){
@@ -288,28 +288,7 @@ layui.define(['code', 'element', 'table', 'util', 'carousel', 'laytpl'], functio
   
 
 
-  //查看代码
-  $(function(){
-    var DemoCode = $('#LAY_democode');
-    DemoCode.val([
-      DemoCode.val()
-      ,'<body>'
-      ,global.preview
-      ,'\n<script src="//res.layui.com/layui/dist/layui.js" charset="utf-8"></script>'
-      ,'\n<!-- 注意：如果你直接复制所有代码到本地，上述 JS 路径需要改成你本地的 -->'
-      ,$('#LAY_democodejs').html()
-      ,'\n</body>\n</html>'
-    ].join(''));
-  });
 
-  //点击查看代码选项
-  element.on('tab(demoTitle)', function(obj){
-    if(obj.index === 1){
-      if(device.ie && device.ie < 9){
-        layer.alert('强烈不推荐你通过ie8/9 查看代码！因为，所有的标签都会被格式成大写，且没有换行符，影响阅读');
-      }
-    }
-  })
 
 
   //手机设备的简单适配

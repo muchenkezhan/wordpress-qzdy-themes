@@ -28,6 +28,11 @@ echo '_page '. $paged;
   <meta name="apple-mobile-web-app-status-bar-style" content="black"> 
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="format-detection" content="telephone=no">
+  <meta name="Referrer" content="origin"/>
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <meta name='robots' content='max-image-preview:large' />
+  <?php og(); ?>
   <link rel="shortcut icon" href="<?php echo _qzdy('zero-header-favicon'); ?>"/> 
   <link rel="stylesheet" href="<?php bloginfo('template_url'); ?>/qzdy_style/dist/css/layui.css"   media="all">
   <link rel="stylesheet" href="<?php bloginfo('template_url'); ?>/qzdy_style/res/static/css/global.css"  media="all">
@@ -60,16 +65,18 @@ echo '_page '. $paged;
     <div class="layui-hide-xs site-notice" id="ssanniu"><span><i class="layui-icon layui-icon-search" style="font-size: 20px; color: #999;"></i> </span>   </div>
     <!--手机logo-->
 <?php 
+ if ( function_exists( 'wp_nav_menu' ) && has_nav_menu('nav') ) {
 wp_nav_menu( 
 array( 
  'theme_location' => 'nav',
  'container'=>'<li>',
  'menu_id'=>'LAY_NAV_TOP',
  'menu_class'=>'layui-nav',
+ 'fallback_cb'     => 'wp_page_menu',
  'link_before' => '<span>',
  'link_after' => '</span>',
  'walker' => new Header_Menu_Walker()
- )); ?>
+ )); } else {echo '<div class="navtswz" style="line-height: 60px;"><ul id="menu-1" class="layui-nav rp-nav-pc"><li class=""><a href="/wp-admin/nav-menus.php" aria-current="page">请到[后台->外观->菜单]中设置菜单</a></li></ul></div>';} ?>
   </div>
 </div>
   <div class="layui-side layui-bg-black">
@@ -78,8 +85,6 @@ array(
           <div class="wap-bjt" style="background-image: url(<?php echo _qzdy('zero-footer-txbjt'); ?>);"></div>
           <div class="website-avatar pos-rlt">
                 <div class="avatar-border">
-                 
-                    
               <?php $str=_qzdy('zero-index-cbl-login');
     if (!empty($str)) {?>
                     <?php if (!(current_user_can('level_0'))){ ?>  
@@ -117,16 +122,25 @@ echo get_avatar( $current_user->ID); ?>
         </div>
 <?php }?>
  </div>
-<?php 
+        <?php
+        $locations = get_nav_menu_locations();
+        if (isset($locations['navs'])) {
 wp_nav_menu( 
 array( 
- 'theme_location' => 'nav',
+ 'theme_location' => 'navs',
  'container'=>'<li>',
  'menu_id'=>'',
  'menu_class'=>'layui-nav layui-nav-tree layui-inline',
+ 'fallback_cb'     => 'wp_page_menu',
  'link_before' => '<span>',
  'link_after' => '</span>',
- )); ?>
+    	'walker'          => '',//自定义的遍历对象，调用一个对象定义显示导航菜单。
+           )
+            );
+        } else {
+            echo '<div style="padding:10px;" class="menu-header-plane">请进入后台配置侧边栏菜单 <a  style="color: red;" href="/wp-admin/nav-menus.php" target="_blank">配置</a> </div>';
+        }
+        ?>
      </div>
   </div>
    <?php require get_template_directory() . '/include/ssuo/searchform.php'; ?>

@@ -20,7 +20,6 @@
 }
 if (is_home()) {
   echo _qzdy('opt-group-topping-datu-title');
-// echo '<img style="width:300px;" src="https://aj0.cn/wp-content/uploads/2022/02/000001_1.png">';
 } 
    if ($paged > 1) {
 echo '_page '. $paged;
@@ -32,7 +31,6 @@ echo '_page '. $paged;
 } elseif (is_search()) {
    echo 'Search for "'.wp_specialchars($s).'"_';
 } elseif (!(is_404()) && (is_single()) || (is_page())) {
-    // 内容页面描述
     $qzdy_zdy_ym_des=get_post_meta( get_the_ID(), 'qzdy_zdy_ym_des', true );
  if(!empty($qzdy_zdy_ym_des)){
     $qzdy_zdy_ym_des = mb_strimwidth($qzdy_zdy_ym_des,0,80,"..." );

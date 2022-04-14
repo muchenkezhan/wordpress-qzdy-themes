@@ -10,24 +10,25 @@
 			<div class="map map-class">
 <?php if ( function_exists('ah_breadcrumb') ) ah_breadcrumb(); ?>
 			</div>
-			<?php if(_qzdy('opt-index-sidebar-position') == 'opt-sidebar-left'){
-get_sidebar();}?>
-			<div
-				class="layui-col-md9 layui-col-lg9">
+			<div class="layui-col-md9 layui-col-lg9" <?php qzdy_sidebar_fangxiang(); ?>>
 				<?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
 				<div class="title-article list-card item-box<?php echo qzdy_prevent_theme(); ?>">
 					<div class="index-post-img-small<?php echo qzdy_prevent_theme(); ?>"><a
 							href="<?php the_permalink() ?>">
-							<div title="<?php the_title(); ?>"
-								class="item-thumb-small lazy commodity-img<?php echo qzdy_prevent_theme(); ?>"
-								data-original="<?php $gettesheimg = wp_get_attachment_image_src( get_post_thumbnail_id());if(!empty($gettesheimg)){echo $gettesheimg[0];}else{echo catch_first_image(); }?>"
-								style="background-image: url(data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7)">
-								<span class="layui-badge layui-bg-cyan x"><?php the_time('Y/n/j'); ?></span></div>
+
+								            <?php if(_qzdy('rp-page-tesetu-sw')=='tesetu1'){?>
+<div title="<?php the_title(); ?>" class="item-thumb-small lazy commodity-img" data-original="<?php echo post_thumbnail_srcs(); ?>" style="background-image: url(data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7)"><span class="layui-badge layui-bg-cyan x"><?php the_time('Y/n/j'); ?></span>
+            </div>
+<?php }else{?>
+<div title="<?php the_title(); ?>" class="item-thumb-small lazy commodity-img" data-original="<?php echo get_template_directory_uri(); ?>/timthumb.php?src=<?php echo post_thumbnail_srcs(); ?>&w=300&h=240&zc=1&q=100" style="background-image: url(data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7)"><span class="layui-badge layui-bg-cyan x"><?php the_time('Y/n/j'); ?></span>
+            </div>
+<?php }?>
+								
+								
 						</a></div>
 					<div class="index-post-text-small">
 						<h2 title="<?php the_title(); ?>" class="m-t-none text-ellipsis index-post-title text-title"><a
-								href="<?php the_permalink() ?>">
-								<?php echo $cat_ID; ?><?php the_title(); ?></a></h2>
+								href="<?php the_permalink() ?>"><?php the_title(); ?></a></h2>
 						<p class="summary l-h-2x text-muted">
 							<?php echo mb_strimwidth(strip_tags(apply_filters('the_content', $post->post_content)), 0, 96,'…'); ?>
 						</p>
@@ -55,11 +56,7 @@ get_sidebar();}?>
 					<p> <?php lingfeng_pagenavi();?></p>
 				</div>
 			</div>
-					<?php
-			if(_qzdy('opt-index-sidebar-position') == 'opt-sidebar-right'){
-get_sidebar();
-}
-			?>
+<?php get_sidebar(); ?>
 		</div>
 	</div>
 </div>

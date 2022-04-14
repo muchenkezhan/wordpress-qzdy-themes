@@ -35,11 +35,14 @@ class My_Widget_shuibiankankan extends WP_Widget {
 <?php query_posts("showposts=5&ignore_sticky_posts=1&order=DESC&orderby=rand"); ?>  
 <?php $i='1';?>
 <?php if (have_posts()) : while (have_posts()) : the_post(); $d=$i++; ?>  
-
 <li class="darcyq-random-item">
 <a href="<?php the_permalink() ?>" class="darcyq-random-link" target="_blank">
 <i class="darcyq-random-sort qzdy_suiji_i<?php echo $d; ?>" ><?php echo $d; ?></i>
-<img alt="<?php the_title() ?>" title="<?php the_title() ?>" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-original="<?php $gettesheimg = wp_get_attachment_image_src( get_post_thumbnail_id());if(!empty($gettesheimg)){echo $gettesheimg[0];}else{echo catch_first_image(); }?>" class="darcyq-random-img lazy" width="100%" height="130">
+	 <?php if(_qzdy('rp-page-tesetu-sw')=='tesetu1'){?>
+	 <img alt="<?php the_title() ?>" title="<?php the_title() ?>" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-original="<?php echo post_thumbnail_srcs(); ?>" class="darcyq-random-img lazy" width="100%" height="130">
+	 	<?php }else{?>
+	 	<img alt="<?php the_title() ?>" title="<?php the_title() ?>" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-original="<?php echo get_template_directory_uri(); ?>/timthumb.php?src=<?php echo post_thumbnail_srcs(); ?>&w=300&h=240&zc=1&q=100" class="darcyq-random-img lazy" width="100%" height="130">
+	 	<?php }?>
 <div class="darcyq-random-title"><h3>
 <?php the_title() ?>
 </h3>

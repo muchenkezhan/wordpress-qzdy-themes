@@ -65,6 +65,18 @@ document.getElementById('days').innerHTML = number_of_days;
 </script></span>
         </li>
     </ul>
+<?php if(_qzdy('widget-icon-box-kg')){?>
+     <div class="widget-icon text-center">
+        <?php if(_qzdy('widget-icon-dashang')){?>
+        <a href="javascript:;" id="shang"><i class="fa layui-bg-blue" aria-hidden="true">赏</i></a>
+         <?php }?>
+          <?php 
+ $icotb = _qzdy('qzdy-widget-icon');
+ foreach ($icotb as $key){     
+?>
+ <a title="<?php echo $key['widget-icon-title'];?>" href="<?php echo $key['widget-icon-href'];?>" target="_blank"><i style="background-color:<?php echo $key['widget-icon-background'];?>;color:<?php echo $key['widget-icon-color'];?>;" class="<?php echo $key['widget-icon-ico'];?>"></i></a>
+<?php }?>
+         </div><?php }?>
      <?php if(current_user_can('manage_options')){ ?>
        <div class="widget-admin text-center">
                 <p>

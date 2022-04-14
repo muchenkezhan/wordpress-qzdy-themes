@@ -6,11 +6,8 @@
  <!--上面是头部-->
 <div class="layui-content">
 <div class="layui-container">
-<div class="layui-row layui-col-space15 main">
-<?php if(_qzdy('opt-index-sidebar-position') == 'opt-sidebar-left'){?>
-<?php get_sidebar();?>
-<?php } ?>
-    <div class="layui-col-md9 layui-col-lg9">
+<div class="layui-row layui-col-space15 flex main <?php qzdy_sidebar_fangxiang();?>">
+    <div class="layui-col-md9 layui-col-lg9" <?php qzdy_sidebar_fangxiang(); ?>>
         <!--内容开始-->
         <div class="title-article">
             <h1><?php the_title(); ?></h1>
@@ -27,20 +24,20 @@
                 <?php the_content(); ?>
                
                         <div class="linkpage">
-                               
-                                <ul><?php
+                               <?php $friendimg=''; if(!empty(_qzdy('zero-footer-youqinglink-ico'))){ echo '<img src="'.$friendimg.'">';} ?>
+                                <ul><?php 
                                 $bookmarks = get_bookmarks(array('orderby'=>'rand'));
                                 if(!empty($bookmarks)){
                                     foreach($bookmarks as $bookmark){
                                         $friendimg = $bookmark->link_image;
-                                        if(empty($friendimg)) $friendimg = get_stylesheet_directory_uri().'/images/yqlj.jpg';
-                                        echo '<li><a href="'.$bookmark->link_url.'" target="_blank"><img src="'.$friendimg.'"><h4>'.$bookmark->link_name.'</h4><p>'.$bookmark->link_description.'</p></a></li>';
+                                      
+                                        echo '<li><a href="'.$bookmark->link_url.'" target="_blank">'.link_ico($friendimg).'<h4>'.$bookmark->link_name.'</h4><p>'.$bookmark->link_description.'</p></a></li>';
                                     }
                                 } ?>
                                 </ul>
-                             
                             </div>
             </div>
+            
             <!--底部完毕-->
            <div class="the-end">- THE END -</div>
             <!--修改日期-->
@@ -64,11 +61,7 @@ $zero_footer_plk = _qzdy('zero-footer-plk');
 </div>
 <?php } } ?>
 </div>
-       <?php
-	if(_qzdy('opt-index-sidebar-position') == 'opt-sidebar-right'){
-?>
-        <?php get_sidebar();?>
-        <?php } ?>
+<?php get_sidebar();?>
 </div>
 </div>
 </div>

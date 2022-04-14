@@ -10,6 +10,7 @@ function _get_category_tags($args) {
         return false;
     }
     global $wpdb;
+
     $tags_num = (int)_qzdy('filter_item_tags_num',10);
     $tags = $wpdb->get_results
         ("
@@ -55,6 +56,7 @@ require get_template_directory() . '/include/qzdyeditor/down-meta.php';
 require get_template_directory() . '/include/qzdy_translate_id.php';
 require get_template_directory() . '/include/avatar/avatar.php';
 require 'include/update/plugin-update-checker.php';
+require 'include/seo.php';
 function UpdateCheck($url,$flag = 'qzdy'){
     return Puc_v4_Factory::buildUpdateChecker(
         $url,
@@ -76,7 +78,7 @@ add_action('admin_head', 'wpc_add_custom_admin_css');
 function short_title() {
 $mytitleorig = get_the_title();
 $title = htmlspecialchars($mytitleorig, ENT_QUOTES, "UTF-8");
-$limit = "40";
+$limit = "40"; 
 $pad="";
 if(strlen($title) >= ($limit+3)) {
 $title = mb_substr($title, 0, $limit) . $pad; }
@@ -86,8 +88,8 @@ if( !current_user_can( 'manage_options' ) ) {
 add_action( 'admin_menu', function(){
 remove_menu_page( 'upload.php' );
 remove_menu_page( 'edit-comments.php' );
-remove_menu_page( 'tools.php' );
-remove_menu_page( 'index.php' );
+remove_menu_page( 'tools.php' ); 
+remove_menu_page( 'index.php' ); 
 function admin_bar_item ( WP_Admin_Bar $admin_bar ) {
 	$admin_bar->remove_menu('my-framework');
 }
@@ -98,7 +100,6 @@ function customize_app_password_availability( $available, $user ) {
     if ( ! user_can( $user, 'manage_options' ) ) {
         $available = false;
     }
- 
     return $available;
 }
 add_filter( 'wp_is_application_passwords_available_for_user', 'customize_app_password_availability', 10, 2 );
@@ -165,7 +166,8 @@ function lingfeng_pagenavi( $range = 4 ) {
 }?>
 <?php
  register_nav_menus( array(
-'nav' => 'Header导航', 
+'nav' => 'PC端导航', 
+'navs' => '移动端导航'
 ) );
 add_theme_support( 'post-thumbnails' ); 
 add_theme_support('post-thumbnails', array('post'));
@@ -174,7 +176,7 @@ add_theme_support('post-thumbnails', array('page'));
 function theme_settings_admin() {
         include_once('functions.php');  
 }
-if ( function_exists('add_theme_support') )
+if ( function_exists('add_theme_support') );
 add_theme_support('post-thumbnails');
 function catch_first_image() {
     global $post, $posts;$first_img = '';
@@ -188,6 +190,28 @@ function catch_first_image() {
 		echo '/images/random/'.$random.'.jpg';
 		}
   return $first_img;
+}
+function post_thumbnail_srcs(){
+	global $post;
+	if( $values = get_post_custom_values("thumb") ) {
+		$values = get_post_custom_values("thumb");
+		$post_thumbnail_src = $values [0];
+	} elseif( has_post_thumbnail() ){ 
+		$thumbnail_src = wp_get_attachment_image_src(get_post_thumbnail_id($post->ID),'full');
+		$post_thumbnail_src = $thumbnail_src [0];
+	} else {
+		$post_thumbnail_src = '';
+		ob_start();
+		ob_end_clean();
+		$output = preg_match_all('/<img.+src=[\'"]([^\'"]+)[\'"].*>/i', $post->post_content, $matches);
+		if(!empty($matches[1][0])){
+			$post_thumbnail_src = $matches[1][0]; 
+		}else{	
+			$random = mt_rand(1, 10);
+			$post_thumbnail_src = get_template_directory_uri().'/images/random/'.$random.'.jpg';
+		}
+	};
+	echo $post_thumbnail_src;
 }
 add_theme_support('post-thumbnailss');
 function catch_first_images($key1) {
@@ -372,7 +396,7 @@ function start_lvl(&$output, $depth = 0, $args = array() ) {
 	( $display_depth % 2 ? 'menu-odd' : 'menu-even' ),
 	( $display_depth =1 ? '' : '' ),
 	);
-	$class_names = implode( ' ', $classes );
+	$class_names = implode( ' ', $classes ); 
  
 	$output .= "\n" . $indent . '<ul class="layui-nav-child layui-anim layui-anim-upbit">' . "\n";
 }
@@ -452,7 +476,6 @@ function qt_header_kggd() {
    }
 echo $qtwzpx;
 }
-
 function qt_header_kgtp() {
     $qt_header_tp = get_option('my_framework')['zero-header-gbqzbjan'];
 	if(!empty( $qt_header_tp)){
@@ -520,21 +543,21 @@ function qt_body_background() {
    }
 echo $qtwzpx;
 }
-require get_stylesheet_directory(). '/include/mb_hot.php'; 
+require get_stylesheet_directory(). '/include/mb_hot.php';
 require get_stylesheet_directory(). '/include/categories.php';
 require get_stylesheet_directory(). '/include/qzdy_label.php';
 require get_stylesheet_directory(). '/include/qzdy_column.php';
 require get_stylesheet_directory(). '/include/qzdy_personal.php';
 require get_stylesheet_directory(). '/include/widget-catpost.php';
-require get_stylesheet_directory(). '/include/widget-latest-classification.php';
-require get_stylesheet_directory(). '/include/widget_yiyan.php';
+require get_stylesheet_directory(). '/include/widget-latest-classification.php'; 
+require get_stylesheet_directory(). '/include/widget_yiyan.php'; 
 require get_stylesheet_directory(). '/include/widget_zuixinpinglun.php';
 require get_stylesheet_directory(). '/include/widget_qzdy_zhuanti.php';
 require get_stylesheet_directory(). '/include/widget_img_shuibiankankan.php';
 require get_stylesheet_directory(). '/include/qzdy_login.php';
 require get_stylesheet_directory(). '/include/qzdy_login_button.php';
 require get_stylesheet_directory(). '/include/qzdy_pinglunzuixing.php';
-require get_stylesheet_directory(). '/include/qzdy_personal_left.php';
+require get_stylesheet_directory(). '/include/qzdy_personal_left.php'; 
     class Select_Category_Template{
     	public function __construct() {
     		add_filter( 'category_template', array($this,'get_custom_category_template' ));
@@ -590,7 +613,7 @@ function show_category(){
     $request .= " WHERE $wpdb->term_taxonomy.taxonomy = 'category' ";
     $request .= " ORDER BY term_id asc";
     $categorys = $wpdb->get_results($request);
-    foreach ($categorys as $category) {
+    foreach ($categorys as $category) { 
         $output = '分类名:【'.$category->name."】,ID:【".$category->term_id.'】；';
         echo $output;
     }
@@ -690,7 +713,7 @@ function fanly_custom_upload_name($file){
     $name   = basename($file, $ext);
     if(preg_match("/[一-龥]/u",$file)){
         $file   = substr(md5($name), 0, 20) . rand(00,99) . $ext;
-    }elseif(is_numeric($name)){//数字换名
+    }elseif(is_numeric($name)){
         $file   = substr(md5($name), 0, 20) . rand(00,99) . $ext;
     }
     return $file;
@@ -710,30 +733,36 @@ function get_category_root_id($cat) {
     $this_category = get_category($cat);
     while ($this_category->category_parent)
     {
-        $this_category = get_category($this_category->category_parent);
+        $this_category = get_category($this_category->category_parent); 
     }
-    return $this_category->term_id;
+    return $this_category->term_id; 
 }
 function get_category_deel($cat) {
 
-    $categories        = get_terms('category', array('hide_empty' => 0, 'parent' => 0));
-    $get_term_children = get_term_children($cat_ID, 'category');
+    $categories        = get_terms('category', array('hide_empty' => 0, 'parent' => 0)); 
+    $get_term_children = get_term_children($cat_ID, 'category'); 
 }
 function  qzdy_sidebar_switch_left() {
 global $wp_query;
 $cat_ID = get_query_var('cat');
 $flkgg=get_term_meta($cat_ID,'_prefix_taxonomy_options',true);
 if(!empty($flkgg['_zero-classification-cbl-kg']) && _qzdy('opt-index-sidebar-position') == 'opt-sidebar-left'){
-get_sidebar();
+    echo 'qzdy-3-9';
 }
 }
-// 
-function  qzdy_sidebar_switch_right() {
-global $wp_query;
+function  qzdy_sidebar_guanbi() {
+    if(is_category()){
+    global $wp_query;
 $cat_ID = get_query_var('cat');
-$flkgg=get_term_meta($cat_ID,'_prefix_taxonomy_options',true);
-if(!empty($flkgg['_zero-classification-cbl-kg']) && _qzdy('opt-index-sidebar-position') == 'opt-sidebar-right'){
-get_sidebar();
+$flkggs=get_term_meta($cat_ID,'_prefix_taxonomy_options',true);
+if(empty($flkggs['_zero-classification-cbl-kg']) ){
+    echo 'style="display: none;"';
+}
+    }
+}
+function  qzdy_sidebar_fangxiang() {
+if(_qzdy('opt-index-sidebar-position') == 'opt-sidebar-left'){
+    echo 'qzdy-3-9';
 }
 }
 function  qzdy_classification_banner() {
@@ -787,7 +816,6 @@ if($comment == 1){
    function comment_admin_title_admin($comment){
 if($comment == 1){
    return 'adminhighlight ';}}
-//自定义评论列表模板 Edit By aj0.cn
 function simple_comment($comment, $args, $depth) {
 $GLOBALS['comment'] = $comment; ?>
 <li class="comment" id="comment-<?php comment_ID(); ?>">
@@ -812,7 +840,7 @@ echo '<a id="delete-'. $comment->comment_ID .'" href="' . wp_nonce_url("$url/wp-
 <a id="delete-'. $comment->comment_ID .'" href="' . wp_nonce_url("$url/wp-admin/comment.php?action=editcomment&c=" . $comment->comment_post_ID . '&c=' . $comment->comment_ID, 'delete-comment_' . $comment->comment_ID) . '" >&nbsp;编辑</a>';
 } ?>
 </span>
-<?php $commentOutput .= CID_return_comment_browser_by_id($comment->comment_ID);
+<?php $commentOutput=''; $commentOutput .= CID_return_comment_browser_by_id($comment->comment_ID);
       echo $commentOutput;
 ?>
 <span class="comment-btn-reply">
@@ -968,19 +996,24 @@ function no_category_base_rewrite_rules($category_rewrite) {
         $category_rewrite['(' . $category_nicename . ')/page/?([0-9]{1,})/?$'] = 'index.php?category_name=$matches[1]&paged=$matches[2]';
         $category_rewrite['(' . $category_nicename . ')/?$'] = 'index.php?category_name=$matches[1]';
     }
+    // Redirect support from Old Category Base
     global $wp_rewrite;
     $old_category_base = get_option('category_base') ? get_option('category_base') : 'category';
     $old_category_base = trim($old_category_base, '/');
     $category_rewrite[$old_category_base . '/(.*)$'] = 'index.php?category_redirect=$matches[1]';
+    //var_dump($category_rewrite); // For Debugging
     return $category_rewrite;
 }
+// Add 'category_redirect' query variable
 add_filter('query_vars', 'no_category_base_query_vars');
 function no_category_base_query_vars($public_query_vars) {
     $public_query_vars[] = 'category_redirect';
     return $public_query_vars;
 }
+// Redirect if 'category_redirect' is set
 add_filter('request', 'no_category_base_request');
 function no_category_base_request($query_vars) {
+    //print_r($query_vars); // For Debugging
     if (isset($query_vars['category_redirect'])) {
         $catlink = trailingslashit(get_option('home')) . user_trailingslashit($query_vars['category_redirect'], 'category');
         status_header(301);
@@ -1019,7 +1052,7 @@ function showCommentsWithUserAgent($comment, $args, $depth)
             echo '<i class="fas fa-user-check" data-toggle="tooltip" data-placement="auto top" title="" data-original-title="jxtxzzw"></i>';
         ?>
                 <?php if ($comment->pin_top == '1') echo '<i class="fas fa-thumbtack" data-toggle="tooltip" data-placement="auto top" data-original-title="置顶"></i>'; ?>
-        <?php CID_print_comment_flag();?>
+        <?php CID_print_comment_flag(); ?>
         <?php CID_print_comment_browser(); ?>
         <?php if ($comment->comment_approved == '0') : ?>
             <em class="comment-awaiting-moderation">
@@ -1043,3 +1076,151 @@ function showCommentsWithUserAgent($comment, $args, $depth)
 <?php
 }
 add_filter( 'pre_option_link_manager_enabled', '__return_true' );
+function  link_ico($friendimg){
+    if(empty(_qzdy('zero-footer-youqinglink-ico'))){ 
+if(empty($friendimg)) $friendimg = get_stylesheet_directory_uri().'/images/yqlj.jpg';
+        return '<img src="'.$friendimg.'">';
+    }
+}
+    function par_pagenavi($range = 3){
+        global $paged, $wp_query;
+        if ( !$max_page ) {$max_page = $wp_query->max_num_pages;}
+        if($max_page > 1){if(!$paged){$paged = 1;}
+        if($paged != 1){echo "<a href='" . get_pagenum_link(1) . "' class='extend' title='跳转到首页'>«</a>";}
+        if($max_page > $range){
+            if($paged < $range){for($i = 1; $i <= ($range + 1); $i++){echo "<a href='" . get_pagenum_link($i) ."'";
+            if($i==$paged)echo " class='current'";echo ">$i</a>";}}
+        elseif($paged >= ($max_page - ceil(($range/2)))){
+            for($i = $max_page - $range; $i <= $max_page; $i++){echo "<a href='" . get_pagenum_link($i) ."'";
+            if($i==$paged)echo " class='current'";echo ">$i</a>";}}
+        elseif($paged >= $range && $paged < ($max_page - ceil(($range/2)))){
+            for($i = ($paged - ceil($range/2)); $i <= ($paged + ceil(($range/2))); $i++){echo "<a href='" . get_pagenum_link($i) ."'";if($i==$paged) echo " class='current'";echo ">$i</a>";}}}
+        else{for($i = 1; $i <= $max_page; $i++){echo "<a href='" . get_pagenum_link($i) ."'";
+        if($i==$paged)echo " class='current'";echo ">$i</a>";}}
+        next_posts_link(' »');
+    }
+    }
+function og(){
+    if(is_single() && _qzdy('rp-article-og-switch')){
+        include(TEMPLATEPATH . '/include/go.php');
+    }
+}
+function Bing_enqueue_scripts(){
+    if(!is_404() && !is_single() && !is_page() && _qzdy('rp-fanye-mode')==2){
+  wp_register_script( 'themes_js', get_bloginfo( 'template_directory' ) . '/qzdy_style/pageturning.js' );
+  wp_enqueue_script( 'themes_js' );
+}
+}
+add_action( 'wp_footer', 'Bing_enqueue_scripts' );
+function wpb_hook_javascript() {
+if(!empty(_qzdy('zero-footer-youqinglink-ico'))){?>
+<script type="text/javascript"> $(".linkpage ul li a,.widget_my_link .link div a,.youqing_link a").each(function(e){ $(this).prepend("<img src=<?php bloginfo('template_url'); ?>/grab_ico/get.php?url="+this.href.replace(/^(http:\/\/[^\/]+).*$/, '').replace( 'http://', '' )+">"); });</script>
+    <?php }
+    if(!empty(_qzdy('widget-icon-dashang'))){?>
+<script type="text/javascript">			var shang=document.getElementById("shang");
+	shang.onclick=function(){layer.open({type: 1,title:'打赏作者',skin: 'layui-layer-demo',closeBtn: 0,anim: 2,shadeClose: true,content: '<?php echo _qzdy('widget-icon-dashang-html');?>'
+});}</script>
+    <?php }
+if(is_home()){?>
+<script>
+layui.use('carousel', function(){
+  var carousel = layui.carousel;
+  carousel.render({
+    elem: '#test1'
+    ,width: '100%'
+    ,arrow: 'always' 
+   ,arrow:'hover'
+    ,indicator:'inside'
+  });
+});
+</script>
+    <?php }
+if(_qzdy('zero-index-gg-notice')){?>
+<?php if(_qzdy('zero-index-gg-zd-gb')){$ckfs='true';}else{$ckfs='false';}?>
+	<script type="text/javascript" >
+    function Cookie(key,value){
+        this.key=key;
+        if(value!=null)
+        {
+            this.value=escape(value);
+        }
+        this.expiresTime=null;
+        this.domain=null;
+        this.path="/";
+        this.secure=null;
+    }
+    Cookie.prototype.setValue=function(value){this.value=escape(value);}
+    Cookie.prototype.getValue=function(){return (this.value);}
+    Cookie.prototype.setExpiresTime=function(time){this.expiresTime=time;}
+    Cookie.prototype.getExpiresTime=function(){return this.expiresTime;}
+    Cookie.prototype.setDomain=function(domain){this.domain=domain;}
+    Cookie.prototype.getDomain=function(){return this.domain;}
+    Cookie.prototype.setPath=function(path){this.path=path;}
+    Cookie.prototype.getPath=function(){return this.path;}
+    Cookie.prototype.Write=function(v){
+        if(v!=null){
+            this.setValue(v);
+        }
+        var ck=this.key+"="+this.value;
+        if(this.expiresTime!=null){
+            try {
+                ck+=";expires="+this.expiresTime.toUTCString();;
+            }
+            catch(err){
+            }
+        }
+        if(this.domain!=null){
+            ck+=";domain="+this.domain;
+        }
+        if(this.path!=null){
+            ck+=";path="+this.path;
+        }
+        if(this.secure!=null){
+            ck+=";secure";
+        }
+        document.cookie=ck;
+    }
+    Cookie.prototype.Read=function(){
+        try{
+            var cks=document.cookie.split("; ");
+            var i=0;
+            for(i=0;i <cks.length;i++){
+                var ck=cks[i];
+                var fields=ck.split("=");
+                if(fields[0]==this.key){
+                    this.value=fields[1];
+                    return (this.value);
+                }
+            }
+            return null;
+        }
+        catch(err){
+            return null;
+        } }
+var ck=new Cookie("HasLoaded");
+    if(ck.Read()==null){
+          layui.message.info({
+                    content: '<?php echo _qzdy('qzdy-index-gg-notice-content');?>',
+                    closeable: true,
+                     autoclose: <?php echo $ckfs;?>,
+                    title: '<?php echo _qzdy('qzdy-index-gg-notice-title');?>',
+                    position: 'right'
+                });
+        var dd = new Date();
+        dd = new Date(dd.getYear() + 1900, dd.getMonth(), dd.getDate());
+        dd.setDate(dd.getDate() + 365);
+        ck.setExpiresTime(dd);
+        ck.Write("true"); 
+    }
+</script>
+    <?php }
+}
+add_action('wp_footer', 'wpb_hook_javascript');
+add_filter( 'csf_fa4', '__return_true' );
+function custom_posts_per_page($query){
+ if(is_home()){
+$sl=_qzdy('qzdy-index-piece');
+  $query->set('posts_per_page',$sl);
+ }
+}
+add_action('pre_get_posts','custom_posts_per_page');

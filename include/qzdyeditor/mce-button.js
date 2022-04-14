@@ -20,7 +20,7 @@
 
 
 						{
-							text: '回复可见',
+							text: '登陆回复可见',
 							icon: 'bubble',
 							onclick: function() {
 								selected = tinyMCE.activeEditor.selection.getContent();

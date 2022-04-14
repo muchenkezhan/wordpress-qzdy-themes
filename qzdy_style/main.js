@@ -1,5 +1,4 @@
 
-// 评论判断
 function focusEle(ele){
 	$('#' + ele).focus();
 }
@@ -75,16 +74,12 @@ function cancelReply(){
 	document.getElementById('cancel-reply').style.display = 'none';
 	commentPlace.appendChild(response);
 }
-// 评论判断
-// 底部必备
-        // <script type="text/javascript">
             function copyContent(id){
                 var copyCon = document.getElementById(id);
-                copyCon.select(); // 选择对象
-                document.execCommand("Copy"); // 执行浏览器复制命令
+                copyCon.select(); 
+                document.execCommand("Copy"); 
                  layer.msg("复制成功！");
             }
-// 点赞
     $.fn.postLike = function() {
         if ($(this).hasClass('done')) {
             return false;
@@ -109,34 +104,25 @@ function cancelReply(){
     function() {
         $(this).postLike();
     });
-    // title
     $(".demoStyle3").mouseover(function(event){
 		var _this = $(this);
 		_this.justToolsTip({
 			events:event,
 	        animation:"flipIn",
-	        //width:"300px",
 	        contents:$(this).text(),
 	        gravity:'top'
 	    });
 	})
-	// 点赞
-// </script>
-// <script type="text/javascript" charset="utf-8">
-// 懒加载
   $(function() {
       $("div.lazy").lazyload({effect: "fadeIn"});
   });
-// </script>
-// 美化a标签title
   $(function() {
       $("img.lazy").lazyload({effect: "fadeIn"});
   });
-//个人信息加class   
 $(".widget_my_persona:first").addClass("intro");
  $(".widget_my_login:first").addClass("intro");
-
   $(".widget_my_persona_left:first").addClass("intro");
+  $(".sidebar > div:last-child").addClass("tool-float");
 window.onload = function(){
     var now = new Date().getTime();
     var page_load_time = now-performance.timing.navigationStart;
@@ -147,11 +133,50 @@ window.onload = function(){
     let value_style = 'border-radius:0 2px 2px 0;padding:3px 6px;color:#fff;background:#3399FF';
     console.log("%c项目托管%chttps://gitee.com/MUCEO/qzdy", key_style, value_style);
 };
-// 搜索
 document.querySelector('#ssanniu').addEventListener('click', function() {
+        $('#search-main').fadeIn();
+    })
+    document.querySelector('#ssannius').addEventListener('click', function() {
         $('#search-main').fadeIn();
     })
     document.querySelector('.off-search').addEventListener('click', function() {
         $('#search-main').fadeOut();
     })
-// 
+    $(function () {
+        $('#to_full').click(function () {
+            var exitFullscreen = false
+			var element = document.documentElement;
+			if(this.fullscreen) {
+				if(document.exitFullscreen) {
+					document.exitFullscreen();
+				} else if(document.webkitCancelFullScreen) {
+					document.webkitCancelFullScreen();
+				} else if(document.mozCancelFullScreen) {
+					document.mozCancelFullScreen();
+				} else if(document.msExitFullscreen) {
+					document.msExitFullscreen();
+				}
+			} else {
+				if(element.requestFullscreen) {
+					element.requestFullscreen();
+				} else if(element.webkitRequestFullScreen) {
+					element.webkitRequestFullScreen();
+				} else if(element.mozRequestFullScreen) {
+					element.mozRequestFullScreen();
+				} else if(element.msRequestFullscreen) {
+					// IE11
+					element.msRequestFullscreen();
+				}
+		}
+        });
+         $('#to_top').click(function () {
+            $('html,body').animate({scrollTop: 0}, 500);
+        });
+        $(window).scroll(function () {
+            if ($(this).scrollTop() > 300) {
+                $('#BackTop').fadeIn(300);
+            } else {
+                $('#BackTop').stop().fadeOut(300);
+            }
+        }).scroll();
+    });

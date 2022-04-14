@@ -1,28 +1,22 @@
-﻿/**
- @Name： 消息提示弹出
- @Author：largeprob
- @version：0.2 2021-12-5  
- @description gitee->https://gitee.com/largeprob/large-message.git 不太会前端能用就行,且有些命名不规范-见谅
- */
 layui.define(function (exports) {
     let $ = layui.$;
     let MODULE_NAME = 'message';
 
     let MESSAGE = function (opt) {
-        this.modal = opt.modal == true ? true : opt.modal || false; //是否为模态确认框
-        this.mask =  opt.mask == false ? false : opt.mask || true; //是否显示遮罩
-        this.btns=opt.btn||['取消','确认'];             //当数组长度为1时只显示确认按钮
-        this.cancelName = this.btns[0] || '取消';       //确认框取消按钮名称
-        this.confirmName =this.btns.length<=1?this.btns[0]:this.btns[1] || '确认';      //确认框确认按钮名称
-        this.cancelEvent= opt.cancelEvent;               //取消调用
-        this.confirmEvent= opt.confirmEvent;             //确定调用
-        this.title = opt.title || '提示';               //标题
-        this.content = opt.content || false;            //内容
-        this.position = opt.position || 'center';       //位置 目前只有居中和右
-        this.closeable = opt.closeable || false;        //是否显示关闭按钮
-        this.type = opt.type || 'info';                 //类型  success info warning error 
-        this.duration = opt.duration || 5;             //倒计时关闭
-        this.autoclose = opt.autoclose == false ? false : opt.autoclose || true;        //是否自动关闭
+        this.modal = opt.modal == true ? true : opt.modal || false; 
+        this.mask =  opt.mask == false ? false : opt.mask || true; 
+        this.btns=opt.btn||['取消','确认'];       
+        this.cancelName = this.btns[0] || '取消';    
+        this.confirmName =this.btns.length<=1?this.btns[0]:this.btns[1] || '确认';    
+        this.cancelEvent= opt.cancelEvent;           
+        this.confirmEvent= opt.confirmEvent;        
+        this.title = opt.title || '提示';            
+        this.content = opt.content || false;         
+        this.position = opt.position || 'center';     
+        this.closeable = opt.closeable || false;     
+        this.type = opt.type || 'info';                
+        this.duration = opt.duration || 5;          
+        this.autoclose = opt.autoclose == false ? false : opt.autoclose || true;   
     };
 
     let RightROOT = '<div class="l-message-right"></div>';
@@ -179,7 +173,7 @@ layui.define(function (exports) {
         }
     }());
 
-    layui.link('https://aj0.cn/wp-content/themes/qzdy/qzdy_style/module/message/message.css');
-    layui.link('https://aj0.cn/wp-content/themes/qzdy/qzdy_style/module/message/iconfont.css');
+    layui.link('module/message/message.css');
+    layui.link('icon/iconfont.css');
     exports(MODULE_NAME, obj);
 });

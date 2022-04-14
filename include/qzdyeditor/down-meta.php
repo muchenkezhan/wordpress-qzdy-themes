@@ -26,8 +26,6 @@ function button_link_jzbut($atts,$content=null){
 	}
 }
 add_shortcode('jzbut','button_link_jzbut');
-
-
 function button_link($atts,$content=null){
 	global $wpdb, $post;
 	extract(shortcode_atts(array("href"=>'http://'),$atts));
@@ -41,6 +39,8 @@ add_shortcode('link','button_link');
 function xcollapse($atts,$content=null,$code=""){
     extract(shortcode_atts(array("title"=>__('标题内容','moedog')),$atts));
     $return = '<div class="layui-collapse" lay-accordion="">
+        
+        
         <div class="layui-colla-item">
           <h2 class="layui-colla-title">';
     $return .= $title;
@@ -64,7 +64,6 @@ function iframe_add_shortcode( $atts ) {
 		'class' => 'iframe-class',
 		'frameborder' => '0'
 	);
-
 	foreach ( $defaults as $default => $value ) {
 		if ( ! @array_key_exists( $default, $atts ) ) {
 			$atts[$default] = $value;
@@ -121,7 +120,9 @@ function zm_gray($atts, $content=null){
 function zm_yellow($atts, $content=null){
 	return '<div class="alert alert-danger">'.do_shortcode( $content ).'</div>';
 }
+
 add_shortcode('mark_a','zm_green');
+
 add_shortcode('mark_b','zm_red');
 add_shortcode('mark_c','zm_gray');
 add_shortcode('mark_d','zm_yellow');
@@ -134,6 +135,7 @@ function begin_add_mce_button() {
 		add_filter( 'mce_buttons', 'begin_register_mce_button' );
 	}
 }
+
 function begin_add_tinymce_plugin( $plugin_array ) {
 	$plugin_array['begin_mce_button'] = get_bloginfo( 'template_url' ) . '/include/qzdyeditor/mce-button.js';
 	return $plugin_array;
@@ -142,6 +144,9 @@ function begin_register_mce_button( $buttons ) {
 	array_push( $buttons, 'begin_mce_button' );
 	return $buttons;
 }
+
+
 if (in_array($pagenow, array('post.php', 'post-new.php', 'page.php', 'page-new.php'))) {
+
 	add_action('init', 'begin_add_mce_button');
 }

@@ -17,8 +17,14 @@ while ($query_posts->have_posts()) : $query_posts->the_post();
 ?>
     			<div class="layui-col-md3 layui-col-xs6 layui-col-sm4">
 				<a href="<?php the_permalink(); ?>" class="darcyq-random-link">
-					<img alt="<?php the_title(); ?>" title="" src="<?php $gettesheimg = wp_get_attachment_image_src( get_post_thumbnail_id());if(!empty($gettesheimg)){echo $gettesheimg[0];}else{echo catch_first_image(); }?>"
-						class="darcyq-random-img" width="100%" height="130">
+							 <?php if(_qzdy('rp-page-tesetu-sw')=='tesetu1'){?>
+			<img class="image lazyloaded" alt="<?php the_title(); ?>" title="<?php the_title(); ?>" src="<?php echo post_thumbnail_srcs(); ?>" alt="<?php the_title(); ?>" width="100%" height="120">
+					<?php }else{?>
+						<img class="image lazyloaded"
+					src="<?php echo get_template_directory_uri(); ?>/timthumb.php?src=<?php echo post_thumbnail_srcs(); ?>&w=300&h=240&zc=1&q=100"
+					data-src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+					alt="<?php the_title(); ?>" width="100%" height="120">
+					<?php }?>
 					<div class="darcyq-random-title">
 						<h3 style="font-size: 1.28em" >
 							<?php the_title(); ?>

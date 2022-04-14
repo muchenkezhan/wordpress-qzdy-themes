@@ -12,7 +12,9 @@
     		</div>
 			<div class="clear"></div>
 			<div class="search-nav hz">
+			    <?php if(_qzdy('zero-qt-index-sosuo-redian')){ ?>
 			<h4 class="hz" style="color: #fff;">搜索热点</h4>
+			<?php } ?>
 			<div class="clear"></div><br/>
 <ul id="search" class="search"><?php echo _qzdy('zero-qt-index-sosuo-redian'); ?>
 </ul>

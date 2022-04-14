@@ -1,8 +1,18 @@
 <?php
+
+/**
+ * WordPress 显示访客 UA 信息：Show UserAgent
+ * 感谢 Phower 提供原始版本数据（精简版）
+ * 由 凝神长老 更新于 2020-07-20
+ */
 function show_ua_scripts()
 {
     wp_enqueue_style('ua_scripts', get_template_directory_uri() . '/include/qzdyshow-ua/ua-style.css');
 }
+
+// add_action('wp_enqueue_scripts', 'show_ua_scripts');
+
+/* 将 IP 处理为国家 */
 function CID_get_country($ip)
 {
     require_once(dirname(__FILE__) . '/ip2c/ip2c.php');
@@ -15,13 +25,19 @@ function CID_get_country($ip)
 
     return $ip2c->get_country($ip);
 }
+
+/* 将国家对应为国旗，并显示悬浮文字 */
 function CID_get_flag($ip)
 {
     if ($ip == '127.0.0.1') {
+        // localhost 单独处理
         $code = 'WordPress';
         $name = 'localhost';
     } else {
+        // 获取国家信息
         $country = CID_get_country($ip);
+
+        // 如果无法匹配
         if (!$country) {
             return "";
         }
@@ -29,6 +45,8 @@ function CID_get_flag($ip)
         $code = strtolower($country['id2']);
         $name = $country['name'];
     }
+
+    // 特别行政区
     if ($code == 'hk') {
         $name = '中国香港';
     } elseif ($code == 'mo') {
@@ -36,6 +54,8 @@ function CID_get_flag($ip)
     } elseif ($code == 'tw') {
         $name = '中国台湾';
     }
+
+    // 特殊处理 ECNU
     if ($name == 'China') {
         $url = 'https://ip.ecnu.edu.cn/getIpInfo.php?ip=' . $ip;
         $html = file_get_contents($url);
@@ -45,6 +65,8 @@ function CID_get_flag($ip)
             $name = '华东师范大学' . ($ip_obj->{'data'}->{'edu_data'}->{'campus'}) . ($ip_obj->{'data'}->{'edu_data'}->{'building'});
         }
     }
+
+    // 将名字对应为中文
     if ($name == 'China') {
         $name = '中国';
     } elseif ($name == 'United States') {
@@ -80,6 +102,8 @@ function CID_get_flag($ip)
     if ($name == 'Reserved') {
         $name = '未知国家';
     }
+
+    // 输出 HTML
     $output = stripslashes('<span class="country-flag" data-toggle="tooltip" data-placement="auto top" title="" data-original-title="%COUNTRY_NAME%"><img src="%IMAGE_BASE%/%COUNTRY_CODE%.png"/></span>');
 
     if (!$output) {
@@ -93,22 +117,30 @@ function CID_get_flag($ip)
 
     return $output;
 }
+
+/* 输出国旗 */
 function CID_print_comment_flag()
 {
     $ip = get_comment_author_IP();
     echo CID_get_flag($ip);
 }
+
+/* 返回指定评论 ID 的国旗 HTML，用于 WPDiscuz 5.X 的输出 */
 function CID_return_comment_flag_by_id($id)
 {
     $ip = get_comment_author_IP($id);
     return CID_get_flag($ip);
 }
+
+/* 返回指定评论 ID 的国旗 HTML，用于 WPDiscuz 7.X 的输出 */
 function CID_return_comment_flag_by_id_wpdiscuz_7($id)
 {
     $ip = get_comment_author_IP($id);
     $raw = CID_get_flag($ip);
     return str_replace("data-original-title=", "wpd-tooltip=", $raw);
 }
+
+/* Windows 版本 */
 function CID_windows_detect_os($ua)
 {
     $os_name = $os_code = $os_ver = null;
@@ -187,6 +219,9 @@ function CID_windows_detect_os($ua)
     }
 
     $os_before = '<span class="os os_win"><i class="fa fa-windows"></i>';
+
+    // 微信电脑版
+    // 可能需要将数据表中 UA 字段的长度（varchar 255）改为 300 左右才能显示
     if (preg_match('/WindowsWechat/i', $ua)) {
         $os_name = '微信电脑版';
         $os_code = 'wechat';
@@ -196,6 +231,8 @@ function CID_windows_detect_os($ua)
 
     return array($os_name, $os_code, $os_ver, $os_before);
 }
+
+/* Unix 版本 */
 function CID_unix_detect_os($ua)
 {
     $os_name = $os_ver = $os_code = null;
@@ -235,6 +272,7 @@ function CID_unix_detect_os($ua)
             }
             if ($android_brand_raw != '') {
                 $android_brand = $android_brand_raw[0];
+                // 华为的型号要处理一下
                 if (preg_match('#HUAWEI#i', $android_brand_raw[1])) {
                     $android_brand = "HUAWEI " . $android_brand;
                 }
@@ -242,6 +280,7 @@ function CID_unix_detect_os($ua)
                 $android_brand = explode(')', $matches[$i + 1]);
                 $android_brand = $android_brand[0];
             }
+            // 会错把“知乎”当做手机品牌，所以要处理掉
             if (preg_match('/ZhihuHybrid/i', $android_version, $zhihu)) {
                 $android_version = str_replace('DefaultBrowser', '', $android_version);
                 $android_version = str_replace('Futureve/', '', $android_version);

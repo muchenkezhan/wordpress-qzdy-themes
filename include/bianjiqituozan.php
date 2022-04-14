@@ -128,7 +128,6 @@ function more_button_b(){
 }
 function register_button($buttons){
     array_push($buttons," ","title");
-    array_push($buttons," ","highlight");
     array_push($buttons," ","qzdypre");
     array_push($buttons," ","accordion");
     array_push($buttons," ","heimu");
@@ -150,7 +149,6 @@ function register_button_b($buttons){
 }
 function add_plugin($plugin_array){
     $plugin_array['title'] = get_bloginfo('template_url').'/include/buttons/more.js';
-    $plugin_array['highlight'] = get_bloginfo('template_url').'/include/buttons/more.js';
         $plugin_array['qzdypre'] = get_bloginfo('template_url').'/include/buttons/more.js';
     $plugin_array['accordion'] = get_bloginfo('template_url').'/include/buttons/more.js';
     $plugin_array['heimu'] = get_bloginfo('template_url').'/include/buttons/more.js';

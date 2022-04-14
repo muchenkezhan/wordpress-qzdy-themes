@@ -134,21 +134,6 @@
         },
     });
     tinymce.PluginManager.add('title', tinymce.plugins.title);
-    tinymce.create('tinymce.plugins.highlight', {
-        init : function(ed, url) {
-            ed.addButton('highlight', {
-                title : '白色代码高亮',
-                image : url+'/images/highlight.png',
-                onclick : function() {
-                     ed.selection.setContent('<pre class="hl"><code class="">' + ed.selection.getContent() + '</code></pre>');
-                }
-            });
-        },
-        createControl : function(n, cm) {
-            return null;
-        },
-    });
-    tinymce.PluginManager.add('highlight', tinymce.plugins.highlight);
     tinymce.create('tinymce.plugins.accordion', {
         init : function(ed, url) {
             ed.addButton('accordion', {

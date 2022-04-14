@@ -23,7 +23,8 @@ if ( ! class_exists( 'CSF_Options' ) ) {
     public $args         = array(
 
       // framework title
-      'framework_title'         => 'Qzdy V4.8 <small>by AJ0.CN</small>',
+      'framework_title'         => '<asa style="
+font-size: 25px;font-weight: 800;background-image: linear-gradient(to right , #0DACB7, #71bd6a);-webkit-background-clip: text;-webkit-text-fill-color: transparent;">Qzdy</asa> <small>by WWW.AJ0.CN</small>',
       'framework_class'         => '',
 
       // menu settings
@@ -43,7 +44,7 @@ if ( ! class_exists( 'CSF_Options' ) ) {
       'show_in_network'         => true,
       'show_in_customizer'      => false,
 
-      'show_search'             => true,
+      'show_search'             => false,
       'show_reset_all'          => true,
       'show_reset_section'      => true,
       'show_footer'             => true,
@@ -80,7 +81,7 @@ if ( ! class_exists( 'CSF_Options' ) ) {
 
       // theme
       'nav'                     => 'normal',
-      'theme'                   => 'dark',
+      'theme'                   => 'light',
       'class'                   => '',
 
       // external default values
@@ -490,7 +491,7 @@ if ( ! class_exists( 'CSF_Options' ) ) {
     }
 
     public function add_admin_footer_text() {
-      $default = '感谢您在Wordpress使用主题 <a href="https://aj0.cn/" target="_blank">Qzdy V4.8</a>进行写作';
+      $default = '感谢您在Wordpress使用主题 <a href="https://aj0.cn/" target="_blank">Qzdy V4.9</a>进行写作';
       echo ( ! empty( $this->args['footer_credit'] ) ) ? $this->args['footer_credit'] : $default;
     }
 
@@ -566,7 +567,7 @@ if ( ! class_exists( 'CSF_Options' ) ) {
 
             echo ( $has_nav && $this->args['show_all_options'] ) ? '<div class="csf-expand-all" title="'. esc_html__( 'show all settings', 'csf' ) .'"><i class="fas fa-outdent"></i></div>' : '';
 
-            echo ( $this->args['show_search'] ) ? '<div class="csf-search"><input type="text"  name="csf-search" placeholder="'. esc_html__( '搜索...', 'csf' ) .'" autocomplete="off" /></div>' : '';
+             echo ( $this->args['show_search'] ) ? '<div class="csf-search"><input type="text" name="csf-search" placeholder="'. esc_html__( 'Search...', 'csf' ) .'" autocomplete="off" /></div>' : '';
 
             echo '<div class="csf-buttons">';
             echo '<input type="submit" name="'. esc_attr( $this->unique ) .'[_nonce][save]" class="button button-primary csf-top-save csf-save'. esc_attr( $ajax_class ) .'" value="'. esc_html__( '保存', 'csf' ) .'" data-save="'. esc_html__( 'Saving...', 'csf' ) .'">';

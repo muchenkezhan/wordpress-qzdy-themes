@@ -48,11 +48,8 @@ get_header();
  <!--上面是头部-->
 <div class="layui-content">
 <div class="layui-container">
-<div class="layui-row layui-col-space15 main">
-<?php if(_qzdy('opt-index-sidebar-position') == 'opt-sidebar-left'){?>
-<?php get_sidebar();?>
-<?php } ?>
-    <div class="layui-col-md9 layui-col-lg9">
+<div class="layui-row layui-col-space15 main <?php qzdy_sidebar_fangxiang();?>">
+    <div class="layui-col-md9 flex layui-col-lg9" <?php qzdy_sidebar_fangxiang(); ?>>
         <!--内容开始-->
         <div class="title-article">
             <h1><?php the_title(); ?></h1>
@@ -134,11 +131,7 @@ $zero_footer_plk = _qzdy('zero-footer-plk');
 </div>
 <?php } } ?>
 </div>
-       <?php
-	if(_qzdy('opt-index-sidebar-position') == 'opt-sidebar-right'){
-?>
-        <?php get_sidebar();?>
-        <?php } ?>
+<?php get_sidebar();?>
 </div>
 </div>
 </div>

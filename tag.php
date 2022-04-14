@@ -11,12 +11,7 @@
     <div class="map map-class">
 <?php if ( function_exists('ah_breadcrumb') ) ah_breadcrumb(); ?>
     </div>
-<?php 
-	if(_qzdy('opt-index-sidebar-position') == 'opt-sidebar-left'){
-?>
-        <?php get_sidebar();?>
-        <?php } ?>
-    <div class="layui-col-md9 layui-col-lg9">
+    <div class="layui-col-md9 layui-col-lg9" <?php qzdy_sidebar_fangxiang(); ?>>
                  <?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
                  <div class="title-article list-card item-box">
                 <div class="index-post-img-small"><a href="<?php the_permalink() ?>">
@@ -36,11 +31,7 @@
               <p>  <?php lingfeng_pagenavi();?></p>
                             </div>
         </div>
-<?php
-	if(_qzdy('opt-index-sidebar-position') == 'opt-sidebar-right'){
-?>
-        <?php get_sidebar();?>
-        <?php } ?>
+<?php get_sidebar();?>
 </div>
 </div>
 </div>

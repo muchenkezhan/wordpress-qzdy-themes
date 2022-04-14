@@ -1,8 +1,6 @@
 <?php 
 /* template name: 页面模板--归档
-description: template for Git theme 
-//网站头部 
-<!--内容-->*/
+*/
 ?>
 <?php get_header();?>
  <!--上面是头部-->
