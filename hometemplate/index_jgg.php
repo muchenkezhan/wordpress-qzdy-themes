@@ -6,7 +6,7 @@
 <div class="qzdy_col_body<?php echo qzdy_prevent_theme(); ?>">
 <?php require get_template_directory() . '/home-yao.php'; ?>
 <!--置顶文章-->
-<?php if(is_home()&&!is_paged()){ ?>
+<?php if(is_home()&&!is_paged()&&is_sticky()){ ?>
 <?php
 $paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
 $args = array(
