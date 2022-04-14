@@ -1,6 +1,6 @@
 # wordpress-qzdy-themes
 wordpress-qzdy（秋知德雨主题）
-主题更新至v4.8
+主题更新至v4.9
 
 介绍
 
