@@ -7,15 +7,9 @@ class My_Widget extends WP_Widget {
 		$widget_ops = array('description' => 'Qzdy-搜索栏');
 
 		parent::__construct(false,$name='Qzdy-搜索栏',$widget_ops);  
-
-                //parent::直接使用父类中的方法
-                //$name 这个小工具的名称,
-                //$widget_ops 可以给小工具进行描述等等。
-                //$control_ops 可以对小工具进行简单的样式定义等等。
-                // 这是一个搜索框
 	}
 
-	function form($instance) { // 给小工具(widget) 添加表单内容
+	function form($instance) {
 		$title = esc_attr($instance['title']);
 	?>
 	<p><label for="<?php echo $this->get_field_id('title'); ?>"><?php esc_attr_e('Title:'); ?> <input class="widefat" id="<?php echo $this->get_field_id('title'); ?>" name="<?php echo $this->get_field_name('title'); ?>" type="text" value="<?php echo $title; ?>" /></label></p>

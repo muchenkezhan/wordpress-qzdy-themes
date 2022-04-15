@@ -1,4 +1,3 @@
-
 function focusEle(ele){
 	$('#' + ele).focus();
 }
@@ -123,16 +122,7 @@ $(".widget_my_persona:first").addClass("intro");
  $(".widget_my_login:first").addClass("intro");
   $(".widget_my_persona_left:first").addClass("intro");
   $(".sidebar > div:last-child").addClass("tool-float");
-window.onload = function(){
-    var now = new Date().getTime();
-    var page_load_time = now-performance.timing.navigationStart;
-    console.clear();
-    console.log('%cAJ0.CN','font-size:2em');
-    console.log('%c页面加载完毕消耗了'+Math.round(performance.now()*100)/100+'ms','background:#fff;color:#333;text-shadow:0 0 2px #eee,0 0 3px #eee,0 0 3px #eee,0 0 2px #eee,0 0 3px #eee;');
-        let key_style = 'color: #F7B334; background: #000000; font-size: 12px;border-radius:2px 0 0 2px;padding:3px 6px;';
-    let value_style = 'border-radius:0 2px 2px 0;padding:3px 6px;color:#fff;background:#3399FF';
-    console.log("%c项目托管%chttps://gitee.com/MUCEO/qzdy", key_style, value_style);
-};
+
 document.querySelector('#ssanniu').addEventListener('click', function() {
         $('#search-main').fadeIn();
     })

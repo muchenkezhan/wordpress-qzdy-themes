@@ -34,15 +34,9 @@ while ( $sticky_posts->have_posts() ) : $sticky_posts->the_post();?>
  <?php }?>
 <!--置顶文章-->
        <div class="paging-aa" id="paging-aa">
-<?php
-$paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
-$args = array(
-'caller_get_posts' => 1,
-'paged' => $paged
-);
-query_posts($args);
-while ( have_posts() ) : the_post();
-?>
+<?php if (have_posts()) : ?>
+<?php while (have_posts()) : the_post(); ?>
+<?php if(!is_sticky()){ ?>
                  <div class="title-article list-card excerpt-sticky item-box<?php echo qzdy_prevent_theme(); ?>">
                 <div class="index-post-img-small"><a href="<?php the_permalink() ?>">
             <?php if(_qzdy('rp-page-tesetu-sw')=='tesetu1'){?>
@@ -61,7 +55,9 @@ while ( have_posts() ) : the_post();
     <div class="text-muted post-item-foot-icon text-ellipsis list-inline">
 <li class="viewfloat">
 <i class="layui-icon layui-icon-slider"></i><a href="<?php $category = get_the_category();if($category[0]){echo ''.get_category_link($category[0]->term_id ).'';}?>"><?php foreach((get_the_category()) as $category){echo $category->cat_name;} ?> </a></li><li><i class="layui-icon layui-icon-log<?php echo qzdy_prevent_theme(); ?>"></i><?php the_time('Y/n/j'); ?></li><li><a href=""><i class="fa fa-user-o" aria-hidden="true"></i><?php the_author(); ?></a></li><li><span class="view"><i class="fa fa-eye" aria-hidden="true"></i><?php post_views('',''); ?></span></li></div></div></div>
-<?php endwhile; wp_reset_query();?></div>
+<?php }?>
+<?php endwhile;?>
+<?php endif; ?></div>
     <!--分页-->
 			<?php if(_qzdy('rp-fanye-mode')==1){?>
 			<div class="pagination" id="pagenavi">

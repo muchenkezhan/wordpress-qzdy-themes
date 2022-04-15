@@ -49,8 +49,6 @@ while($parent_id){
             if (_qzdy('is_filter_item_cat2','1')) {
                 $cat_orderby = _qzdy('is_filter_item_cat_orderby','id');
                 $child_categories = get_terms('category', array('hide_empty' => 0,'parent' => $top_term_id,'orderby' =>$cat_orderby,'order' => 'DESC'));
-                
-
                 if ($top_term_id && !empty($child_categories)) {
                     $child2 = get_category($top_term_id);
                     $is_child3 = 0 ;
@@ -80,7 +78,7 @@ while($parent_id){
                 $currentterm_id = get_query_var('cat'); 
                 $this_cat_arg = array( 'categories' => $currentterm_id);
 
-                  $tags = _get_category_tags($this_cat_arg); 
+                  $tags = _get_category_tags($this_cat_arg);
                 if(!empty($tags)) {
                     echo '<div class="filter-item">';
                     $content = '<ul class="filter-tag"><span><i class="fa fa-tags"></i> 相关标签</span>';

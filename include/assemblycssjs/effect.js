@@ -15,8 +15,6 @@
     var _w = window,
     _b = document.body,
     _d = document.documentElement;
-
-    // random helper
     var random = function ()
     {
         if (arguments.length === 1) // only 1 argument
@@ -34,8 +32,6 @@
             }
         return 0; // default
     };
-
-    // screen helper
     var screenInfo = function (e)
     {
         var width = Math.max(0, _w.innerWidth || _d.clientWidth || _b.clientWidth || 0),
@@ -53,8 +49,6 @@
             scrolly: scrolly };
 
     };
-
-    // mouse/input helper
     var mouseInfo = function (e)
     {
         var screen = screenInfo(e),

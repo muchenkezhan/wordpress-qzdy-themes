@@ -27,8 +27,10 @@ Template Name: 分类模板--九宫格
     <div class="layui-col-md<?php example_theme_liebiao_kuandu();?> layui-col-lg<?php example_theme_liebiao_kuandu();?>" <?php qzdy_sidebar_switch_left(); ?>>
         <div class="qzdy_col_body collapse">
             <div class="paging-aa" id="paging-aa">
-<?php $posts = query_posts($query_string . '&orderby=date&showposts='._qzdy('qzdy-category-piece').''); ?>
-<?php if (have_posts()) : ?><?php while (have_posts()) : the_post(); ?>
+<?php
+        if (have_posts()) {
+            while (have_posts()) {
+                the_post(); ?>
   <div class="excerpt-sticky title-articles list-cards item-boxs">
             <div class="item-inner">
                 <div class="index-post-img-small-erban"><a  target="_blank" href="<?php the_permalink() ?>">
@@ -45,9 +47,7 @@ Template Name: 分类模板--九宫格
             <div class="item-meta-right"><span><i class="layui-icon layui-icon-fire"></i><?php post_views(' ', ''); ?></span>
             </div></div></div>
         </div>
-          <?php endwhile; else: ?>
-          <div class="qzdy_ssnrts"> <p>宝贝暂时没有相关的文章哦</p></div>
-                <?php endif; ?></div>
+<?php  }} ?></div>
            </div>
  	<?php if(_qzdy('rp-fanye-mode')==1){?>
 			<div class="pagination" id="pagenavi">

@@ -87,8 +87,8 @@ echo $title.'...';
 if( !current_user_can( 'manage_options' ) ) {
 add_action( 'admin_menu', function(){
 remove_menu_page( 'upload.php' );
-remove_menu_page( 'edit-comments.php' );
-remove_menu_page( 'tools.php' ); 
+remove_menu_page( 'edit-comments.php' ); 
+remove_menu_page( 'tools.php' );
 remove_menu_page( 'index.php' ); 
 function admin_bar_item ( WP_Admin_Bar $admin_bar ) {
 	$admin_bar->remove_menu('my-framework');
@@ -196,7 +196,7 @@ function post_thumbnail_srcs(){
 	if( $values = get_post_custom_values("thumb") ) {
 		$values = get_post_custom_values("thumb");
 		$post_thumbnail_src = $values [0];
-	} elseif( has_post_thumbnail() ){ 
+	} elseif( has_post_thumbnail() ){  
 		$thumbnail_src = wp_get_attachment_image_src(get_post_thumbnail_id($post->ID),'full');
 		$post_thumbnail_src = $thumbnail_src [0];
 	} else {
@@ -206,7 +206,7 @@ function post_thumbnail_srcs(){
 		$output = preg_match_all('/<img.+src=[\'"]([^\'"]+)[\'"].*>/i', $post->post_content, $matches);
 		if(!empty($matches[1][0])){
 			$post_thumbnail_src = $matches[1][0]; 
-		}else{	
+		}else{
 			$random = mt_rand(1, 10);
 			$post_thumbnail_src = get_template_directory_uri().'/images/random/'.$random.'.jpg';
 		}
@@ -272,7 +272,7 @@ function meta_pd_seo_key_and_des() {
     if(is_page()){
 $qzdy_zdy_ym_key=get_post_meta( get_the_ID(), 'qzdy_zdy_ym_key', true );
 $qzdy_zdy_ym_des=get_post_meta( get_the_ID(), 'qzdy_zdy_ym_des', true );
-if(!empty($qzdy_zdy_ym_key)){
+if(!empty($qzdy_zdy_ym_key)){ 
 $flkggs.='<meta name="keywords" content="' . $qzdy_zdy_ym_key . '" />' . "\n";
     }else{
         $qzdy_zzdy_page_bt=get_the_title($ID);
@@ -389,12 +389,12 @@ function codedocs_add_classes_on_li($classes) { $classes[] = 'layui-nav-item'; r
 <?php 
 class Header_Menu_Walker extends Walker_Nav_Menu{	
 function start_lvl(&$output, $depth = 0, $args = array() ) {
-	$indent = ( $depth > 0 ? str_repeat( "\t", $depth ) : '' );
-    $display_depth = ( $depth + 1);
+	$indent = ( $depth > 0 ? str_repeat( "\t", $depth ) : '' ); 
+    $display_depth = ( $depth + 1); 
  
-	$classes = array( '', 
+	$classes = array( '',
 	( $display_depth % 2 ? 'menu-odd' : 'menu-even' ),
-	( $display_depth =1 ? '' : '' ),
+	( $display_depth =1 ? '' : '' ), 
 	);
 	$class_names = implode( ' ', $classes ); 
  
@@ -550,13 +550,13 @@ require get_stylesheet_directory(). '/include/qzdy_column.php';
 require get_stylesheet_directory(). '/include/qzdy_personal.php';
 require get_stylesheet_directory(). '/include/widget-catpost.php';
 require get_stylesheet_directory(). '/include/widget-latest-classification.php'; 
-require get_stylesheet_directory(). '/include/widget_yiyan.php'; 
+require get_stylesheet_directory(). '/include/widget_yiyan.php';
 require get_stylesheet_directory(). '/include/widget_zuixinpinglun.php';
-require get_stylesheet_directory(). '/include/widget_qzdy_zhuanti.php';
+require get_stylesheet_directory(). '/include/widget_qzdy_zhuanti.php'; 
 require get_stylesheet_directory(). '/include/widget_img_shuibiankankan.php';
 require get_stylesheet_directory(). '/include/qzdy_login.php';
-require get_stylesheet_directory(). '/include/qzdy_login_button.php';
-require get_stylesheet_directory(). '/include/qzdy_pinglunzuixing.php';
+require get_stylesheet_directory(). '/include/qzdy_login_button.php'; 
+require get_stylesheet_directory(). '/include/qzdy_pinglunzuixing.php'; 
 require get_stylesheet_directory(). '/include/qzdy_personal_left.php'; 
     class Select_Category_Template{
     	public function __construct() {
@@ -613,7 +613,7 @@ function show_category(){
     $request .= " WHERE $wpdb->term_taxonomy.taxonomy = 'category' ";
     $request .= " ORDER BY term_id asc";
     $categorys = $wpdb->get_results($request);
-    foreach ($categorys as $category) { 
+    foreach ($categorys as $category) {
         $output = '分类名:【'.$category->name."】,ID:【".$category->term_id.'】；';
         echo $output;
     }
@@ -733,14 +733,14 @@ function get_category_root_id($cat) {
     $this_category = get_category($cat);
     while ($this_category->category_parent)
     {
-        $this_category = get_category($this_category->category_parent); 
+        $this_category = get_category($this_category->category_parent);
     }
-    return $this_category->term_id; 
+    return $this_category->term_id;
 }
 function get_category_deel($cat) {
 
     $categories        = get_terms('category', array('hide_empty' => 0, 'parent' => 0)); 
-    $get_term_children = get_term_children($cat_ID, 'category'); 
+    $get_term_children = get_term_children($cat_ID, 'category');
 }
 function  qzdy_sidebar_switch_left() {
 global $wp_query;
@@ -770,6 +770,7 @@ global $wp_query;
 $cat_ID  = get_query_var('cat');
 $flkgg=get_term_meta($cat_ID,'_prefix_taxonomy_options',true);
 $banner= _qzdy('zero-header-classification-banner-morenbanner');
+
 if(!empty($flkgg['zero-header-classification-banner-imgurl'])  && !empty(is_category( $category ))){
 $banner=$flkgg['zero-header-classification-banner-imgurl'];
 }
@@ -880,7 +881,7 @@ function my_login_redirect($redirect_to, $request, $user){
         if ( $action == 'ding'){
         $bigfa_raters = get_post_meta($id,'bigfa_ding',true);
         $expire = time() + 99999999;
-        $domain = ($_SERVER['HTTP_HOST'] != 'localhost') ? $_SERVER['HTTP_HOST'] : false; // make cookies work with localhost
+        $domain = ($_SERVER['HTTP_HOST'] != 'localhost') ? $_SERVER['HTTP_HOST'] : false; 
         setcookie('bigfa_ding_'.$id,$id,$expire,'/',$domain,false);
         if (!$bigfa_raters || !is_numeric($bigfa_raters)) {
             update_post_meta($id, 'bigfa_ding', 1);
@@ -996,24 +997,19 @@ function no_category_base_rewrite_rules($category_rewrite) {
         $category_rewrite['(' . $category_nicename . ')/page/?([0-9]{1,})/?$'] = 'index.php?category_name=$matches[1]&paged=$matches[2]';
         $category_rewrite['(' . $category_nicename . ')/?$'] = 'index.php?category_name=$matches[1]';
     }
-    // Redirect support from Old Category Base
     global $wp_rewrite;
     $old_category_base = get_option('category_base') ? get_option('category_base') : 'category';
     $old_category_base = trim($old_category_base, '/');
     $category_rewrite[$old_category_base . '/(.*)$'] = 'index.php?category_redirect=$matches[1]';
-    //var_dump($category_rewrite); // For Debugging
     return $category_rewrite;
 }
-// Add 'category_redirect' query variable
 add_filter('query_vars', 'no_category_base_query_vars');
 function no_category_base_query_vars($public_query_vars) {
     $public_query_vars[] = 'category_redirect';
     return $public_query_vars;
 }
-// Redirect if 'category_redirect' is set
 add_filter('request', 'no_category_base_request');
 function no_category_base_request($query_vars) {
-    //print_r($query_vars); // For Debugging
     if (isset($query_vars['category_redirect'])) {
         $catlink = trailingslashit(get_option('home')) . user_trailingslashit($query_vars['category_redirect'], 'category');
         status_header(301);
@@ -1053,7 +1049,7 @@ function showCommentsWithUserAgent($comment, $args, $depth)
         ?>
                 <?php if ($comment->pin_top == '1') echo '<i class="fas fa-thumbtack" data-toggle="tooltip" data-placement="auto top" data-original-title="置顶"></i>'; ?>
         <?php CID_print_comment_flag(); ?>
-        <?php CID_print_comment_browser(); ?>
+        <?php CID_print_comment_browser();  ?>
         <?php if ($comment->comment_approved == '0') : ?>
             <em class="comment-awaiting-moderation">
                 <?php _e('评论正在等待管理员审核...'); ?>
@@ -1112,6 +1108,15 @@ function Bing_enqueue_scripts(){
 }
 }
 add_action( 'wp_footer', 'Bing_enqueue_scripts' );
+function wpb_hook_style() {
+    if (_qzdy('zero-index-gg-notice')) { 
+      ?>
+    <link rel="stylesheet" href="<?php bloginfo('template_url'); ?>/qzdy_style/module/message/message.css"  media="all">
+      <link rel="stylesheet" href="<?php bloginfo('template_url'); ?>/qzdy_style/module/message/iconfont.css"  media="all">
+      <?php
+    }
+  }
+  add_action('wp_head', 'wpb_hook_style');
 function wpb_hook_javascript() {
 if(!empty(_qzdy('zero-footer-youqinglink-ico'))){?>
 <script type="text/javascript"> $(".linkpage ul li a,.widget_my_link .link div a,.youqing_link a").each(function(e){ $(this).prepend("<img src=<?php bloginfo('template_url'); ?>/grab_ico/get.php?url="+this.href.replace(/^(http:\/\/[^\/]+).*$/, '').replace( 'http://', '' )+">"); });</script>
@@ -1214,12 +1219,18 @@ var ck=new Cookie("HasLoaded");
     }
 </script>
     <?php }
+    
 }
 add_action('wp_footer', 'wpb_hook_javascript');
 add_filter( 'csf_fa4', '__return_true' );
 function custom_posts_per_page($query){
  if(is_home()){
-$sl=_qzdy('qzdy-index-piece');
+if(!is_paged()){
+    $sl=_qzdy('qzdy-index-piece');
+}else{
+    $sl=_qzdy('qzdy-index-piece');
+}
+
   $query->set('posts_per_page',$sl);
  }
 }

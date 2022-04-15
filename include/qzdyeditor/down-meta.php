@@ -64,6 +64,7 @@ function iframe_add_shortcode( $atts ) {
 		'class' => 'iframe-class',
 		'frameborder' => '0'
 	);
+
 	foreach ( $defaults as $default => $value ) {
 		if ( ! @array_key_exists( $default, $atts ) ) {
 			$atts[$default] = $value;
@@ -135,7 +136,6 @@ function begin_add_mce_button() {
 		add_filter( 'mce_buttons', 'begin_register_mce_button' );
 	}
 }
-
 function begin_add_tinymce_plugin( $plugin_array ) {
 	$plugin_array['begin_mce_button'] = get_bloginfo( 'template_url' ) . '/include/qzdyeditor/mce-button.js';
 	return $plugin_array;
@@ -144,8 +144,6 @@ function begin_register_mce_button( $buttons ) {
 	array_push( $buttons, 'begin_mce_button' );
 	return $buttons;
 }
-
-
 if (in_array($pagenow, array('post.php', 'post-new.php', 'page.php', 'page-new.php'))) {
 
 	add_action('init', 'begin_add_mce_button');

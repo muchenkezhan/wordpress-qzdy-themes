@@ -1,4 +1,5 @@
 <?php 
+// 邮件
 function site_smtp( $phpmailer ) {
     $smtp_fwqdz=_qzdy('zero-smtp-fwqdz');
     $smtp_dk=_qzdy('zero-smtp-dk');

@@ -63,7 +63,6 @@ echo '_page '. $paged;
     </a>
 </div>
     <div class="layui-hide-xs site-notice" id="ssanniu"><span><i class="layui-icon layui-icon-search" style="font-size: 20px; color: #999;"></i> </span>   </div>
-    <!--手机logo-->
 <?php 
  if ( function_exists( 'wp_nav_menu' ) && has_nav_menu('nav') ) {
 wp_nav_menu( 
@@ -134,7 +133,7 @@ array(
  'fallback_cb'     => 'wp_page_menu',
  'link_before' => '<span>',
  'link_after' => '</span>',
-    	'walker'          => '',//自定义的遍历对象，调用一个对象定义显示导航菜单。
+  'walker'          => '',
            )
             );
         } else {

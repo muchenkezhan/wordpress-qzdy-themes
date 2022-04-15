@@ -173,7 +173,7 @@ layui.define(function (exports) {
         }
     }());
 
-    layui.link('module/message/message.css');
-    layui.link('icon/iconfont.css');
+    // layui.link('module/message/message.css');
+    // layui.link('icon/iconfont.css');
     exports(MODULE_NAME, obj);
 });
