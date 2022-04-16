@@ -1,8 +1,9 @@
 <div class="rollbar" id="BackTop" style="display: none;">
 <?php foreach(_qzdy('opt-checkbox-2') as $ii ) {
-    if($ii=='c-comment' && is_single() || is_page()){
+    if($ii=='c-comment'){
+        if(is_single()||is_page()){
 	        echo $cc ='<a href="#comments"><div class="rollbar-item tap-dark" etap="tap-dark" title="评论"><i class="fa fa-comments"></i></div></a>';
-	    }
+	    }}
     if($ii=='c-sousuo'){
 	        echo $cc ='<div class="rollbar-item" id="ssannius" title="搜索"><i class="fa fa-search"></i></div>';
 	    }
