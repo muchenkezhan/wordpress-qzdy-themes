@@ -39,7 +39,7 @@ echo '<a href="'.$bookmark->link_url.'" target="_blank">'.link_ico($friendimg).'
     Copyright © <a href="<?php echo esc_url( home_url( '/' ) ); ?>"><?php bloginfo('name'); ?></a>
 <span><script  type="text/javascript"><?php echo _qzdy('opt-code-dibutjs'); ?></script></span><br>
     Powered by <a href="https://cn.wordpress.org/" title="采用WordPress" target="_blank">WordPress</a>
-    Theme by <a href="https://aj0.cn" target="_blank">Qzdy v4.9.1</a>
+    Theme by <a href="https://aj0.cn" target="_blank">Qzdy v4.9.2</a>
     <a href="http://beian.miit.gov.cn" target="_blank"><?php echo _qzdy('zero-footer-gxbba'); ?></a>
      <a href="http://www.beian.gov.cn" target="_blank"><?php echo _qzdy('zero-footer-gaba'); ?></a><br/>
 <span><?php echo _qzdy('zero-footer-dibubq'); ?></span> 
