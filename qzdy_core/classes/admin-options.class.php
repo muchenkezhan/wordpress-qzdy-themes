@@ -491,11 +491,7 @@ font-size: 25px;font-weight: 800;background-image: linear-gradient(to right , #0
     }
 
     public function add_admin_footer_text() {
-<<<<<<< HEAD
       $default = '感谢您在Wordpress使用主题 <a href="https://aj0.cn/" target="_blank">Qzdy V4.9.3</a>进行写作';
-=======
-      $default = '感谢您在Wordpress使用主题 <a href="https://aj0.cn/" target="_blank">Qzdy V4.9.2</a>进行写作';
->>>>>>> 17f317f3ad8ce6de1c9746b044bfb24120aa79f2
       echo ( ! empty( $this->args['footer_credit'] ) ) ? $this->args['footer_credit'] : $default;
     }
 
