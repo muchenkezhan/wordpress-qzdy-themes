@@ -7,7 +7,7 @@
 <div class="layui-content">
 <div class="layui-container">
 <div class="layui-row layui-col-space15 flex main <?php qzdy_sidebar_fangxiang();?>">
-    <div class="layui-col-md9 layui-col-lg9" <?php qzdy_sidebar_fangxiang(); ?>>
+    <div class="layui-col-md9 layui-col-lg9">
         <!--内容开始-->
         <div class="title-article">
             <h1><?php the_title(); ?></h1>

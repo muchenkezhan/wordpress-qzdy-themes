@@ -1,8 +1,9 @@
 <div class="rollbar" id="BackTop" style="display: none;">
 <?php foreach(_qzdy('opt-checkbox-2') as $ii ) {
-    if($ii=='c-comment' && is_single() || is_page()){
+    if($ii=='c-comment'){
+        if(is_single()||is_page()){
 	        echo $cc ='<a href="#comments"><div class="rollbar-item tap-dark" etap="tap-dark" title="评论"><i class="fa fa-comments"></i></div></a>';
-	    }
+	    }}
     if($ii=='c-sousuo'){
 	        echo $cc ='<div class="rollbar-item" id="ssannius" title="搜索"><i class="fa fa-search"></i></div>';
 	    }
@@ -23,6 +24,7 @@
 if(!empty(_qzdy('zero-footer-youqinglink'))){?>
 <div class="copyright_link">
     <div class="youqing_link">
+        <!--<img src="'.$friendimg.'">-->
         <span>友情链接：</span><br/>
 <?php $bookmarks = get_bookmarks(array('orderby'=>'rand'));
 if(!empty($bookmarks)){
@@ -38,12 +40,13 @@ echo '<a href="'.$bookmark->link_url.'" target="_blank">'.link_ico($friendimg).'
     Copyright © <a href="<?php echo esc_url( home_url( '/' ) ); ?>"><?php bloginfo('name'); ?></a>
 <span><script  type="text/javascript"><?php echo _qzdy('opt-code-dibutjs'); ?></script></span><br>
     Powered by <a href="https://cn.wordpress.org/" title="采用WordPress" target="_blank">WordPress</a>
-    Theme by <a href="https://aj0.cn" target="_blank">Qzdy v4.9.1</a>
+    Theme by <a href="https://aj0.cn" target="_blank">Qzdy v4.9.3</a>
     <a href="http://beian.miit.gov.cn" target="_blank"><?php echo _qzdy('zero-footer-gxbba'); ?></a>
      <a href="http://www.beian.gov.cn" target="_blank"><?php echo _qzdy('zero-footer-gaba'); ?></a><br/>
 <span><?php echo _qzdy('zero-footer-dibubq'); ?></span> 
     </div>
     </div>
+<!--版权结束-->
 <div class="site-mobile-shade"></div>
 <div id="LAY_democodejs"></div>
 <?php lxbjtexiao(); qianduanpiaoloutexiao();?>

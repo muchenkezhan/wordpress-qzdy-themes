@@ -7,11 +7,8 @@ Template Name: 分类模板--九宫格
 <div class="layui-content">
 <div class="layui-container">
         <div class="map pagemap">
-             <!--map-class-->
 <?php if ( function_exists('ah_breadcrumb') ) ah_breadcrumb(); ?>
     </div>
-<div class="layui-row flex layui-col-space15 main <?php qzdy_sidebar_fangxiang();?>">
-
   <?php
   $cat_ID='';
   $flkgg='';
@@ -24,13 +21,12 @@ Template Name: 分类模板--九宫格
 </div>
 </div>
 <?php } ?>
-    <div class="layui-col-md<?php example_theme_liebiao_kuandu();?> layui-col-lg<?php example_theme_liebiao_kuandu();?>" <?php qzdy_sidebar_switch_left(); ?>>
+<div class="layui-row flex layui-col-space15 main <?php qzdy_sidebar_fangxiang();?>">
+    <div class="layui-col-md<?php example_theme_liebiao_kuandu();?> layui-col-lg<?php example_theme_liebiao_kuandu();?>">
         <div class="qzdy_col_body collapse">
             <div class="paging-aa" id="paging-aa">
-<?php
-        if (have_posts()) {
-            while (have_posts()) {
-                the_post(); ?>
+<?php $posts = query_posts($query_string . '&orderby=date&showposts='._qzdy('qzdy-category-piece').''); ?>
+<?php if (have_posts()) : ?><?php while (have_posts()) : the_post(); ?>
   <div class="excerpt-sticky title-articles list-cards item-boxs">
             <div class="item-inner">
                 <div class="index-post-img-small-erban"><a  target="_blank" href="<?php the_permalink() ?>">
@@ -47,7 +43,9 @@ Template Name: 分类模板--九宫格
             <div class="item-meta-right"><span><i class="layui-icon layui-icon-fire"></i><?php post_views(' ', ''); ?></span>
             </div></div></div>
         </div>
-<?php  }} ?></div>
+          <?php endwhile; else: ?>
+          <div class="qzdy_ssnrts"> <p>宝贝暂时没有相关的文章哦</p></div>
+                <?php endif; ?></div>
            </div>
  	<?php if(_qzdy('rp-fanye-mode')==1){?>
 			<div class="pagination" id="pagenavi">
