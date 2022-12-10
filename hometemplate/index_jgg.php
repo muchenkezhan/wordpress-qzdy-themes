@@ -13,7 +13,7 @@
             <?php if(_qzdy('rp-page-tesetu-sw')=='tesetu1'){?>
  <div title="<?php the_title(); ?>" class="item-thumb-smallerban lazy commodity-img" data-original="<?php echo post_thumbnail_srcs(); ?>" style="background-image: url(data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7)"></div>
 <?php }else{?>
- <div title="<?php the_title(); ?>" class="item-thumb-smallerban lazy commodity-img" data-original="<?php echo get_template_directory_uri(); ?>/timthumb.php?src=<?php echo post_thumbnail_srcs(); ?>&w=300&h=240&zc=1&q=100" style="background-image: url(data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7)"></div>
+ <div title="<?php the_title(); ?>" class="item-thumb-smallerban lazy commodity-img" data-original="<?php echo post_thumbnail_srcs_php(); ?>" style="background-image: url(data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7)"></div>
 <?php }?></a></div>
             <a class="item-category" href="<?php $category = get_the_category();if($category[0]){echo ''.get_category_link($category[0]->term_id ).'';}?>" target="_blank"><?php foreach((get_the_category()) as $category){echo $category->cat_name;} ?></a>
             <h3 class="item-title"><a href="<?php the_permalink() ?>" title="<?php the_title(); ?>" target="_blank"><?php if (is_sticky()) {echo  '<span class="layui-badge">推荐</span>';} ?><?php the_title(); ?></a></h3>

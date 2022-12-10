@@ -19,18 +19,24 @@
    echo 'Not Found_';
 }
 if (is_home()) {
-  echo _qzdy('opt-group-topping-datu-title');
+if(_qzdy('opt-group-topping-datu-title')){
+    echo _qzdy('opt-group-topping-datu-title');
+}else{
+    echo '<img style="width:300px;" src="'._qzdy('opt-group-topping-datu-title-img').'">';
+}
 } 
    if ($paged > 1) {
 echo '_page '. $paged;
 }?>
-</p><h1><?php if (function_exists('is_tag') && is_tag()) {
+</p>
+<h1><?php if (function_exists('is_tag') && is_tag()) {
    single_tag_title('Tag Archive for "');
 } elseif (is_archive()) {
    echo category_description();
 } elseif (is_search()) {
    echo 'Search for "'.wp_specialchars($s).'"_';
 } elseif (!(is_404()) && (is_single()) || (is_page())) {
+    // 内容页面描述
     $qzdy_zdy_ym_des=get_post_meta( get_the_ID(), 'qzdy_zdy_ym_des', true );
  if(!empty($qzdy_zdy_ym_des)){
     $qzdy_zdy_ym_des = mb_strimwidth($qzdy_zdy_ym_des,0,80,"..." );

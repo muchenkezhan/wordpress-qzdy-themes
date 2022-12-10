@@ -22,7 +22,7 @@
 </div>
 <?php
 if(!empty(_qzdy('zero-footer-youqinglink'))){?>
-<div class="copyright_link">
+<div class="copyright_link <?php dy_footer_color();?>">
     <div class="youqing_link">
         <!--<img src="'.$friendimg.'">-->
         <span>友情链接：</span><br/>
@@ -35,23 +35,30 @@ echo '<a href="'.$bookmark->link_url.'" target="_blank">'.link_ico($friendimg).'
     </div>
 </div>
 <?php }?>
-<div class="copyright">
-        <span><?php echo _qzdy('opt-code-dibuzdyhtml'); ?></span><br>
+<div class="copyright <?php dy_footer_color();?>">
+<div class="dbwp layui-clear">
+    <div class="layui-col-md9">
+<?php if(_qzdy('opt-code-dibuzdyhtml')){ ?><p><?php echo _qzdy('opt-code-dibuzdyhtml'); ?></p><?php }?>
+   <?php if(_qzdy('zero-footer-gxbba')){ ?> <a href="http://beian.miit.gov.cn" target="_blank"><?php echo _qzdy('zero-footer-gxbba'); ?></a><?php }?>
+     <?php if(_qzdy('zero-footer-gaba')){ ?><a href="http://www.beian.gov.cn" target="_blank"><?php echo _qzdy('zero-footer-gaba'); ?></a><br><?php }?>
+     <p><?php echo _qzdy('zero-footer-dibubq'); ?></p> 
+<p>
+    <?php echo _qzdy('opt-code-dibutjs'); ?>
     Copyright © <a href="<?php echo esc_url( home_url( '/' ) ); ?>"><?php bloginfo('name'); ?></a>
-<span><script  type="text/javascript"><?php echo _qzdy('opt-code-dibutjs'); ?></script></span><br>
-    Powered by <a href="https://cn.wordpress.org/" title="采用WordPress" target="_blank">WordPress</a>
-    Theme by <a href="https://aj0.cn" target="_blank">Qzdy v4.9.3</a>
-    <a href="http://beian.miit.gov.cn" target="_blank"><?php echo _qzdy('zero-footer-gxbba'); ?></a>
-     <a href="http://www.beian.gov.cn" target="_blank"><?php echo _qzdy('zero-footer-gaba'); ?></a><br/>
-<span><?php echo _qzdy('zero-footer-dibubq'); ?></span> 
-    </div>
-    </div>
-<!--版权结束-->
+    Powered <a href="https://cn.wordpress.org/" title="采用WordPress" target="_blank">WordPress</a>
+    Theme <a href="https://gitee.com/MUCEO/qzdy" target="_blank">Qzdy</a></p>
+</div>
+<div class="layui-col-md3">
+    <?php if(_qzdy('zero-footer-ewm1')){ ?><img src="<?php echo _qzdy('zero-footer-ewm1');?>" width="100"><?php }?>
+            <?php if(_qzdy('zero-footer-ewm1')){ ?><img src="<?php echo _qzdy('zero-footer-ewm2');?>" width="100"><?php }?>
+            </div>
+</div>
+</div>
+</div>
 <div class="site-mobile-shade"></div>
 <div id="LAY_democodejs"></div>
 <?php lxbjtexiao(); qianduanpiaoloutexiao();?>
 <script src="<?php bloginfo('template_url'); ?>/qzdy_style/dist/layui.js"  charset="utf-8"></script>
-<script src="<?php bloginfo('template_url'); ?>/qzdy_style/jq1.11.3.js"></script>
 <script src="<?php bloginfo('template_url'); ?>/qzdy_style/zoomify.min.js"></script>
 <script src="<?php bloginfo('template_url'); ?>/qzdy_style/global.js"></script>
 <script src="<?php bloginfo('template_url'); ?>/qzdy_style/jquery.lazyload.js?v=1.9.1"></script>
@@ -59,6 +66,10 @@ echo '<a href="'.$bookmark->link_url.'" target="_blank">'.link_ico($friendimg).'
 <script src="<?php bloginfo('template_url'); ?>/jquery/jquery.autoMenu.js"></script>
 <script src="<?php bloginfo('template_url'); ?>/qzdy_style/layer/layer.js"></script>
 <script src="<?php bloginfo('template_url'); ?>/qzdy_style/module/message/message.js"></script>
+<script src="<?php bloginfo('template_url'); ?>/include/buttons/highlightjs/highlightjs-line-numbers.min.js"></script>
 <?php wp_footer(); ?>
+<link rel="stylesheet" href="<?php bloginfo('template_url'); ?>/qzdy_style/hybrid.css">
+<script>$('.md_content  img').attr('data-fancybox','gallery');hljs.initHighlightingOnLoad();hljsln.initLineNumbersOnLoad();</script>
+<?php if(_qzdy('code_2_footer')){echo _qzdy('code_2_footer');} ?>
 </body>
 </html>

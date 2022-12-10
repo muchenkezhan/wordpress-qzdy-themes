@@ -33,7 +33,7 @@ class My_Widget_login extends WP_Widget {
     </div>
     <div class="user-info">
         <div class="avatar">
-<?php if (!(current_user_can('level_0'))){ ?>  
+<?php if (!(get_current_user_id() != 0)){ ?>  
 <img src="<?php echo get_template_directory_uri(); ?>/images/avatar-default.png" alt="">
   	<?php } else { ?>
 <?php global $current_user;
@@ -42,11 +42,10 @@ wp_get_current_user();
 //输出头像，两个参数，第一个是用户ID（必须），第二个是头像大小（可选）
 echo get_avatar( $current_user->ID); ?>
 <?php }?>
-            
         </div>
         <div class="title">
-                    <?php if (!(current_user_can('level_0'))){ ?>  
-<p>Hi!请登陆</p>
+                    <?php if (!(get_current_user_id() != 0)){ ?>  
+<p>Hi!请登录</p>
   	<?php } else { ?>
 <p>你好,<?php global $current_user;
  get_currentuserinfo();

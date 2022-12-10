@@ -10,14 +10,14 @@
  $qt_header_tp = _qzdy('opt-group-topping-zhiding');
  foreach ($qt_header_tp as $key){     
 ?>
-    <div><a target="_blank" href="<?php echo  $key['opt-text-topping-url'];?>"><img  src="<?php echo esc_url($key['zero-banner-topping-img']); ?>"></a>
+    <div><a <?php if($key['opt-text-topping-blank']){echo 'target="_blank"';}?> href="<?php if($key['opt-text-topping-url']){echo $key['opt-text-topping-url'];}else{echo 'javascript:;';}?>"><img  src="<?php echo esc_url($key['zero-banner-topping-img']); ?>"></a>
     <?php
 	if(!empty(_qzdy('zero-index-bannerkg-wzgn'))){?>
     <div class="qzdy-lunbo-content-box">
         
 <h3 class="qzdy-top-carousel-title qzdy-hdp-banner-size"><?php echo  $key['opt-group-topping-title'];?></h3>
 <?php if($key['opt-text-topping-url']){?>
-<div class="read-more"><a href="<?php echo  $key['opt-text-topping-url'];?>"><i class="layui-icon layui-icon-return qzdy_ico_hdp_size" aria-hidden="true"></i>阅读全文</a></div><?php }?></div>
+<div class="read-more"><a <?php if($key['opt-text-topping-blank']){echo 'target="_blank"';}?> href="<?php echo  $key['opt-text-topping-url'];?>"><i class="layui-icon layui-icon-return qzdy_ico_hdp_size" aria-hidden="true"></i>阅读全文</a></div><?php }?></div>
 <?php }?>
 
     </div>

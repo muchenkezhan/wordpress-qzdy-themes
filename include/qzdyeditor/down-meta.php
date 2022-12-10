@@ -1,10 +1,6 @@
 <?php
 function e_secret($atts, $content=null){ extract(shortcode_atts(array('key'=>null), $atts)); if(isset($_POST['e_secret_key']) && $_POST['e_secret_key']==$key){ return ' <div class="e-secret">'.$content.'</div> '; } else{ return ' <form class="e-secret" action="'.get_permalink().'" method="post" name="e-secret"><label>输入密码查看加密内容：</label><input type="password" name="e_secret_key" class="euc-y-i" maxlength="50"><input type="submit" class="euc-y-s" value="确定"> <div class="euc-clear"></div> </form> '; } } 
 add_shortcode('secret','e_secret');
-function reply_to_read($atts, $content=null) {   extract(shortcode_atts(array("notice" => '<p class="reply-to-read">温馨提示: 此处内容需要<a href="#respond" title="评论本文">评论本文</a>后才能查看.</p>'), $atts));   $email = null;   $user_ID = (int) wp_get_current_user()->ID;   if ($user_ID > 0) {   $email = get_userdata($user_ID)->user_email;
-$admin_email = "xxx@xxx.com"; 
-if ($email == $admin_email) {   return $content;   }   } else if (isset($_COOKIE['comment_author_email_' . COOKIEHASH])) {   $email = str_replace('%40', '@', $_COOKIE['comment_author_email_' . COOKIEHASH]);   } else {   return $notice;   }   if (empty($email)) {   return $notice;   }   global $wpdb;   $post_id = get_the_ID();   $query = "SELECT `comment_ID` FROM {$wpdb->comments} WHERE `comment_post_ID`={$post_id} and `comment_approved`='1' and `comment_author_email`='{$email}' LIMIT 1";   if ($wpdb->get_results($query)) {   return do_shortcode($content);   } else {   return $notice;   }   }
-add_shortcode('reply', 'reply_to_read');
 function hide_check_shortcode($atts, $content = null){
 	if (is_user_logged_in() && !is_null($content) && !is_feed()) {
 		return '<div class="hide-t"><i class="fa fa-spinner" aria-hidden="true"></i>隐藏的内容 </div> <div class="secret-password">' . do_shortcode($content) . '</div>';
@@ -99,6 +95,26 @@ function iframe_add_shortcode( $atts ) {
 	return $html;
 }
 add_shortcode('iframe','iframe_add_shortcode');
+add_action( 'wp_insert_comment', 'auto_reply', 10, 2 );
+
+  function auto_reply($comment_id, $comment_object) {
+			
+			setcookie("fbreply","1");
+
+		}
+add_shortcode('reply', 'reply_to_read');
+ 
+function reply_to_read($atts, $content=null) {
+extract(shortcode_atts(array("notice" => '<div class="reply-to-read"><p>温馨提示：此处内容需要<a href="#respond" title="评论本文">评论本文</a>后才能查看。</p></div>'), $atts));
+
+
+if($name = $_COOKIE['fbreply']=="1"){
+	return do_shortcode($content);
+}
+else{
+	return $notice;
+}
+}
 function my_videos( $atts, $content = null ) {
 	extract( shortcode_atts( array (
 		'src' => '""'
@@ -136,6 +152,7 @@ function begin_add_mce_button() {
 		add_filter( 'mce_buttons', 'begin_register_mce_button' );
 	}
 }
+
 function begin_add_tinymce_plugin( $plugin_array ) {
 	$plugin_array['begin_mce_button'] = get_bloginfo( 'template_url' ) . '/include/qzdyeditor/mce-button.js';
 	return $plugin_array;

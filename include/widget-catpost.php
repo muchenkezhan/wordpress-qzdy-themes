@@ -31,12 +31,10 @@ class My_Widget_current_latest extends WP_Widget {
                        <?php if ( $title )
                         echo $before_title . $title . $after_title; ?>
    <?php
-   $category = get_the_category();//默认获取当前所属分类
-    $category =$category[0]->cat_ID;
-  if ( is_home()) {
+  if ( is_home() || is_page()) {
     $category=0;
 }else{
-      $category = get_the_category();
+   $category = get_the_category();
     $category =$category[0]->cat_ID;
 }
 query_posts('showposts=6&cat="'.$category.'"');

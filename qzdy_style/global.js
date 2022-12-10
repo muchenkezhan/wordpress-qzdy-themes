@@ -199,9 +199,9 @@ layui.define(['code', 'element', 'table', 'util', 'carousel', 'laytpl'], functio
   });
   
   //代码修饰
-  layui.code({
-    elem: 'pre'
-  });
+//   layui.code({
+//     elem: 'pre'
+//   });
   
   //目录
   var siteDir = $('.site-dir');

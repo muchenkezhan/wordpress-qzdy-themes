@@ -44,6 +44,13 @@ function nrtitle($atts,$content=null,$code=""){
     return $return;
 }
 add_shortcode('title','nrtitle');
+function centertitle($atts,$content=null,$code=""){
+    $return = '<h2 class="title-center">';
+    $return .= $content;
+    $return .= '</h2>';
+    return $return;
+}
+add_shortcode('centertitle','centertitle');
 function kbd($atts,$content=null,$code=""){
     $return = '<kbd>';
     $return .= $content;
@@ -76,13 +83,13 @@ add_shortcode('heimu','heimu');
 function bilibili($atts,$content=null,$code=""){
     extract(shortcode_atts(array("danmaku"=>'1'),$atts));
     extract(shortcode_atts(array("page"=>'1'),$atts));
-    $return = '<div class="video-container"><iframe src="https://player.bilibili.com/player.html?bvid=';
+    $return = '<iframe style="width: 100%; height: 500px; max-width: 100%；align:center; padding: 20px 0;" src="https://player.bilibili.com/player.html?bvid=';
     $return .= $content;
     $return .= '&page=';
     $return .= $page;
     $return .= '&high_quality=1&danmaku=';
     $return .= $danmaku;
-    $return .= '" allowtransparency="true" width="100%" height="498" scrolling="no" frameborder="0" ></iframe></div>';
+    $return .= '" frameborder="no" scrolling="no" allowfullscreen="allowfullscreen"> </iframe>';
     return $return;
 }
 add_shortcode('bilibili','bilibili');
@@ -103,13 +110,13 @@ function youtube($atts,$content=null,$code=""){
     return $return;
 }
 add_shortcode('youtube','youtube');
-function qzdypre($atts,$content=null,$code=""){
-    $return = '<pre lay-title="</>" lay-skin="notepad">';
-    $return .= $content;
-    $return .= '</pre>';
-    return $return;
-}
-add_shortcode('qzdypre','qzdypre');
+// function qzdypre($atts,$content=null,$code=""){
+//     $return = '<pre lay-title="</>" lay-skin="notepad">';
+//     $return .= $content;
+//     $return .= '</pre>';
+//     return $return;
+// }
+// add_shortcode('qzdypre','qzdypre');
 add_action('init','more_button_a');
 function more_button_a(){
    if(!current_user_can('edit_posts')&&!current_user_can('edit_pages')) return;
@@ -128,6 +135,7 @@ function more_button_b(){
 }
 function register_button($buttons){
     array_push($buttons," ","title");
+    array_push($buttons," ","centertitle");
     array_push($buttons," ","qzdypre");
     array_push($buttons," ","accordion");
     array_push($buttons," ","heimu");
@@ -149,6 +157,7 @@ function register_button_b($buttons){
 }
 function add_plugin($plugin_array){
     $plugin_array['title'] = get_bloginfo('template_url').'/include/buttons/more.js';
+     $plugin_array['centertitle'] = get_bloginfo('template_url').'/include/buttons/more.js';
         $plugin_array['qzdypre'] = get_bloginfo('template_url').'/include/buttons/more.js';
     $plugin_array['accordion'] = get_bloginfo('template_url').'/include/buttons/more.js';
     $plugin_array['heimu'] = get_bloginfo('template_url').'/include/buttons/more.js';

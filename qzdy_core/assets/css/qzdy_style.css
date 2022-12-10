@@ -1,0 +1,19 @@
+.csf-nav ul li a{border-radius: 5px;border: #08f0!important;}
+.csf-theme-light .csf-nav ul ul li{margin-top: 3px;margin-bottom: 3px;}
+.csf-nav ul li a:hover{background-color: #E0EBFF!important;color:#0052D9!important;}
+.csf-theme-light .csf-nav ul li a {background-color: #fff;}
+.csf-nav ul{padding:4px;}
+.csf-nav{background-color:#fff;}
+/*二级按钮样式*/
+.csf-theme-light .csf-nav ul ul li a {background-color: #fff!important;}
+.csf-theme-light .csf-nav ul ul li a:hover{background-color: #E0EBFF!important;color:#0052D9!important;}
+/*二级当前样式*/
+.csf-theme-light .csf-nav ul li .csf-active {background-color: #ececec!important;}
+/*全局按钮的上边距下边距*/
+.csf-nav ul li a {padding: 11px 12px!important;}
+.csf-nav ul ul li a {padding: 12px 18px 12px 24px!important;}
+/*盒子样式*/
+.csf-theme-light .csf-container{border-radius: 7px;border: 1px solid #ccd0d400!important;overflow: hidden!important;}
+
+/*相关按钮样式*/
+/*.csf-theme-light .csf-header-inner{background-image: linear-gradient( 135deg, #ABDCFF 10%, #0396FF 100%);}*/

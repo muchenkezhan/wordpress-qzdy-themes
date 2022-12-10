@@ -11,7 +11,7 @@ $prefix_post_opts = '_prefix_post_options';
 // Create a metabox
 //
 CSF::createMetabox( $prefix_post_opts, array(
-  'title'        => '自定义SEO',
+  'title'        => 'Qzdy theme属性',
   'post_type'    => 'post',
   'data_type' => 'unserialize',
   'show_restore' => true,
@@ -26,12 +26,24 @@ CSF::createSection( $prefix_post_opts, array(
     //
     // A text field
     //
+        array(
+      'id'    => 'rp-imgzz',
+      'type'  => 'text',
+      'title' => '摄影作者',
+       'subtitle' => '分类模板必须是图文分类，不懂请留空',
+    ),
+        array(
+      'id'    => 'rp-wzzz',
+      'type'  => 'text',
+      'title' => '短文作者',
+       'subtitle' => '分类模板必须是图文分类，不懂请留空',
+    ),
           array(
       'id'    => '_zero-wz-autoMenu-ml-kg',
       'type'  => 'switcher',
       'title' => '开启标题目录',
-      'label' => '',
-        'subtitle' => '您必须选择编辑器的内容标题/h2',
+      'label' => '就网页左下角的一个悬浮框（不清楚的别开启了）',
+        'subtitle' => '您必须选择编辑器的内容标题或者h2标签',
        'default' => false,
     ),
     array(

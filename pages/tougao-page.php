@@ -67,7 +67,7 @@ if( isset($_POST['tougao_form']) && $_POST['tougao_form'] == 'send')
             <h1><?php the_title(); ?></h1>
             <div class="title-msg">
                 <?php if(!empty($article_author = _qzdy('zero-footer-article-author'))){?>
-                <span><i class="layui-icon layui-icon-username"></i><?php echo _qzdy('zero-footer-txxnc');?></span><?php } ?>
+                <span><i class="layui-icon layui-icon-username"></i><?php global $current_user; get_currentuserinfo();  echo $current_user->nickname;?></span><?php } ?>
                 <span><i class="layui-icon layui-icon-time"></i><?php the_time(' Y/n/j'); ?></span>
                 <span><i class="fa fa-eye" aria-hidden="true"></i><?php post_views(' ',''); ?>℃</span>
                 <span><?php edit_post_link('[编辑]'); ?></span>
@@ -89,14 +89,6 @@ if( isset($_POST['tougao_form']) && $_POST['tougao_form'] == 'send')
     <div class="layui-input-inline">
         <input class="layui-input" type="text" size="40" value="" name="tougao_authoremail" />
     </div> </div>
-                   
-    <!--<div style="text-align: left; padding-top: 10px;">-->
-    <!--    <label>您的博客:</label>-->
-    <!--</div>-->
-    <!--<div>-->
-    <!--    <input class="layui-input" type="text" size="40" value="" name="tougao_authorblog" />-->
-    <!--</div>-->
-                    
     <div style="text-align: left; padding-top: 10px;">
         <label>文章标题:*</label>
     </div>
@@ -113,7 +105,18 @@ if( isset($_POST['tougao_form']) && $_POST['tougao_form'] == 'send')
         <label class="layui-form-label" style="width: 100px;">文章内容:*</label>
    
     <div class="layui-input-block" style="margin-left: 0px;">
-        <textarea class="layui-textarea" rows="15" cols="55" name="tougao_content"></textarea>
+<?php wp_editor(
+									'',
+									'question_content',
+									array(
+									    	'id'     => 'question_content',
+										'media_buttons' => false,
+										'tinymce'       => false,
+										'textarea_rows' => 6,
+										 'teeny' => true,
+										     
+									)
+								);?>
     </div> </div>
     <br clear="all">
     <div style="text-align: center; padding-top: 10px;">

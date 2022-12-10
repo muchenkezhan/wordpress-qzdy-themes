@@ -13,7 +13,7 @@
             <h1><?php the_title(); ?></h1>
             <div class="title-msg">
                 <?php if(!empty($article_author = _qzdy('zero-footer-article-author'))){?>
-                <span><i class="layui-icon layui-icon-username"></i><?php echo _qzdy('zero-footer-txxnc');?></span><?php } ?>
+                <span><i class="layui-icon layui-icon-username"></i><?php echo get_the_author_meta( 'nickname', $post->post_author ) ?></span><?php } ?>
                 <span><i class="layui-icon layui-icon-time"></i><?php the_time(' Y/n/j'); ?></span>
                 <span><i class="fa fa-eye" aria-hidden="true"></i><?php post_views(' ',''); ?>℃</span>
                 <span><?php edit_post_link('[编辑]'); ?></span>

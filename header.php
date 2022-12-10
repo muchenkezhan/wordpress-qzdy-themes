@@ -38,31 +38,36 @@ echo '_page '. $paged;
   <link rel="stylesheet" href="<?php bloginfo('template_url'); ?>/qzdy_style/res/static/css/global.css"  media="all">
   <link rel="stylesheet" href="<?php bloginfo('template_url'); ?>/qzdy_style/qzdy_main.css"  media="all">
   <link rel="stylesheet" href="<?php bloginfo('template_url'); ?>/style.css"  media="all">
-  <link rel="stylesheet" href="<?php bloginfo('template_url'); ?>/qzdy_style/zoomify.min.css"  media="all">
   <link rel="stylesheet" href="<?php bloginfo('template_url'); ?>/jquery/jquery.autoMenu.css"  media="all">
   <link rel="stylesheet" href="<?php bloginfo('template_url'); ?>/include/assemblycssjs/snowflake.css"  media="all">
   <link rel="stylesheet" href="<?php bloginfo('template_url'); ?>/qzdy_style/woff/font-awesome-4.7.0/css/font-awesome.min.css">
-  <script src="https://s3.pstatp.com/cdn/expire-1-M/jquery/3.3.1/jquery.min.js"></script>
+  	<script src="<?php bloginfo('template_url'); ?>/qzdy_style/jquery-3.5.1.min.js"></script>
 <?php example_theme_yinghua(); ?>
 <?php qzdy_home_banner_body_height() ?>
 <?php wp_head();?>
+<style>.layui-container{max-width:<?php echo _qzdy('wp-max-width');?>px!important;}</style>
+<?php if(_qzdy('custom_css')){echo _qzdy('custom_css');} ?>
+<?php if(_qzdy('code_2_header')){echo _qzdy('code_2_header');} ?>
 </head>
-<body style="<?php echo qt_body_background(); ?>">
-     <div  class="g-glossy-firefox" id="firefoxjs"></div>
-<div class="layui-layout layui-layout-admin" id="mbl-element" style="<?php if(_qzdy('opt-index-header-color-box') =='opt-index-header-color-box3'){qt_body_background();}?>">
-<div id="topbar" class="layui-header header header-demo g-element-copy" style="<?php echo qt_header_kgzys(); ?>">
+<body style="position: relative !important;" >
+<div class="body-back" style="<?php  web_body_back();?>"></div>
+<div class="layui-layout layui-layout-admin" id="mbl-element">
+<div id="topbar" class="layui-header header header-demo g-element-copy <?php qz_head_mbl();?>" style="<?php echo qt_header_kgzys(); ?>">
 <div class="bg bg-blur"></div>
-  <div class="layui-main">
+  <div class="layui-main wp">
     <a class="logo" href="<?php echo get_bloginfo('url');?>">
       <?php echo example_theme_qtlogo(); ?>
     </a>
+    <div class="head-box">
     <div class="site-tree-mobile layui-hide">
-  <i class="layui-icon layui-icon-spread-left"></i>
+  <i class="layui-icon layui-icon-spread-left"></i></div>
     <a class="logo1" href="<?php echo get_bloginfo('url');?>">
      <?php echo example_theme_qtlogo(); ?>
     </a>
-</div>
-    <div class="layui-hide-xs site-notice" id="ssanniu"><span><i class="layui-icon layui-icon-search" style="font-size: 20px; color: #999;"></i> </span>   </div>
+
+    <div class="layui-hide-xs site-notice" id="ssanniu"><span><i class="layui-icon layui-icon-search" style="font-size: 20px; color: #999;"></i> </span>   </div></div>
+    <!--手机logo-->
+<div class="head-menu" style="display:flex;">
 <?php 
  if ( function_exists( 'wp_nav_menu' ) && has_nav_menu('nav') ) {
 wp_nav_menu( 
@@ -76,10 +81,23 @@ array(
  'link_after' => '</span>',
  'walker' => new Header_Menu_Walker()
  )); } else {echo '<div class="navtswz" style="line-height: 60px;"><ul id="menu-1" class="layui-nav rp-nav-pc"><li class=""><a href="/wp-admin/nav-menus.php" aria-current="page">请到[后台->外观->菜单]中设置菜单</a></li></ul></div>';} ?>
+ <?php if(_qzdy('zero-index-head-tool-search')){?>
+ <div class="head-tool-box">
+ <div class="tool-search">
+     <a id="head-ssannius">
+<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+  <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"></path>
+</svg>
+     </a></div>
+
+  </div>
+<?php }?>
+</div>
   </div>
 </div>
-  <div class="layui-side layui-bg-black">
+  <div class="layui-side<?php qz_sidebar_mbl();?>">
     <div class="layui-side-scroll">
+<?php if(_qzdy('zero-index-cbl-wap-login')){?>
       <div id="app-aside" class="website-info">
           <div class="wap-bjt" style="background-image: url(<?php echo _qzdy('zero-footer-txbjt'); ?>);"></div>
           <div class="website-avatar pos-rlt">
@@ -121,6 +139,7 @@ echo get_avatar( $current_user->ID); ?>
         </div>
 <?php }?>
  </div>
+ <?php };?>
         <?php
         $locations = get_nav_menu_locations();
         if (isset($locations['navs'])) {
@@ -133,7 +152,7 @@ array(
  'fallback_cb'     => 'wp_page_menu',
  'link_before' => '<span>',
  'link_after' => '</span>',
-  'walker'          => '',
+ 'walker'          => '',
            )
             );
         } else {

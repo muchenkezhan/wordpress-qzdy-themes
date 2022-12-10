@@ -1,0 +1,19 @@
+pre.pure-highlightjs {
+    background-color: #2f2f2f !important;
+    border: none;
+    padding: 0;
+}
+pre.pure-highlightjs ::selection {
+    background:maroon!important;
+    color:#fff!important;
+}
+
+pre.pure-highlightjs ::-moz-selection {
+    background:maroon!important;
+    color:#fff!important;
+}
+
+pre.pure-highlightjs ::-webkit-selection {
+    background:maroon!important;
+    color:#fff!important;
+}

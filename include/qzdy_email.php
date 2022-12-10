@@ -9,17 +9,25 @@ function site_smtp( $phpmailer ) {
 
     
 	$phpmailer->Mailer = 'smtp';
-	$phpmailer->Host = ''.$smtp_fwqdz.'';
+	$phpmailer->Host = ''.$smtp_fwqdz.'';//邮件服务器地址
 	$phpmailer->SMTPAuth = true;
-	$phpmailer->Port = ''.$smtp_dk.'';
+	$phpmailer->Port = ''.$smtp_dk.'';//邮件服务器端口
 	$phpmailer->SMTPSecure = ''.$smtp_ssl.'';
-	$phpmailer->Username = ''.$smtp_fjyx.'';
-	$phpmailer->Password = ''.$smtp_ps.'';
-	$phpmailer->From = ''.$smtp_fjyx.'';
+	$phpmailer->Username = ''.$smtp_fjyx.'';//授权用户名
+	$phpmailer->Password = ''.$smtp_ps.'';//授权密码
+	$phpmailer->From = ''.$smtp_fjyx.'';//设置发件人邮箱地址
+// 	try {
+// 		$phpmailer->Send();
+// 	} catch ( phpmailerException $e ) {
+// 		echo $phpmailer->ErrorInfo;
+// 	}
 }
+//配置后用wp_mail函数发送邮件 php8@手段
 	add_action( 'phpmailer_init', 'site_smtp', 10);
 	@$headers = ['Content-Type: text/html; charset=UTF-8'];
 	@$mailSent = wp_mail($_POST['email'], '', $message, $headers);
+// 邮件
+// 邮箱回复评论者
 function comment_mail_notify($comment_id) {
     $admin_email = get_bloginfo ('admin_email'); 
     $comment = get_comment($comment_id);
@@ -50,6 +58,8 @@ function comment_mail_notify($comment_id) {
     }
   }
   add_action('comment_post', 'comment_mail_notify');
+// 邮箱回复评论者
+//Register mail
 add_filter('password_change_email','__return_false');
 add_filter('wp_new_user_notification_email','__return_false');
 add_action('user_register','kratos_pwd_register_mail',101);
@@ -102,6 +112,8 @@ function kratos_pwd_register_mail($user_id){
     $headers = "Content-Type:text/html;charset=UTF-8\n";
     wp_mail($user->user_email,'['.$blogname.'] '.__('欢迎注册','moedog'),$message,$headers);
 }
+//Register mail
+//Comment approved mail
 add_action('comment_unapproved_to_approved','kratos_comment_approved');
 function kratos_comment_approved($comment){
     if(is_email($comment->comment_author_email)){
@@ -148,4 +160,14 @@ function kratos_comment_approved($comment){
         $headers = "$from\nContent-Type: text/html; charset=".get_option('blog_charset')."\n";
         wp_mail($to,$subject,$message,$headers);
     }
+}
+
+function Links_email_reminder() {
+$mailsubject=htmlspecialchars_decode(get_option('blogname'),ENT_QUOTES).'提醒：友情链接申请！';
+// $xp_textarea='尊敬的';//内容详情
+$adminmailbox=_qzdy('zero-footer-email');
+$from= "From: \"".htmlspecialchars_decode(get_option('blogname'),ENT_QUOTES)."\" <$adminmailbox>";
+$headers = "$from\nContent-Type: text/html; charset=".get_option('blog_charset')."\n";
+$mailbody='友情链接提交审核提醒，请前往审核！<p>本条消息由系统自动发送，请勿回复！</p>';
+wp_mail( $adminmailbox, $mailsubject, $mailbody , $headers);
 }

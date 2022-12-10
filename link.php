@@ -13,7 +13,7 @@
             <h1><?php the_title(); ?></h1>
             <div class="title-msg">
                 <?php if(!empty($article_author = _qzdy('zero-footer-article-author'))){?>
-                <span><i class="layui-icon layui-icon-username"></i><?php echo _qzdy('zero-footer-txxnc');?></span><?php } ?>
+                <span><i class="layui-icon layui-icon-username"></i><?php echo get_the_author_meta( 'nickname', $post->post_author ) ?></span><?php } ?>
                 <span><i class="layui-icon layui-icon-time"></i><?php the_time(' Y/n/j'); ?></span>
                 <span><i class="fa fa-eye" aria-hidden="true"></i><?php post_views(' ',''); ?>℃</span>
                 <span><?php edit_post_link('[编辑]'); ?></span>
@@ -26,7 +26,8 @@
                         <div class="linkpage">
                                <?php $friendimg=''; if(!empty(_qzdy('zero-footer-youqinglink-ico'))){ echo '<img src="'.$friendimg.'">';} ?>
                                 <ul><?php 
-                                $bookmarks = get_bookmarks(array('orderby'=>'rand'));
+if(_qzdy('zero-footer-youqinglink-auto')  == '01'){$orderby='name';}else if (_qzdy('zero-footer-youqinglink-auto')  == '02') { $orderby='rating';}else{$orderby='rand';}
+                                $bookmarks = get_bookmarks(array('orderby'=>$orderby));
                                 if(!empty($bookmarks)){
                                     foreach($bookmarks as $bookmark){
                                         $friendimg = $bookmark->link_image;

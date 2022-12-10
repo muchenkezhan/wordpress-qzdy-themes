@@ -1,0 +1,65 @@
+
+.single-thumbnail-card {
+    position: relative;
+    max-width: 900px;
+
+}
+.single-thumbnail {
+    border-radius: 10px;
+    height: 350px;
+    width: 100%;
+    overflow: hidden;
+    filter: brightness(50%);
+    box-shadow: 0 22px 50px -24px rgba(0,0,0,.6);
+    background-color: #fff;
+}
+.single-image {
+    height: 350px;
+    width: 100%;
+    background: rgba(0,0,0,.5);
+    background-size: cover;
+    background-position: center;
+    filter: blur(15px);
+    -webkit-filter: blur(15px);
+    -ms-filter: blur(15px);
+    -moz-filter: blur(15px);
+    filter: progid:DXImageTransform.Microsoft.Blur(pixelRadius=15,MakeShadow=false);
+    -webkit-transform: scale(1.1);
+    -ms-transform: scale(1.1);
+    transform: scale(1.1);
+}
+.single-thumbnail-overlay {
+    position: absolute;
+    color: #fff;
+    padding-bottom: 20px;
+    top: auto;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    padding: 1.25rem;
+}
+.single-thumbnail-overlay a{
+    margin-bottom: 22px;
+    font-weight: 500;
+    font-size: 16px;
+    color: #aaa;
+    text-decoration:none;
+    text-transform: uppercase;
+}
+.button{
+    display: block;
+    max-width: 300px;
+    margin: 50px auto;
+    color: #fff;
+    text-decoration: none;
+    background-color: #f1404b;
+    border-radius: 10px;
+    padding: 10px;
+    text-align: center;
+    box-shadow: 0px 7px 15px 0px rgba(187, 48, 57, 0.52);
+    transition: .3s;
+}
+.button:hover{
+    background-color: #222;
+    box-shadow:none;
+}

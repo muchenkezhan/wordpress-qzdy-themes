@@ -344,13 +344,28 @@
         },
     });
     tinymce.PluginManager.add('youtube', tinymce.plugins.youtube); 
-        tinymce.create('tinymce.plugins.qzdypre', {
+    //     tinymce.create('tinymce.plugins.qzdypre', {
+    //     init : function(ed, url) {
+    //         ed.addButton('qzdypre', {
+    //             title : '黑色代码高亮',
+    //             image : url+'/images/highlight.png',
+    //             onclick : function() {
+    //                  ed.selection.setContent('[qzdypre]' + ed.selection.getContent() + '[/qzdypre]');
+    //             }
+    //         });
+    //     },
+    //     createControl : function(n, cm) {
+    //         return null;
+    //     },
+    // });
+    // tinymce.PluginManager.add('qzdypre', tinymce.plugins.qzdypre);
+      tinymce.create('tinymce.plugins.centertitle', {
         init : function(ed, url) {
-            ed.addButton('qzdypre', {
-                title : '黑色代码高亮',
-                image : url+'/images/highlight.png',
+            ed.addButton('centertitle', {
+                title : '居中项目标题',
+                image : url+'/images/bilibili.png',
                 onclick : function() {
-                     ed.selection.setContent('[qzdypre]' + ed.selection.getContent() + '[/qzdypre]');
+                     ed.selection.setContent('[centertitle]' + ed.selection.getContent() + '[/centertitle]');
                 }
             });
         },
@@ -358,5 +373,5 @@
             return null;
         },
     });
-    tinymce.PluginManager.add('qzdypre', tinymce.plugins.qzdypre); 
+    tinymce.PluginManager.add('centertitle', tinymce.plugins.centertitle); 
 })();

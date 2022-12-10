@@ -7,9 +7,14 @@ class My_Widget_column1s extends WP_Widget {
 		$widget_ops = array('description' => 'Qzdy-标签云');
 		$control_ops = array('width' => 400, 'height' => 300);
 		parent::__construct(false,$name='Qzdy-彩色标签云',$widget_ops);  
+ 
+                //parent::直接使用父类中的方法
+                //$name 这个小工具的名称,
+                //$widget_ops 可以给小工具进行描述等等。
+                //$control_ops 可以对小工具进行简单的样式定义等等。
 	}
  
-	function form($instance) { 
+	function form($instance) { // 给小工具(widget) 添加表单内容
 		$title = esc_attr($instance['title']);
 		$title_quantity = esc_attr($instance['title_quantity']);
 	?><p>不设置默认标题：标签云，默认调用标签热门前30条</p>
@@ -19,10 +24,10 @@ class My_Widget_column1s extends WP_Widget {
 <input class="widefat" id="<?php echo $this->get_field_id('title_quantity'); ?>" name="<?php echo $this->get_field_name('title_quantity'); ?>" type="text" value="<?php echo $title_quantity; ?>" /></label></p>
 	<?php
     }
-	function update($new_instance, $old_instance) { 
+	function update($new_instance, $old_instance) { // 更新保存
 		return $new_instance;
 	}
-	function widget($args, $instance) { 
+	function widget($args, $instance) { // 输出显示在页面上
 	extract( $args );
         $title = apply_filters('widget_title', empty($instance['title']) ? __('标签云') : $instance['title']);
         $title_quantity=apply_filters('widget_title', empty($instance['title_quantity']) ? __('50') : $instance['title_quantity']);
@@ -30,7 +35,7 @@ class My_Widget_column1s extends WP_Widget {
               <?php echo $before_widget; ?>
                   <?php if ( $title )
                         echo $before_title . $title . $after_title; ?>
-                        <?php
+<?php
 $tags = get_tags( array( 'orderby' => 'count', 'order' => 'DESC', 'number' => ''.$title_quantity.'') );
 echo '<div class="tags article-categories">';
 foreach ( $tags as $tag ) {

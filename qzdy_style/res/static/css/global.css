@@ -17,11 +17,8 @@ h1,h2,h3{font-size: 14px;}
 
 /* 头部 */
 .header{height: 59px; border-bottom: 1px solid #404553;  background-color: #393D49;}
-.logo{position: absolute; left: 0; top: 0px;}
+/*.logo{position: absolute; left: 0; top: 0px;}*/
 .logo img{width: 200px; height: 60px;}
-
-.header .layui-nav{position: absolute; right: 0; top: 0; padding: 0; background: none;}
-.header .layui-nav .layui-nav-item{margin: 0 10px; }
 .header .layui-nav .layui-nav-item[mobile]{display: none;}
 
 .header .layui-container .logo{left: 15px;}
@@ -49,11 +46,8 @@ h1,h2,h3{font-size: 14px;}
 .site-banner-bg[winter]{border: none; background-color: #110F25/*#06041C*/}
 
 .header-demo{height: 60px; border-bottom: none;}
-.header-demo .logo{left: 60px;}
-.header-demo .layui-nav{top: 0; right: 10%;}
-
-.header-demo .layui-nav .layui-nav-item{/*margin: 0 10px;*/}
-
+/*.header-demo .logo{left: 60px;}*/
+/*.header-demo .layui-nav{top: 0; right: 10%;}*/
 .header-demo .layui-nav .layui-this a{padding: 0 30px;}
 
 

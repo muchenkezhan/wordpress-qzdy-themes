@@ -32,7 +32,7 @@
 /**
  * add field to user profiles
  */
- 
+ $id_or_email;
 class Simple_Local_Avatars {
     private $user_id_being_edited;
  
@@ -49,9 +49,9 @@ class Simple_Local_Avatars {
  
         add_filter( 'avatar_defaults', array( $this, 'avatar_defaults' ) );
     }
- 
-    public function get_avatar( $avatar = '', $id_or_email, $size = 96, $default = '', $alt = false ) {
- 
+         
+    public function get_avatar( $avatar = '', $id_or_email='', $size = 96, $default = '', $alt = false ) {
+//   public function get_avatar( $avatar = '', $size = 96, $default = '', $alt = false ) {
         if ( is_numeric($id_or_email) )
             $user_id = (int) $id_or_email;
         elseif ( is_string( $id_or_email ) && ( $user = get_user_by( 'email', $id_or_email ) ) )

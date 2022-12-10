@@ -32,7 +32,7 @@ class My_Widget_login_button extends WP_Widget {
     <div class="user-info">
 
         <div class="title">
-                    <?php if (!(current_user_can('level_0'))){ ?>  
+                    <?php if (!(get_current_user_id() != 0)){ ?>  
 <p>Hi!请登陆</p>
   	<?php } else { ?>
 <p>你好,<?php global $current_user;

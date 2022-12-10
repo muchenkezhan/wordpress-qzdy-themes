@@ -28,9 +28,13 @@ class My_Widget_persona_left extends WP_Widget {
         ?>
               <?php echo $before_widget; ?>
         <div class="my-info">
-    <div class="background">
+
+    <div id="thumbnail_canvas" class="background single-thumbnail-card">
         <img src="<?php echo _qzdy('zero-footer-txbjt'); ?>" alt="">
+        <?php web_widget_personal_left_switch();?>
+      <canvas id="header_canvas"style="position:absolute;bottom:0;left: 0;width:100%;"></canvas>   
     </div>
+   
     <div class="user-info">
         <div class="avatarer">
             <img src="<?php echo _qzdy('zero-footer-txurl'); ?>" alt="">
@@ -62,13 +66,15 @@ s2 = new Date();
 var days = s2.getTime() - s1.getTime();
 var number_of_days = parseInt(days / (1000 * 60 * 60 * 24));
 document.getElementById('days').innerHTML = number_of_days;
-</script></span>
+</script>
+</span>
         </li>
     </ul>
 <?php if(_qzdy('widget-icon-box-kg')){?>
      <div class="widget-icon text-center">
         <?php if(_qzdy('widget-icon-dashang')){?>
-        <a href="javascript:;" id="shang"><i class="fa layui-bg-blue" aria-hidden="true">赏</i></a>
+        <a href="javascript:;" id="shangs"><i class="fa layui-bg-blue" aria-hidden="true">赏</i></a>
+<?php web_widget_zan_switch();?>
          <?php }?>
           <?php 
  $icotb = _qzdy('qzdy-widget-icon');
@@ -77,6 +83,9 @@ document.getElementById('days').innerHTML = number_of_days;
  <a title="<?php echo $key['widget-icon-title'];?>" href="<?php echo $key['widget-icon-href'];?>" target="_blank"><i style="background-color:<?php echo $key['widget-icon-background'];?>;color:<?php echo $key['widget-icon-color'];?>;" class="<?php echo $key['widget-icon-ico'];?>"></i></a>
 <?php }?>
          </div><?php }?>
+         <style>
+             
+         </style>
      <?php if(current_user_can('manage_options')){ ?>
        <div class="widget-admin text-center">
                 <p>

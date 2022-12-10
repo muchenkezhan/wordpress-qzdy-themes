@@ -20,6 +20,18 @@ CSF::createSection( $prefix, array(
     //
     // A text field
     // 
+    array(
+      'id'          => '_zero-classification-theme-1',
+      'type'        => 'select',
+      'title'       => '选择分类模板',
+      'placeholder' => '默认分类',
+      'options'     => array(
+        'theme_1'      => '博客分类',
+        'theme_2'    => '九宫格分类',
+        'theme_3'  => '摄影分类',
+      ),
+      'default' => 'theme_1',
+    ),
       array(
       'id'    => '_zero-classification-cbl-kg',
       'type'  => 'switcher',

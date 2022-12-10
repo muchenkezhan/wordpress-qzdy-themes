@@ -1,32 +1,13 @@
 <?php
-
-/**
- * WordPress 显示访客 UA 信息：Show UserAgent
- * 感谢 Phower 提供原始版本数据（精简版）
- * 由 凝神长老 更新于 2020-07-20
- */
 function show_ua_scripts()
 {
     wp_enqueue_style('ua_scripts', get_template_directory_uri() . '/include/qzdyshow-ua/ua-style.css');
 }
-
-// add_action('wp_enqueue_scripts', 'show_ua_scripts');
-
-/* 将 IP 处理为国家 */
 function CID_get_country($ip)
 {
-    require_once(dirname(__FILE__) . '/ip2c/ip2c.php');
-    if (isset($GLOBALS['ip2c'])) {
-        global $ip2c;
-    } else {
-        $ip2c = new ip2country(dirname(__FILE__) . '/ip2c/ip-to-country.bin');
-        $GLOBALS['ip2c'] = $ip2c;
-    }
 
-    return $ip2c->get_country($ip);
+    return '';
 }
-
-/* 将国家对应为国旗，并显示悬浮文字 */
 function CID_get_flag($ip)
 {
     if ($ip == '127.0.0.1') {

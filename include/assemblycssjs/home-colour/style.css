@@ -42,40 +42,7 @@ background-color: #f0f0f0 !important;}
 }
 /**/
 .site-mobile .site-tree-mobile {display: block !important;}
-/*body模糊*/
-/*body{*/
-/*     background-size: cover;*/
-/*            box-sizing: border-box;*/
-/*            z-index: 1;*/
-/*}*/
-/*body:after {*/
-/*content: "";*/
-/*width: 100%;*/
-/*height: 100%;*/
-/*position: fixed;*/
-/*left: 0;*/
-/*top: 10px;*/
-/*background: inherit;*/
-/*filter: blur(2px);*/
-/*z-index: -802;*/
-/*}*/
 /*底部白色*/
 .copyright_link,.copyright{background-color:#fff;}
 .copyright_link,.copyright{color: #000;}
-/*导航拟态UI*/
-/*#topbar{*/
-/*     background-size: cover;*/
-/*            box-sizing: border-box;*/
-/*            z-index: 1;*/
-/*}*/
-/*#topbar:after {*/
-/*content: "";*/
-/*width: 100%;*/
-/*height: 100%;*/
-/*position: fixed;*/
-/*left: 0;*/
-/*top: 10px;*/
-/*background: inherit;*/
-/*filter: blur(10px);*/
-/*z-index: -802;*/
-/*}*/
+.copyright_link,.copyright .dbwp{max-width: 85%;margin-left: auto;margin-right: auto;overflow: hidden;}

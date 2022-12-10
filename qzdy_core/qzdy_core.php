@@ -6,3 +6,4 @@ require_once plugin_dir_path(__FILE__) .'options/options.bittheme.php';
 require_once plugin_dir_path(__FILE__) .'options/options.bjq.php';
 require_once plugin_dir_path(__FILE__) .'options/qzdy_classification.php';
 require_once plugin_dir_path(__FILE__) .'options/qzdy_ispage.php';
+ 

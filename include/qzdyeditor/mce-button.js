@@ -20,7 +20,7 @@
 
 
 						{
-							text: '登陆回复可见',
+							text: '游客可回复可见',
 							icon: 'bubble',
 							onclick: function() {
 								selected = tinyMCE.activeEditor.selection.getContent();
@@ -36,7 +36,14 @@
 								editor.insertContent('[hide]'+selected+'[/hide]');
 							}
 						},
-
+				// 		{
+				// 			text: '游客可回复可见',
+				// 			icon: 'bubble',
+				// 			onclick: function() {
+				// 				selected = tinyMCE.activeEditor.selection.getContent();
+				// 				editor.insertContent('[ykreply]'+selected+'[/ykreply]');
+				// 			}
+				// 		},
 
 					]
 				},

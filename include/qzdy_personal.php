@@ -27,6 +27,7 @@ class My_Widget_persona extends WP_Widget {
 
         ?>
               <?php echo $before_widget; ?>
+              
         <div class="my-info">
     <div class="background">
         <img src="<?php echo _qzdy('zero-footer-txbjt'); ?>" alt="">
@@ -68,7 +69,8 @@ document.getElementById('days').innerHTML = number_of_days;
 <?php if(_qzdy('widget-icon-box-kg')){?>
      <div class="widget-icon text-center">
         <?php if(_qzdy('widget-icon-dashang')){?>
-        <a href="javascript:;" id="shang"><i class="fa layui-bg-blue" aria-hidden="true">赏</i></a>
+        <a href="javascript:;" id="shangs"><i class="fa layui-bg-blue" aria-hidden="true">赏</i></a>
+<?php web_widget_zan_switch();?>
          <?php }?>
           <?php 
  $icotb = _qzdy('qzdy-widget-icon');
@@ -90,8 +92,10 @@ document.getElementById('days').innerHTML = number_of_days;
                     <a href="<?php echo wp_logout_url($redirect); ?>"><i class="layui-icon layui-icon-reduce-circle" style="font-size: 15px; color: #4C4C4C;"></i><?php _e('退出登录','moedog'); ?></a>
                 </p>
             </div>
+
             <?php } ?>
 </div>
+
               <?php echo $after_widget; ?>
 
         <?php

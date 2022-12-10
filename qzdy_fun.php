@@ -10,7 +10,6 @@ function _get_category_tags($args) {
         return false;
     }
     global $wpdb;
-
     $tags_num = (int)_qzdy('filter_item_tags_num',10);
     $tags = $wpdb->get_results
         ("
@@ -20,7 +19,6 @@ function _get_category_tags($args) {
             LEFT JOIN $wpdb->term_relationships as r1 ON p1.ID = r1.object_ID
             LEFT JOIN $wpdb->term_taxonomy as t1 ON r1.term_taxonomy_id = t1.term_taxonomy_id
             LEFT JOIN $wpdb->terms as terms1 ON t1.term_id = terms1.term_id,
-
             $wpdb->posts as p2
             LEFT JOIN $wpdb->term_relationships as r2 ON p2.ID = r2.object_ID
             LEFT JOIN $wpdb->term_taxonomy as t2 ON r2.term_taxonomy_id = t2.term_taxonomy_id
@@ -32,7 +30,6 @@ function _get_category_tags($args) {
         ORDER by tag_name LIMIT {$tags_num}
     ");
     $count = 0;
-
     if (!empty($tags)) {
         foreach ($tags as $tag) {
             $mytag[$count] = get_term_by('id', $tag->tag_id, 'post_tag');
@@ -43,12 +40,20 @@ function _get_category_tags($args) {
     }
     return $mytag;
 }
+function csf_add_custom_wp_enqueue()
+{
+    wp_enqueue_style('csf_custom_css', get_template_directory_uri() . '/qzdy_core/assets/css/qzdy_style.css');
+}
+add_action('csf_enqueue', 'csf_add_custom_wp_enqueue');
+if (_qzdy('weiyu-1')) {
+require get_template_directory() . '/include/weiyu.php';}
 require get_template_directory() . '/include/qzdyshow-ua/show-useragent.php';
 require get_template_directory() . '/pages/user-generate-password.php';
 require get_template_directory() . '/qzdy_core/qzdy_core.php';
 require get_template_directory() . '/include/expand/zn.php';
 require get_template_directory() . '/include/assembly/mox.php';
 require get_template_directory() . '/include/qzdy_email.php';
+require get_template_directory() . '/include/assembly/Mimetic.php';
 if (!empty(_qzdy('zero-bjq-zengqiang'))) {
 require get_template_directory() . '/include/bianjiqituozan.php';
 }
@@ -57,6 +62,7 @@ require get_template_directory() . '/include/qzdy_translate_id.php';
 require get_template_directory() . '/include/avatar/avatar.php';
 require 'include/update/plugin-update-checker.php';
 require 'include/seo.php';
+include ("include/buttons/highlightjs/pure-highlightjs.php");
 function UpdateCheck($url,$flag = 'qzdy'){
     return Puc_v4_Factory::buildUpdateChecker(
         $url,
@@ -78,18 +84,18 @@ add_action('admin_head', 'wpc_add_custom_admin_css');
 function short_title() {
 $mytitleorig = get_the_title();
 $title = htmlspecialchars($mytitleorig, ENT_QUOTES, "UTF-8");
-$limit = "40"; 
+$limit = "40";
 $pad="";
 if(strlen($title) >= ($limit+3)) {
 $title = mb_substr($title, 0, $limit) . $pad; }
-echo $title.'...';
+echo $title;
 }
 if( !current_user_can( 'manage_options' ) ) {
 add_action( 'admin_menu', function(){
 remove_menu_page( 'upload.php' );
-remove_menu_page( 'edit-comments.php' ); 
+remove_menu_page( 'edit-comments.php' );
 remove_menu_page( 'tools.php' );
-remove_menu_page( 'index.php' ); 
+remove_menu_page( 'index.php' );
 function admin_bar_item ( WP_Admin_Bar $admin_bar ) {
 	$admin_bar->remove_menu('my-framework');
 }
@@ -172,7 +178,6 @@ function lingfeng_pagenavi( $range = 4 ) {
 add_theme_support( 'post-thumbnails' ); 
 add_theme_support('post-thumbnails', array('post'));
 add_theme_support('post-thumbnails', array('page'));
-
 function theme_settings_admin() {
         include_once('functions.php');  
 }
@@ -185,7 +190,7 @@ function catch_first_image() {
 	$output = preg_match_all('/<img.+src=[\'"]([^\'"]+)[\'"].*>/iU', $post->post_content, $matches);
 	@$first_img = $matches [1] [0];
 	if(empty($first_img)){
-		$random = mt_rand(1, 10);
+		$random = mt_rand(1, 5);
 		echo get_bloginfo ( 'stylesheet_directory' );
 		echo '/images/random/'.$random.'.jpg';
 		}
@@ -196,7 +201,7 @@ function post_thumbnail_srcs(){
 	if( $values = get_post_custom_values("thumb") ) {
 		$values = get_post_custom_values("thumb");
 		$post_thumbnail_src = $values [0];
-	} elseif( has_post_thumbnail() ){  
+	} elseif( has_post_thumbnail() ){
 		$thumbnail_src = wp_get_attachment_image_src(get_post_thumbnail_id($post->ID),'full');
 		$post_thumbnail_src = $thumbnail_src [0];
 	} else {
@@ -205,9 +210,34 @@ function post_thumbnail_srcs(){
 		ob_end_clean();
 		$output = preg_match_all('/<img.+src=[\'"]([^\'"]+)[\'"].*>/i', $post->post_content, $matches);
 		if(!empty($matches[1][0])){
-			$post_thumbnail_src = $matches[1][0]; 
+			$post_thumbnail_src = $matches[1][0];
 		}else{
-			$random = mt_rand(1, 10);
+			$random = mt_rand(1, 5);
+			$post_thumbnail_src = get_template_directory_uri().'/images/random/'.$random.'.jpg';
+		}
+	};
+	echo $post_thumbnail_src;
+}
+function post_thumbnail_srcs_php(){
+	global $post;
+	if( $values = get_post_custom_values("thumb") ) {
+		$values = get_post_custom_values("thumb");
+		$post_thumbnail_srcs = $values [0];
+		$post_thumbnail_src=get_template_directory_uri().'/timthumb.php?src='.$post_thumbnail_srcs.'&w=300&h=240&zc=1&q=100';
+	} elseif( has_post_thumbnail() ){
+		$thumbnail_src = wp_get_attachment_image_src(get_post_thumbnail_id($post->ID),'full');
+		$post_thumbnail_srcs = $thumbnail_src [0];
+		$post_thumbnail_src=get_template_directory_uri().'/timthumb.php?src='.$post_thumbnail_srcs.'&w=300&h=240&zc=1&q=100';
+	} else {
+		$post_thumbnail_src = '';
+		ob_start();
+		ob_end_clean();
+		$output = preg_match_all('/<img.+src=[\'"]([^\'"]+)[\'"].*>/i', $post->post_content, $matches);
+		if(!empty($matches[1][0])){
+			$post_thumbnail_srcs = $matches[1][0];
+			$post_thumbnail_src=get_template_directory_uri().'/timthumb.php?src='.$post_thumbnail_srcs.'&w=300&h=240&zc=1&q=100';
+		}else{
+			$random = mt_rand(1, 5);
 			$post_thumbnail_src = get_template_directory_uri().'/images/random/'.$random.'.jpg';
 		}
 	};
@@ -222,7 +252,7 @@ function catch_first_images($key1) {
 	$output = preg_match_all('/<img.+src=[\'"]([^\'"]+)[\'"].*>/iU', get_post($key1)->post_content, $matches);
 	@$first_img = $matches [1] [0];
 	if(empty($first_img)){
-		$random = mt_rand(1, 10);
+		$random = mt_rand(1, 5);
 echo get_bloginfo ( 'stylesheet_directory' );
 		echo '/images/random/'.$random.'.jpg';
 		}
@@ -268,14 +298,13 @@ echo "$output";
 ?>
 <?php 
 function meta_pd_seo_key_and_des() {
-    global $ID;  
     if(is_page()){
 $qzdy_zdy_ym_key=get_post_meta( get_the_ID(), 'qzdy_zdy_ym_key', true );
 $qzdy_zdy_ym_des=get_post_meta( get_the_ID(), 'qzdy_zdy_ym_des', true );
-if(!empty($qzdy_zdy_ym_key)){ 
+if(!empty($qzdy_zdy_ym_key)){
 $flkggs.='<meta name="keywords" content="' . $qzdy_zdy_ym_key . '" />' . "\n";
     }else{
-        $qzdy_zzdy_page_bt=get_the_title($ID);
+        $qzdy_zzdy_page_bt=get_the_title();
         @$flkggs.='<meta name="keywords" content="'.$qzdy_zzdy_page_bt.'" />' . "\n";
     }
 if(!empty($qzdy_zdy_ym_des)){
@@ -344,9 +373,10 @@ function _wenzhangbanquan(){
 }
 function _zero_wz_autoMenu_ml_kg(){
    $zero_wz_autoMenu_ml_kg = get_post_meta( get_the_ID(), '_zero-wz-autoMenu-ml-kg', true );
-    if(!empty($zero_wz_autoMenu_ml_kg)){
-        echo '<div class="autoMenu qzdysjflml" id="autoMenu" data-autoMenu> </div>';
-    }
+    if($zero_wz_autoMenu_ml_kg){
+       $ml_html='<div class="autoMenu qzdysjflml" id="autoMenu" data-autoMenu> </div>';
+    }else{$ml_html='';}
+    echo $ml_html;
 }
 function new_excerpt_length( $length ) {
 	return 240;
@@ -391,14 +421,12 @@ class Header_Menu_Walker extends Walker_Nav_Menu{
 function start_lvl(&$output, $depth = 0, $args = array() ) {
 	$indent = ( $depth > 0 ? str_repeat( "\t", $depth ) : '' ); 
     $display_depth = ( $depth + 1); 
- 
-	$classes = array( '',
-	( $display_depth % 2 ? 'menu-odd' : 'menu-even' ),
+	$classes = array( '', 
+	( $display_depth % 2 ? 'menu-odd' : 'menu-even' ), 
 	( $display_depth =1 ? '' : '' ), 
 	);
-	$class_names = implode( ' ', $classes ); 
- 
-	$output .= "\n" . $indent . '<ul class="layui-nav-child layui-anim layui-anim-upbit">' . "\n";
+	$class_names = implode( ' ', $classes );
+	$output .= "\n" . $indent . '<ul class="layui-nav-child layui-anim layui-anim-upbit">' . "\n"; 
 }
 function end_lvl(&$output, $depth = 0, $args = array() ) {
         $indent = str_repeat("\t", $depth);
@@ -438,7 +466,6 @@ function example_theme_supports() {
     $jyxgjus = get_option('my_framework')['zero-ht-jyxbbjq'];
 	if($jyxgjus == true){
 add_filter('use_block_editor_for_post', '__return_false');
-
    }
 }
 add_action( 'init', 'example_theme_supports' );
@@ -497,9 +524,14 @@ function qt_header_kgzys() {
 	if(!empty( $qt_header_tp) && _qzdy('opt-index-header-color-box') =='opt-index-header-color-box1'){
      $qtwzpx='background-color: rgba(0, 0, 0, 0.5);';
    }else if(_qzdy('opt-index-header-color-box') =='opt-index-header-color-box1'){
-      $qtwzpx= 'background-color: rgb(0 0 0);';
+      $qtwzpx= 'background-color:#202935;';
    }
 echo $qtwzpx;
+}
+function dy_footer_color() {
+	if(_qzdy('opt-index-header-color-box') =='opt-index-header-color-box1'){
+     echo $css='dy-background-secondary';
+   }
 }
 function add_js_to_foot_beijingtexiao() {echo "<script src=".get_template_directory_uri()."/include/assemblycssjs/effect.js></script>";}
 if(!empty(_qzdy('zero-index-js-to-footer'))){add_action( 'wp_footer', 'add_js_to_foot_beijingtexiao' );}
@@ -530,82 +562,38 @@ $.getScript('".get_bloginfo('template_url')."/qzdy_style/hua.js'); }
 }
 function add_stylesheet_to_head() {echo "<link href=".get_template_directory_uri()."/include/assemblycssjs/home-colour/style.css rel='stylesheet'>";}
 if(_qzdy('opt-index-header-color-box') =='opt-index-header-color-box2'){add_action( 'wp_head', 'add_stylesheet_to_head' );}
-function add_stylesheet_to_head3() {echo "<link href=".get_template_directory_uri()."/include/assemblycssjs/home-colour/maoboli/stylembl.css rel='stylesheet'>";}
-if(_qzdy('opt-index-header-color-box') =='opt-index-header-color-box3'){add_action( 'wp_head', 'add_stylesheet_to_head3' );}
-function add_stylesheet_to_head3js() {echo "<script src=".get_template_directory_uri()."/include/assemblycssjs/home-colour/maoboli/stylembl.js></script>";}
-if(_qzdy('opt-index-header-color-box') =='opt-index-header-color-box3'){add_action( 'wp_footer', 'add_stylesheet_to_head3js' );}
-function qt_body_background() {
-    $qt_header_tp = get_option('my_framework')['zero-body-background-image'];
-	if(!empty( $qt_header_tp)){
-   $qtwzpx= 'background-image: url('. _qzdy('zero-body-background-image') .');';
-   }else{
-       $qtwzpx='background: #f1f3f4;'; 
-   }
-echo $qtwzpx;
+function qz_head_mbl(){
+    if(_qzdy('opt-index-header-color-box') =='opt-index-header-color-box3'){
+        echo 'qz_head_mbl';
+    }
 }
-require get_stylesheet_directory(). '/include/mb_hot.php';
+function qz_sidebar_mbl(){
+    if(_qzdy('opt-index-header-color-box') =='opt-index-header-color-box3'){
+        echo ' qz_sidebar_mbl';
+    }else{
+        echo ' layui-bg-black';
+    }
+}
+function add_page_center_maxheight() {
+$qzdy_pre_maxheight=_qzdy('page-center-code-maxheight');
+echo "<style>pre.pure-highlightjs{max-height: $qzdy_pre_maxheight;overflow: auto;}</style>
+";}
+if(_qzdy('page-center-code-maxheight')){add_action( 'wp_head', 'add_page_center_maxheight' );}
+require get_stylesheet_directory(). '/include/mb_hot.php'; 
 require get_stylesheet_directory(). '/include/categories.php';
-require get_stylesheet_directory(). '/include/qzdy_label.php';
-require get_stylesheet_directory(). '/include/qzdy_column.php';
-require get_stylesheet_directory(). '/include/qzdy_personal.php';
-require get_stylesheet_directory(). '/include/widget-catpost.php';
+require get_stylesheet_directory(). '/include/qzdy_label.php'; 
+require get_stylesheet_directory(). '/include/qzdy_column.php'; 
+require get_stylesheet_directory(). '/include/qzdy_personal.php'; 
+require get_stylesheet_directory(). '/include/widget-catpost.php'; 
 require get_stylesheet_directory(). '/include/widget-latest-classification.php'; 
-require get_stylesheet_directory(). '/include/widget_yiyan.php';
-require get_stylesheet_directory(). '/include/widget_zuixinpinglun.php';
+require get_stylesheet_directory(). '/include/widget_yiyan.php'; 
+require get_stylesheet_directory(). '/include/widget_zuixinpinglun.php'; 
 require get_stylesheet_directory(). '/include/widget_qzdy_zhuanti.php'; 
-require get_stylesheet_directory(). '/include/widget_img_shuibiankankan.php';
-require get_stylesheet_directory(). '/include/qzdy_login.php';
+require get_stylesheet_directory(). '/include/widget_img_shuibiankankan.php'; 
+require get_stylesheet_directory(). '/include/qzdy_login.php'; 
 require get_stylesheet_directory(). '/include/qzdy_login_button.php'; 
 require get_stylesheet_directory(). '/include/qzdy_pinglunzuixing.php'; 
 require get_stylesheet_directory(). '/include/qzdy_personal_left.php'; 
-    class Select_Category_Template{
-    	public function __construct() {
-    		add_filter( 'category_template', array($this,'get_custom_category_template' ));
-    		add_action ( 'edit_category_form_fields', array($this,'category_template_meta_box'));
-    		add_action( 'category_add_form_fields', array( &$this, 'category_template_meta_box') );
-    		add_action( 'created_category', array( &$this, 'save_category_template' ));
-    		add_action ( 'edited_category', array($this,'save_category_template'));
-    		do_action('Custom_Category_Template_constructor',$this);
-    	}
-    	public function category_template_meta_box( $tag ) {
-    		$t_id = $tag->term_id;
-    		$cat_meta = get_option( "category_templates");
-    		$template = isset($cat_meta[$t_id]) ? $cat_meta[$t_id] : false;
-    		?>
-    		<tr class="form-field">
-    			<th scope="row" valign="top"><label for="cat_Image_url"><?php _e('Category Template'); ?></label></th>
-    			<td>
-    				<select name="cat_template" id="cat_template">
-    					<option value='default'><?php _e('Default Template'); ?></option>
-    					<?php page_template_dropdown($template); ?>
-    				</select>
-    				<br />
-    				<span class="description"><?php _e('为此分类选择一个模板'); ?></span>
-    			</td>
-    		</tr>
-    		<?php
-    		do_action('Custom_Category_Template_ADD_FIELDS',$tag);
-    	}
-    	public function save_category_template( $term_id ) {
-    		if ( isset( $_POST['cat_template'] )) {
-    			$cat_meta = get_option( "category_templates");
-    			$cat_meta[$term_id] = $_POST['cat_template'];
-    			update_option( "category_templates", $cat_meta );
-    			do_action('Custom_Category_Template_SAVE_FIELDS',$term_id);
-    		}
-    	}
-    	function get_custom_category_template( $category_template ) {
-    		$cat_ID = absint( get_query_var('cat') );
-    		$cat_meta = get_option('category_templates');
-    		if (isset($cat_meta[$cat_ID]) && $cat_meta[$cat_ID] != 'default' ){
-    			$temp = locate_template($cat_meta[$cat_ID]);
-    			if (!empty($temp))
-    				return apply_filters("Custom_Category_Template_found",$temp);
-    		}
-    		return $category_template;
-    	}
-    }
-    $cat_template = new Select_Category_Template();
 function show_category(){
     global $wpdb;
     $request = "SELECT $wpdb->terms.term_id, name FROM $wpdb->terms ";
@@ -618,9 +606,10 @@ function show_category(){
         echo $output;
     }
 }
-add_action('after_wp_tiny_mce', 'my_quicktags');
-function my_quicktags($mce_settings) {
-?>
+if (in_array($pagenow, array('post.php', 'post-new.php', 'page.php', 'page-new.php'))) {
+ add_action('after_wp_tiny_mce', 'my_quicktags');
+}
+function my_quicktags($mce_settings) {?>
 <script type="text/javascript">
 QTags.addButton( 'my_per_html', 'HTML代码高亮', '<pre lay-title="HTML" lay-skin="notepad"> 这里是代码</pre>', '' );
 QTags.addButton( 'my_per_css', 'CSS代码高亮', '<pre lay-title="CSS" lay-skin="notepad"> 这里是代码</pre>', '' );
@@ -645,13 +634,6 @@ function my_quicktags() {
 }
 </script>
 <?php }
-function paipk1_quicktags() { 
-  if (wp_script_is('quicktags')){?>
-  <script type="text/javascript">
-    QTags.addButton( 'textIndent','首行缩进2字符','<p style="text-indent:2em">','</p>','','首行缩进2字符',101);
-  </script>
-<?php }}
-add_action('admin_print_footer_scripts', 'paipk1_quicktags');
 function qzdy_prevent_theme() { 
 	if(!empty(_qzdy('zero-body-tzhkg'))){
 $ssssa=_qzdy('opt-body-tzh1');
@@ -731,16 +713,15 @@ echo $layui_col_md;
 }
 function get_category_root_id($cat) {
     $this_category = get_category($cat);
-    while ($this_category->category_parent)
+    while ($this_category->category_parent) 
     {
         $this_category = get_category($this_category->category_parent);
     }
-    return $this_category->term_id;
+    return $this_category->term_id; 
 }
 function get_category_deel($cat) {
-
-    $categories        = get_terms('category', array('hide_empty' => 0, 'parent' => 0)); 
-    $get_term_children = get_term_children($cat_ID, 'category');
+    $categories        = get_terms('category', array('hide_empty' => 0, 'parent' => 0));
+    $get_term_children = get_term_children($cat_ID, 'category'); 
 }
 function  qzdy_sidebar_switch_left() {
 global $wp_query;
@@ -770,7 +751,6 @@ global $wp_query;
 $cat_ID  = get_query_var('cat');
 $flkgg=get_term_meta($cat_ID,'_prefix_taxonomy_options',true);
 $banner= _qzdy('zero-header-classification-banner-morenbanner');
-
 if(!empty($flkgg['zero-header-classification-banner-imgurl'])  && !empty(is_category( $category ))){
 $banner=$flkgg['zero-header-classification-banner-imgurl'];
 }
@@ -785,7 +765,7 @@ function  qzdy_home_banner_body_height() {
         $ttf='<style>.layui-content{margin-top: -100px;}</style>';
     }
        elseif(_qzdy('opt-index-banner-moxin') =='opt-index-dbanner') {
-        $ttf='<style>.layui-content{margin-top: -80px;}</style>';
+        $ttf='<style>.layui-content{margin-top: -70px;}</style>';
     }
     echo $ttf;
 }
@@ -837,7 +817,7 @@ $GLOBALS['comment'] = $comment; ?>
 <?php echo get_comment_time('Y-m-d H:i');
 if ( current_user_can('level_10') ) {
 $url = home_url();
-echo '<a id="delete-'. $comment->comment_ID .'" href="' . wp_nonce_url("$url/wp-admin/comment.php?action=deletecomment&p=" . $comment->comment_post_ID . '&c=' . $comment->comment_ID, 'delete-comment_' . $comment->comment_ID) . '" >&nbsp;删除</a>
+echo '<a id="delete-'. $comment->comment_ID .'" href="'.admin_url("comment.php?action=cdc&c=$comment->comment_ID").'" >&nbsp;删除</a>
 <a id="delete-'. $comment->comment_ID .'" href="' . wp_nonce_url("$url/wp-admin/comment.php?action=editcomment&c=" . $comment->comment_post_ID . '&c=' . $comment->comment_ID, 'delete-comment_' . $comment->comment_ID) . '" >&nbsp;编辑</a>';
 } ?>
 </span>
@@ -892,46 +872,6 @@ function my_login_redirect($redirect_to, $request, $user){
         echo get_post_meta($id,'bigfa_ding',true);
         }
         die;
-    }
-function custom_smilies_src($src, $img){return get_bloginfo('template_directory').'/images/smilies/' . $img;}
-add_filter('smilies_src', 'custom_smilies_src', 10, 2);
-    if ( !isset( $wpsmiliestrans ) ) {
-        $wpsmiliestrans = array(
-        ':cy:' => 'cy.gif',
-        ':hanx:' => 'hanx.gif',
-        ':huaix:' => 'huaix.gif',
-        ':tx:' => 'tx.gif',
-          ':se:' => 'se.gif',
-          ':wx:' => 'wx.gif',
-          ':zk:' => 'zk.gif',
-           ':shui:' => 'shui.gif',
-           ':kuk:' => 'kuk.gif',
-           ':lh:' => 'lh.gif',
-           ':gz:' => 'gz.gif',
-           ':ku:' => 'ku.gif',
-           ':kel:' => 'kel.gif',
-           ':yiw:' => 'yiw.gif',
-           ':yun:' => 'yun.gif',
-           ':jy:' => 'jy.gif',
-           ':dy:' => 'dy.gif',
-           ':gg:' => 'gg.gif',
-           ':fn:' => 'fn.gif',
-           ':fendou:' => 'fendou.gif',
-           ':shuai:' => 'shuai.gif',
-           ':kl:' => 'kl.gif',
-           ':pj:' => 'pj.gif',
-            ':fan:' => 'fan.gif',
-            ':lw:' => 'lw.gif',
-            ':qiang:' => 'qiang.gif',
-            ':ruo:' => 'ruo.gif',
-            ':ws:' => 'ws.gif',
-             ':ok:' => 'ok.gif',
-              ':gy:' => 'gy.gif',
-              ':qt:' => 'qt.gif',
-              ':cj:' => 'cj.gif',
-              ':aini:' => 'aini.gif',
-              ':bu:' => 'bu.gif',
-        );
     }
     function custom_login_head(){
     $str=_qzdy('zero-login-background-image');
@@ -1048,8 +988,10 @@ function showCommentsWithUserAgent($comment, $args, $depth)
             echo '<i class="fas fa-user-check" data-toggle="tooltip" data-placement="auto top" title="" data-original-title="jxtxzzw"></i>';
         ?>
                 <?php if ($comment->pin_top == '1') echo '<i class="fas fa-thumbtack" data-toggle="tooltip" data-placement="auto top" data-original-title="置顶"></i>'; ?>
-        <?php CID_print_comment_flag(); ?>
-        <?php CID_print_comment_browser();  ?>
+        <?php CID_print_comment_flag(); 
+        ?>
+        <?php CID_print_comment_browser(); 
+        ?>
         <?php if ($comment->comment_approved == '0') : ?>
             <em class="comment-awaiting-moderation">
                 <?php _e('评论正在等待管理员审核...'); ?>
@@ -1109,119 +1051,28 @@ function Bing_enqueue_scripts(){
 }
 add_action( 'wp_footer', 'Bing_enqueue_scripts' );
 function wpb_hook_style() {
-    if (_qzdy('zero-index-gg-notice')) { 
-      ?>
-    <link rel="stylesheet" href="<?php bloginfo('template_url'); ?>/qzdy_style/module/message/message.css"  media="all">
-      <link rel="stylesheet" href="<?php bloginfo('template_url'); ?>/qzdy_style/module/message/iconfont.css"  media="all">
-      <?php
-    }
+  if (_qzdy('zero-index-gg-notice')) { 
+    ?>
+  <link rel="stylesheet" href="<?php bloginfo('template_url'); ?>/qzdy_style/module/message/message.css"  media="all">
+    <link rel="stylesheet" href="<?php bloginfo('template_url'); ?>/qzdy_style/module/message/iconfont.css"  media="all">
+    <?php
   }
-  add_action('wp_head', 'wpb_hook_style');
-function wpb_hook_javascript() {
-if(!empty(_qzdy('zero-footer-youqinglink-ico'))){?>
-<script type="text/javascript"> $(".linkpage ul li a,.widget_my_link .link div a,.youqing_link a").each(function(e){ $(this).prepend("<img src=<?php bloginfo('template_url'); ?>/grab_ico/get.php?url="+this.href.replace(/^(http:\/\/[^\/]+).*$/, '').replace( 'http://', '' )+">"); });</script>
-    <?php }
-    if(!empty(_qzdy('widget-icon-dashang'))){?>
-<script type="text/javascript">			var shang=document.getElementById("shang");
-	shang.onclick=function(){layer.open({type: 1,title:'打赏作者',skin: 'layui-layer-demo',closeBtn: 0,anim: 2,shadeClose: true,content: '<?php echo _qzdy('widget-icon-dashang-html');?>'
-});}</script>
-    <?php }
-if(is_home()){?>
-<script>
-layui.use('carousel', function(){
-  var carousel = layui.carousel;
-  carousel.render({
-    elem: '#test1'
-    ,width: '100%'
-    ,arrow: 'always' 
-   ,arrow:'hover'
-    ,indicator:'inside'
-  });
-});
-</script>
-    <?php }
-if(_qzdy('zero-index-gg-notice')){?>
-<?php if(_qzdy('zero-index-gg-zd-gb')){$ckfs='true';}else{$ckfs='false';}?>
-	<script type="text/javascript" >
-    function Cookie(key,value){
-        this.key=key;
-        if(value!=null)
-        {
-            this.value=escape(value);
-        }
-        this.expiresTime=null;
-        this.domain=null;
-        this.path="/";
-        this.secure=null;
-    }
-    Cookie.prototype.setValue=function(value){this.value=escape(value);}
-    Cookie.prototype.getValue=function(){return (this.value);}
-    Cookie.prototype.setExpiresTime=function(time){this.expiresTime=time;}
-    Cookie.prototype.getExpiresTime=function(){return this.expiresTime;}
-    Cookie.prototype.setDomain=function(domain){this.domain=domain;}
-    Cookie.prototype.getDomain=function(){return this.domain;}
-    Cookie.prototype.setPath=function(path){this.path=path;}
-    Cookie.prototype.getPath=function(){return this.path;}
-    Cookie.prototype.Write=function(v){
-        if(v!=null){
-            this.setValue(v);
-        }
-        var ck=this.key+"="+this.value;
-        if(this.expiresTime!=null){
-            try {
-                ck+=";expires="+this.expiresTime.toUTCString();;
-            }
-            catch(err){
-            }
-        }
-        if(this.domain!=null){
-            ck+=";domain="+this.domain;
-        }
-        if(this.path!=null){
-            ck+=";path="+this.path;
-        }
-        if(this.secure!=null){
-            ck+=";secure";
-        }
-        document.cookie=ck;
-    }
-    Cookie.prototype.Read=function(){
-        try{
-            var cks=document.cookie.split("; ");
-            var i=0;
-            for(i=0;i <cks.length;i++){
-                var ck=cks[i];
-                var fields=ck.split("=");
-                if(fields[0]==this.key){
-                    this.value=fields[1];
-                    return (this.value);
-                }
-            }
-            return null;
-        }
-        catch(err){
-            return null;
-        } }
-var ck=new Cookie("HasLoaded");
-    if(ck.Read()==null){
-          layui.message.info({
-                    content: '<?php echo _qzdy('qzdy-index-gg-notice-content');?>',
-                    closeable: true,
-                     autoclose: <?php echo $ckfs;?>,
-                    title: '<?php echo _qzdy('qzdy-index-gg-notice-title');?>',
-                    position: 'right'
-                });
-        var dd = new Date();
-        dd = new Date(dd.getYear() + 1900, dd.getMonth(), dd.getDate());
-        dd.setDate(dd.getDate() + 365);
-        ck.setExpiresTime(dd);
-        ck.Write("true"); 
-    }
-</script>
-    <?php }
-    
 }
-add_action('wp_footer', 'wpb_hook_javascript');
+add_action('wp_head', 'wpb_hook_style');
+function sing_code_box_javascript() {
+      if (is_single() || is_page()) { 
+    ?>
+<script src="<?php bloginfo('template_url'); ?>/qzdy_style/code.js"></script>
+    <?php }
+}
+add_action('wp_head', 'sing_code_box_javascript');
+function header_hide_javascript() {
+      if (_qzdy('zero-header-float')) { 
+    ?>
+<script src="<?php bloginfo('template_url'); ?>/qzdy_style/header-hide.js"></script>
+    <?php }
+}
+add_action('wp_footer', 'header_hide_javascript');
 add_filter( 'csf_fa4', '__return_true' );
 function custom_posts_per_page($query){
  if(is_home()){
@@ -1230,8 +1081,121 @@ if(!is_paged()){
 }else{
     $sl=_qzdy('qzdy-index-piece');
 }
-
   $query->set('posts_per_page',$sl);
  }
 }
 add_action('pre_get_posts','custom_posts_per_page');
+function kratos_comment_err($a){
+    header('HTTP/1.0 500 Internal Server Error');
+    header('Content-Type: text/plain;charset=UTF-8');
+    echo $a;
+    exit;
+}
+function spam_protection($commentdata){
+    if(!is_user_logged_in()){
+        if($_POST['co_num1']+$_POST['co_num2']-3!=$_POST['code']) kratos_comment_err(__('验证码错误','moedog'));
+    }
+    return $commentdata;
+}
+add_filter('pre_comment_on_post','spam_protection');
+function my_enqueue_scripts() {
+wp_deregister_script('jquery');
+}
+add_action( 'wp_enqueue_scripts', 'my_enqueue_scripts', 1 );
+if ( !is_admin() ) {
+function my_init_method() {
+wp_deregister_script( 'jquery' );
+}
+add_action('init', 'my_init_method');
+}
+function web_widget_zan(){
+    ?>
+<script>var shangs=document.getElementById("shangs"); shangs.onclick=function(){layer.open({type: 1,title:'打赏作者',skin: 'layui-layer-demo',closeBtn: 0,anim: 2,shadeClose: true,content: '<?php echo _qzdy('widget-icon-dashang-html');?>' });}</script>
+    <?php
+}
+function web_widget_zan_switch(){
+add_action('wp_footer', 'web_widget_zan');
+}
+function web_widget_personal_left(){
+    ?>
+      <link rel="stylesheet" href="<?php bloginfo('template_url'); ?>/qzdy_style/module/bubble/style.css">
+ 	<script src="<?php bloginfo('template_url'); ?>/qzdy_style/module/bubble/bubble.js"></script>
+    <?php
+}
+function web_widget_personal_left_switch(){
+add_action('wp_footer', 'web_widget_personal_left');
+}
+function _rp_tw_wzzz(){
+    $wzzz = get_post_meta( get_the_ID(), 'rp-wzzz', true );
+    if($wzzz){
+        $wzzz=$wzzz;
+    }elseif(_qzdy('rp-tw-dwzz')){
+        $wzzz=_qzdy('rp-tw-dwzz');
+    }else{
+         $wzzz=post_views('',' 浏览');
+    }
+    echo $wzzz;
+}
+function _rp_tw_imgzz(){
+    $wzzz = get_post_meta( get_the_ID(), 'rp-imgzz', true );
+    if($wzzz){
+        $wzzz='摄影 | '.$wzzz;
+    }elseif(_qzdy('rp-tw-imgzz')){
+        $wzzz='摄影 | '._qzdy('rp-tw-imgzz');
+    }else{
+         $wzzz='';
+    }
+    echo $wzzz;
+}
+function web_body_back(){
+    if(_qzdy('zero-body-background') == 'img'){
+  $html='background-image: url('. _qzdy('zero-body-background-image') .');';
+        echo $html;
+    }else if(_qzdy('zero-body-background') == 'color'){
+            $cll=count(_qzdy('zero-body-background-color'));
+            $ca=1;
+            $html='';
+            foreach(_qzdy('zero-body-background-color') as $ii ) { 
+            $class=($ca<$cll)?',':'';
+            $html .=$ii.$class;
+            $ca++;
+            }
+              echo 'background: linear-gradient(135deg, '.$html.');';
+    }else if(_qzdy('zero-body-background') == 'd_color'){
+      $html=$qtwzpx='background: '._qzdy('zero-body-background-d-color').';'; 
+      echo $html.';';
+    }else{
+        echo 'background: #f1f3f4;'; 
+    }
+}
+    function wpkj_change_search_url_rewrite() {
+        if ( is_search() && ! empty( $_GET['s'] ) ) {
+            wp_redirect( home_url( "/search/" ) . urlencode( get_query_var( 's' ) ) );
+            exit();
+        }   
+    }
+    add_action( 'template_redirect', 'wpkj_change_search_url_rewrite' );
+add_action ('wp_enqueue_scripts', 'add_fancybox_script');
+function add_fancybox_script() {
+    if ( is_single() ) {
+        wp_enqueue_script ('fancybox-script', get_template_directory_uri() . '/include/imgbox/fancybox.umd.js', array(), '4.0', true);     
+        wp_add_inline_script ('fancybox-script', $add_script, 'after');
+   }
+}
+add_action ('get_footer', 'fancy_footer_styles' );
+function fancy_footer_styles() {
+    if ( is_single() ) {
+        wp_enqueue_style( 'fancybox-style', get_template_directory_uri() . '/include/imgbox/fancybox.css' );
+    }   
+};
+function filter_pre_get_posts( $query ){
+    $cat_num=_qzdy('qzdy-category-piece');
+  if ( $query->is_main_query() ){
+    $num = '';    
+    if ( is_category(array(9)) ){ $num = 14; }
+    else if ( is_category() ){ $num = $cat_num; }
+    if ( '' != $num ){ $query->set( 'posts_per_page', $num ); }
+  }
+  return $query;
+}
+add_action('pre_get_posts', 'filter_pre_get_posts');

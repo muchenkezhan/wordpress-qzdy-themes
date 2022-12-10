@@ -1,4 +1,5 @@
 <?php 
+// og协议关键词
 function og_tag() {
 global $post;
 global $tags;
@@ -17,6 +18,7 @@ $tags = implode( ',', $posttag );
 		}
 		echo $description;
 }
+// og协议描述
 function og_description() {
     global $post; 
     $my_content = strip_tags(get_the_excerpt(), $post->post_content);
@@ -24,6 +26,7 @@ function og_description() {
     $my_content = mb_strimwidth($my_content,0,240,"..." );
     $my_content = ltrim($my_content);
     $my_content = preg_replace("/(\s|\ \;|　|\xc2\xa0)/","",$my_content);
+    // str_replace($search, $replace, $my_content);
 		$seo_descriptions = get_post_meta( get_the_ID(), 'opt-textseoms', true );
 		if(!empty($seo_descriptions)){
 		$description = $seo_descriptions;

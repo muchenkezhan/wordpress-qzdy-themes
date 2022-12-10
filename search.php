@@ -24,7 +24,7 @@
     <p class="summary l-h-2x text-muted"><?php echo mb_strimwidth(strip_tags(apply_filters('the_content', $post->post_content)), 0, 96,'…'); ?></p>
     <div class="line line-lg b-b b-light"></div>
     <div class="text-muted post-item-foot-icon text-ellipsis list-inline"><li class="viewfloat">
-<i class="layui-icon layui-icon-slider"></i><a href="<?php $category = get_the_category();if($category[0]){echo ''.get_category_link($category[0]->term_id ).'';}?>"><?php foreach((get_the_category()) as $category){echo $category->cat_name;} ?> </a> </li><li><i class="layui-icon layui-icon-log"></i><?php the_time('Y/n/j '); ?></li><li><i class="layui-icon layui-icon-user"></i><a href=""><?php the_author(); ?></a></li><li><span class="view"><i class="layui-icon layui-icon-fire"></i><?php post_views('',''); ?></span></li></div></div></div>
+<i class="layui-icon layui-icon-slider"></i><a href="<?php $category = get_the_category();if($category[0]){echo ''.get_category_link($category[0]->term_id ).'';}?>"><?php foreach((get_the_category()) as $category){echo $category->cat_name;} ?> </a> </li><li><i class="layui-icon layui-icon-log"></i><?php the_time('Y/n/j '); ?></li><li><i class="layui-icon layui-icon-user"></i><a><?php global $current_user; get_currentuserinfo();  echo $current_user->nickname;?></a></li><li><span class="view"><i class="layui-icon layui-icon-fire"></i><?php post_views('',''); ?></span></li></div></div></div>
                <?php endwhile; else: ?>
                    <div class="qzdy_ssnrts"> <p>宝贝暂时没有相关的文章哦</p></div>
                 <?php endif; ?>

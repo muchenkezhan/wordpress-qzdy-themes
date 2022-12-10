@@ -2,47 +2,41 @@
 /* template name: 页面模板--友情链接自助申请
 */
 ?>
-
 <?php
 if( isset($_POST['blink_form']) && $_POST['blink_form'] == 'send'){
 global $wpdb;
- 
-// 表单变量初始化
 $link_name = isset( $_POST['blink_name'] ) ? trim(htmlspecialchars($_POST['blink_name'], ENT_QUOTES)) : '';
 $link_url = isset( $_POST['blink_url'] ) ? trim(htmlspecialchars($_POST['blink_url'], ENT_QUOTES)) : '';
-/*$link_description = isset( $_POST['blink_lianxi'] ) ? trim(htmlspecialchars($_POST['blink_lianxi'], ENT_QUOTES)) : ''; // 联系方式*/
-$link_description = '图片链接：'.$_POST['blink_image']."\n".'简介：'.$_POST['blink_jianjie']; 
+$link_image = $_POST['blink_image']; 
+$link_description=$_POST['blink_jianjie'];
 $link_target = "_blank";
-$link_visible = "N"; // 表示链接默认不可见
- 
-// 表单项数据验证
+$link_visible = "N";
 if ( empty($link_name) || mb_strlen($link_name) > 20 ){
 wp_die('连接名称必须填写，且长度不得超过30字');
 }
- 
 if ( empty($link_url) || strlen($link_url) > 60 || !preg_match("/\b(?:(?:https?|ftp):\/\/|www\.)[-a-z0-9+&@#\/%?=~_|!:,.;]*[-a-z0-9+&@#\/%=~_|]/i", $link_url))
-//验证url
 {
 wp_die('链接地址必须填写');
 }
- 
+
 $sql_link = $wpdb->insert(
 $wpdb->links,
 array(
 'link_name' => '【待审核】--- '.$link_name,
 'link_url' => $link_url,
 'link_target' => $link_target,
-'link_notes' => $link_description,
+'link_image' => $link_image,
+'link_description'=>$link_description,
 'link_visible' => $link_visible
 )
 );
- 
+
 $result = $wpdb->get_results($sql_link);
- 
-wp_die('亲，友情链接提交成功，【等待站长审核中】！<a href="/">点此返回</a>', '提交成功');
- 
+Links_email_reminder();
+?>
+<script> alert("友情链接提交成功，【等待站长审核中】！");</script>
+   <?php
 }
- 
 get_header();
 ?>
  <!--上面是头部-->
@@ -68,6 +62,7 @@ get_header();
 <?php if (have_posts()) : while (have_posts()) : the_post(); ?>
 <?php if(function_exists('cmp_breadcrumbs')) cmp_breadcrumbs();?>
 <?php the_content(); ?>
+
 <!--表单开始-->
 <form method="post" class="layui-form" action="<?php echo $_SERVER["REQUEST_URI"]; ?>" style="margin-bottom:20px; ">
 <label class="layui-form-label" for="blink_name"><font color="red">*</font>链接名称：</label>
@@ -90,7 +85,7 @@ get_header();
 <div class="form-group">
 <label class="layui-form-label"  required="required" for="blink_image"><font color="red">*</font>站点图标:</label>
  <div class="layui-input-block">
-<input type="text" size="40" value="" class="layui-input" id="blink_image" placeholder="请输入头像地址" name="blink_image" />
+<input type="text" size="40" value="" class="layui-input" id="blink_image" placeholder="请输入图片地址" name="blink_image" />
 </div></div>
  
 <div class="yqsq-cz-tj">
@@ -101,7 +96,6 @@ get_header();
 </div>
 </form>
 <!--表单结束-->
- 
 <?php endwhile; else: ?>
 <?php endif; ?>
 </div>
@@ -109,7 +103,6 @@ get_header();
             </div>
             <!--底部完毕-->
            <div class="the-end">- THE END -</div>
-         
             <!--修改日期-->
             <div class="time-text">
             <i class="layui-icon iconfont iconshijian"></i> 最后修改：<?php the_modified_time('Y年n月j日');  ?></div>
