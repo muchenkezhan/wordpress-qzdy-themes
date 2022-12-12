@@ -98,13 +98,14 @@ if(_qzdy('zero-index-gg-notice')&&$qzdy_gonggaocookie!='1'&& _qzdy('qzgg-switch-
         } }
 var ck=new Cookie("HasLoaded");
     if(ck.Read()==null){
+        setTimeout(function(){
           layui.message.info({
                     content: '<?php echo _qzdy('qzdy-index-gg-notice-content');?>',
                     closeable: true,
                      autoclose: <?php echo $ckfs;?>,
                     title: '<?php echo _qzdy('qzdy-index-gg-notice-title');?>',
                     position: 'right'
-                });
+                })}, 500);
         var dd = new Date();
         dd = new Date(dd.getYear() + 1900, dd.getMonth(), dd.getDate());
         dd.setDate(dd.getDate() + 365);

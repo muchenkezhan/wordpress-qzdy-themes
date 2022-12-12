@@ -1,25 +1,20 @@
-<?php if ( ! defined( 'ABSPATH' )  ) { die; } // Cannot access directly.
+<?php if (!defined('ABSPATH')) {die;} // Cannot access directly.
 
 //
 // Set a unique slug-like ID
 //
-$prefix = '_prefix_taxonomy_options';
+$prefix = '_qzdy_taxonomy_options';
 
 //
 // Create taxonomy options
 //
-CSF::createTaxonomyOptions( $prefix, array(
-  'taxonomy' => 'category',
-  'data-type' => 'unserialie',
-) );
-//
-// Create a section
-//
-CSF::createSection( $prefix, array(
-  'fields' => array(
-    //
-    // A text field
-    // 
+CSF::createTaxonomyOptions($prefix, array(
+    'taxonomy'  => array('post_tag', 'category'),
+    'data_type' => 'unserialize', // The type of the database save options. `serialize` or `unserialize`
+));
+
+
+$fields_arr = array(
     array(
       'id'          => '_zero-classification-theme-1',
       'type'        => 'select',
@@ -54,6 +49,13 @@ CSF::createSection( $prefix, array(
         'subtitle' => '绿色是禁用',
         'default' => false,
     ),
-    
-  )
-) );
+);
+
+
+
+//
+// Create a section
+//
+CSF::createSection($prefix, array(
+    'fields' => $fields_arr,
+));

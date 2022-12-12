@@ -89,6 +89,14 @@ if( isset($_POST['tougao_form']) && $_POST['tougao_form'] == 'send')
     <div class="layui-input-inline">
         <input class="layui-input" type="text" size="40" value="" name="tougao_authoremail" />
     </div> </div>
+                   
+    <!--<div style="text-align: left; padding-top: 10px;">-->
+    <!--    <label>您的博客:</label>-->
+    <!--</div>-->
+    <!--<div>-->
+    <!--    <input class="layui-input" type="text" size="40" value="" name="tougao_authorblog" />-->
+    <!--</div>-->
+                    
     <div style="text-align: left; padding-top: 10px;">
         <label>文章标题:*</label>
     </div>
@@ -105,6 +113,7 @@ if( isset($_POST['tougao_form']) && $_POST['tougao_form'] == 'send')
         <label class="layui-form-label" style="width: 100px;">文章内容:*</label>
    
     <div class="layui-input-block" style="margin-left: 0px;">
+        <!--<textarea class="layui-textarea" rows="15" cols="55" name="tougao_content"></textarea>-->
 <?php wp_editor(
 									'',
 									'question_content',

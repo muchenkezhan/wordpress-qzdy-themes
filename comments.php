@@ -68,6 +68,7 @@ wp_list_comments( array(
 ) );
 ?>
 </ol>
+<div class="paging-comment">
 <?php
 $post_info = get_post(get_the_ID(), ARRAY_A);
 if(!$post_info['comment_count']){
@@ -80,7 +81,7 @@ if($post_info['comment_count']){
 } else if(!$post_info['comment_count']){
     echo '暂无评论，来一句吧！';
 }
-?>
+?></div>
 </nav>
 <?php } ?>
 </div>

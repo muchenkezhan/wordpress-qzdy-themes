@@ -13,8 +13,8 @@ Template Name: 分类模板--九宫格
   $cat_ID='';
   $flkgg='';
   $cat_ID  = get_query_var('cat');
-  $flkgg=get_term_meta($cat_ID,'_prefix_taxonomy_options',true);
-  if (empty($flkgg['is_filter']) && empty(_qzdy('is_filter_bar')) ) {?>
+  $flkgg=get_term_meta( $cat_ID, 'is_filter', true );
+  if (empty($flkgg) && empty(_qzdy('is_filter_bar')) ) {?>
 <div id="map-sub-classification" class="map-sub-classification">
 <div class="container">
 <?php get_template_part( '/include/expand/category-filter-bar' );?>

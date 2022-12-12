@@ -13,8 +13,8 @@
   $cat_ID='';
   $flkgg='';
   $cat_ID  = get_query_var('cat');
-  $flkgg=get_term_meta($cat_ID,'_prefix_taxonomy_options',true);
-  if (empty($flkgg['is_filter']) && empty(_qzdy('is_filter_bar')) ) {?>
+  $flkgg=get_term_meta( $cat_ID, 'is_filter', true );
+  if (empty($flkgg) && empty(_qzdy('is_filter_bar')) ) {?>
 <div id="map-sub-classification" class="map-sub-classification">
 <div class="container">
 <?php get_template_part( '/include/expand/category-filter-bar' );?>
@@ -24,8 +24,6 @@
 		<div class="layui-row flex layui-col-space15 main <?php qzdy_sidebar_switch_left(); ?>">
 			<div class="layui-col-md<?php example_theme_liebiao_kuandu();?> layui-col-lg<?php example_theme_liebiao_kuandu();?>">
 			    <div class="paging-aa" id="paging-aa">
-<!--?php $posts = query_posts($query_string . '&orderby=date&showposts='._qzdy('qzdy-category-piece').''); ?>-->
-<!--?php if (have_posts()) : ?>?php while (have_posts()) : the_post(); ?>-->
 <?php if(have_posts()):?><?php while(have_posts()):the_post();?>
 				<div class="excerpt-sticky title-article list-card item-box<?php echo qzdy_prevent_theme(); ?>">
 					<div class="index-post-img-small<?php echo qzdy_prevent_theme(); ?>"><a
@@ -50,10 +48,17 @@
 						<div class="line line-lg b-b b-light"></div>
 						<div
 							class="text-muted post-item-foot-icon text-ellipsis list-inline<?php echo qzdy_prevent_theme(); ?>">
-							<li class="viewfloat">
-								<i class="layui-icon layui-icon-slider"></i><a
-									href="<?php $category = get_the_category();if($category[0]){echo ''.get_category_link($category[0]->term_id ).'';}?>"><?php foreach((get_the_category()) as $category){echo $category->cat_name;} ?>
-								</a></li><li><i class="layui-icon layui-icon-log"></i><?php the_time('Y/n/j '); ?>
+							    <li class="viewfloat">
+                            <?php
+                    $categories = get_the_category(); ?>
+                  
+                    <?php foreach ( $categories as $key=>$category ) :
+                      if ($key == 3) {break;}
+                    ?><i class="layui-icon layui-icon-slider"></i>
+                      <a href="<?php echo esc_url( get_category_link( $category->term_id ) ); ?>"><?php echo esc_html( $category->name ); ?></a>
+                    <?php endforeach; ?>
+                     </li>
+								<li><i class="layui-icon layui-icon-log"></i><?php the_time('Y/n/j '); ?>
 							</li>
 							<li><i class="layui-icon layui-icon-user"></i><a href=""><?php global $current_user; get_currentuserinfo();  echo $current_user->nickname;?></a></li>
 							<li><span class="view"><i

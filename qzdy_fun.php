@@ -703,8 +703,8 @@ function fanly_custom_upload_name($file){
 function example_theme_liebiao_kuandu() {
     global $wp_query;
 $cat_ID = get_query_var('cat');
-$flkgg=get_term_meta($cat_ID,'_prefix_taxonomy_options',true);
-	if(! empty($flkgg['_zero-classification-cbl-kg'])){
+$flkgg=get_term_meta($cat_ID,'_zero-classification-cbl-kg',true);
+	if(! empty($flkgg)){
 	    $layui_col_md='9';
    }else{
        $layui_col_md='12';
@@ -726,8 +726,8 @@ function get_category_deel($cat) {
 function  qzdy_sidebar_switch_left() {
 global $wp_query;
 $cat_ID = get_query_var('cat');
-$flkgg=get_term_meta($cat_ID,'_prefix_taxonomy_options',true);
-if(!empty($flkgg['_zero-classification-cbl-kg']) && _qzdy('opt-index-sidebar-position') == 'opt-sidebar-left'){
+$flkgg=get_term_meta($cat_ID,'_zero-classification-cbl-kg',true);
+if(!empty($flkgg) && _qzdy('opt-index-sidebar-position') == 'opt-sidebar-left'){
     echo 'qzdy-3-9';
 }
 }
@@ -735,8 +735,8 @@ function  qzdy_sidebar_guanbi() {
     if(is_category()){
     global $wp_query;
 $cat_ID = get_query_var('cat');
-$flkggs=get_term_meta($cat_ID,'_prefix_taxonomy_options',true);
-if(empty($flkggs['_zero-classification-cbl-kg']) ){
+$flkggs=get_term_meta($cat_ID,'_zero-classification-cbl-kg',true);
+if(empty($flkggs) ){
     echo 'style="display: none;"';
 }
     }
@@ -749,12 +749,12 @@ if(_qzdy('opt-index-sidebar-position') == 'opt-sidebar-left'){
 function  qzdy_classification_banner() {
 global $wp_query;
 $cat_ID  = get_query_var('cat');
-$flkgg=get_term_meta($cat_ID,'_prefix_taxonomy_options',true);
+$flkgg=get_term_meta($cat_ID,'zero-header-classification-banner-imgurl',true);
 $banner= _qzdy('zero-header-classification-banner-morenbanner');
-if(!empty($flkgg['zero-header-classification-banner-imgurl'])  && !empty(is_category( $category ))){
-$banner=$flkgg['zero-header-classification-banner-imgurl'];
+if(!empty($flkgg)  && !empty(is_category( $category ))){
+$banner=$flkgg;
 }
-elseif(empty($flkgg['zero-header-classification-banner-imgurl'])  && !empty(is_category( $category ))){
+elseif(empty($flkgg)  && !empty(is_category( $category ))){
 $banner= _qzdy('zero-header-classification-banner-morenbanner');
 }
 echo $banner;

@@ -6,7 +6,13 @@ get_header(); ?>
 <div class="layui-row flex layui-col-space15 <?php qzdy_sidebar_fangxiang();?> main<?php echo qzdy_prevent_theme(); ?>">
 <?php _zero_wz_autoMenu_ml_kg(); ?>
 <div class="layui-col-md9 layui-col-lg9<?php echo qzdy_prevent_theme(); ?>" <?php qzdy_sidebar_fangxiang(); ?>>
+
+        <!--内容开始-->
+
         <div class="text" itemprop="articleBody"  id="qzdywzml">
+
+            <!--个人资料-->
+
          	<div class="weiyu-list " style="margin-top: 10px;">
                 <div class="list-box flex-row align-center" data-v-730707dd="">
                 <div class="author-box flex-row align-center" data-v-730707dd="">
@@ -20,6 +26,9 @@ get_header(); ?>
                         <div class="">浏览<?php post_views('', ''); ?>次</div>
                     </div>
             </div>
+     
+
+
         </div>
 <?php 
 $zero_footer_plk = _qzdy('zero-footer-plk');
@@ -31,7 +40,8 @@ $zero_footer_plk = _qzdy('zero-footer-plk');
 </div>
 <?php } } ?>
 </div>
+<!--?php get_sidebar();?>-->
 </div>
 </div>
 </div>
-
+<?php get_footer();?>

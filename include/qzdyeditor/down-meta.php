@@ -1,6 +1,11 @@
 <?php
+// 密码可见
 function e_secret($atts, $content=null){ extract(shortcode_atts(array('key'=>null), $atts)); if(isset($_POST['e_secret_key']) && $_POST['e_secret_key']==$key){ return ' <div class="e-secret">'.$content.'</div> '; } else{ return ' <form class="e-secret" action="'.get_permalink().'" method="post" name="e-secret"><label>输入密码查看加密内容：</label><input type="password" name="e_secret_key" class="euc-y-i" maxlength="50"><input type="submit" class="euc-y-s" value="确定"> <div class="euc-clear"></div> </form> '; } } 
 add_shortcode('secret','e_secret');
+// 回复可见
+
+
+//隐藏内容登陆可见
 function hide_check_shortcode($atts, $content = null){
 	if (is_user_logged_in() && !is_null($content) && !is_feed()) {
 		return '<div class="hide-t"><i class="fa fa-spinner" aria-hidden="true"></i>隐藏的内容 </div> <div class="secret-password">' . do_shortcode($content) . '</div>';
@@ -12,6 +17,10 @@ function hide_check_shortcode($atts, $content = null){
 		</div>';
 }
 add_shortcode('hide', 'hide_check_shortcode');
+//隐藏内容登陆可见
+// bilibili
+
+// Link button
 function button_link_jzbut($atts,$content=null){
 	global $wpdb, $post;
 	extract(shortcode_atts(array("href"=>'http://'),$atts));
@@ -22,6 +31,8 @@ function button_link_jzbut($atts,$content=null){
 	}
 }
 add_shortcode('jzbut','button_link_jzbut');
+
+
 function button_link($atts,$content=null){
 	global $wpdb, $post;
 	extract(shortcode_atts(array("href"=>'http://'),$atts));
@@ -32,6 +43,11 @@ function button_link($atts,$content=null){
 	}
 }
 add_shortcode('link','button_link');
+
+
+
+
+// Download button
 function xcollapse($atts,$content=null,$code=""){
     extract(shortcode_atts(array("title"=>__('标题内容','moedog')),$atts));
     $return = '<div class="layui-collapse" lay-accordion="">
@@ -51,6 +67,8 @@ function xcollapse($atts,$content=null,$code=""){
     return $return;
 }
 add_shortcode('collapse','xcollapse');
+
+// iframe
 function iframe_add_shortcode( $atts ) {
 	$defaults = array(
 		'src' => '',
@@ -95,6 +113,12 @@ function iframe_add_shortcode( $atts ) {
 	return $html;
 }
 add_shortcode('iframe','iframe_add_shortcode');
+
+// 游客回复可见
+//文章内容回复可见
+//文章内容回复可见
+
+//评论被添加的时候触发
 add_action( 'wp_insert_comment', 'auto_reply', 10, 2 );
 
   function auto_reply($comment_id, $comment_object) {
@@ -102,6 +126,8 @@ add_action( 'wp_insert_comment', 'auto_reply', 10, 2 );
 			setcookie("fbreply","1");
 
 		}
+
+//文章内容回复可见
 add_shortcode('reply', 'reply_to_read');
  
 function reply_to_read($atts, $content=null) {
@@ -115,6 +141,8 @@ else{
 	return $notice;
 }
 }
+
+// 插入视频
 function my_videos( $atts, $content = null ) {
 	extract( shortcode_atts( array (
 		'src' => '""'
@@ -122,6 +150,9 @@ function my_videos( $atts, $content = null ) {
 	return '<div class="video-content"><video src="'.$src.'" controls="controls" width="100%"></video></div>';
 }
 add_shortcode('videos','my_videos');
+
+// 彩色背景
+// prompt
 function zm_green($atts, $content=null){
 	return '<div class="alert alert-success">'.do_shortcode( $content ).'</div>';
 }
@@ -143,6 +174,11 @@ add_shortcode('mark_a','zm_green');
 add_shortcode('mark_b','zm_red');
 add_shortcode('mark_c','zm_gray');
 add_shortcode('mark_d','zm_yellow');
+
+
+
+
+// Button
 function begin_add_mce_button() {
 	if ( !current_user_can( 'edit_posts' ) && !current_user_can( 'edit_pages' ) ) {
 		return;
@@ -161,6 +197,8 @@ function begin_register_mce_button( $buttons ) {
 	array_push( $buttons, 'begin_mce_button' );
 	return $buttons;
 }
+
+
 if (in_array($pagenow, array('post.php', 'post-new.php', 'page.php', 'page-new.php'))) {
 
 	add_action('init', 'begin_add_mce_button');

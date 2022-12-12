@@ -20,11 +20,12 @@
                 <span class="time_eye_catching"><?php the_time('n/j'); ?></span>
             </div>
         </div>
+        <?php if(_qzdy('ggw-2-switcher')){?>
 <div class="">
 <?php if(_qzdy('ggw-2')){
 echo _qzdy('ggw-2');
 }?>
-</div>
+</div><?php }?>
         <div class="text" itemprop="articleBody"  id="qzdywzml">
             <div id="md_content_2" class="md_content markdown-body editormd-html-preview" style="min-height: 50px;">
 <?php the_content(); ?>
@@ -34,11 +35,13 @@ echo _qzdy('ggw-2');
             <!--标签-->
             <div class="tags-text"><i class="layui-icon layui-icon-note<?php echo qzdy_prevent_theme(); ?>"></i><?php the_tags('Tag：', '' , ''); ?> </div>
             <!--标签-->
+ <?php if(_qzdy('ggw-3-switcher')){?>
 <div class="">
 <?php if(_qzdy('ggw-3')){
 echo _qzdy('ggw-3');
 }?>
 </div>
+<?php }?>
             <!--点赞-->
 <?php 
 	if(!empty($zero_footer_dianzan = _qzdy('zero-footer-dianzan'))){?>

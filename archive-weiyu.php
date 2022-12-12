@@ -35,16 +35,15 @@
 				</div>
 				<?php endif; ?>
 				</div>
-<div class="next-page">
-<?php
-$next_page = get_next_posts_link('加载更多');
-if($next_page) echo $next_page;
-?>
-</div>
-			</div>
-			<?php get_sidebar();?>
-		</div>
+	<div class="next-page">
+	<?php
+	$next_page = get_next_posts_link('加载更多');
+	if($next_page) echo $next_page;
+	?>
 	</div>
-</div>
+				</div>
+				<?php get_sidebar();?>
+			</div>
+		</div>
 </div>
 <?php get_footer();?>

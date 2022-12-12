@@ -49,14 +49,19 @@ echo '<a href="'.$bookmark->link_url.'" target="_blank">'.link_ico($friendimg).'
     Theme <a href="https://gitee.com/MUCEO/qzdy" target="_blank">Qzdy</a></p>
 </div>
 <div class="layui-col-md3">
-    <?php if(_qzdy('zero-footer-ewm1')){ ?><img src="<?php echo _qzdy('zero-footer-ewm1');?>" width="100"><?php }?>
-            <?php if(_qzdy('zero-footer-ewm1')){ ?><img src="<?php echo _qzdy('zero-footer-ewm2');?>" width="100"><?php }?>
+    <?php if(_qzdy('zero-footer-ewm1')){ ?><img src="<?php echo _qzdy('zero-footer-ewm1');?>" width="80"><?php }?>
+            <?php if(_qzdy('zero-footer-ewm1')){ ?><img src="<?php echo _qzdy('zero-footer-ewm2');?>" width="80"><?php }?>
             </div>
+
+
+
 </div>
 </div>
 </div>
+<!--版权结束-->
 <div class="site-mobile-shade"></div>
 <div id="LAY_democodejs"></div>
+
 <?php lxbjtexiao(); qianduanpiaoloutexiao();?>
 <script src="<?php bloginfo('template_url'); ?>/qzdy_style/dist/layui.js"  charset="utf-8"></script>
 <script src="<?php bloginfo('template_url'); ?>/qzdy_style/zoomify.min.js"></script>

@@ -5,16 +5,21 @@
 <?php
 if( isset($_POST['blink_form']) && $_POST['blink_form'] == 'send'){
 global $wpdb;
+
+// 表单变量初始化
 $link_name = isset( $_POST['blink_name'] ) ? trim(htmlspecialchars($_POST['blink_name'], ENT_QUOTES)) : '';
 $link_url = isset( $_POST['blink_url'] ) ? trim(htmlspecialchars($_POST['blink_url'], ENT_QUOTES)) : '';
+/*$link_description = isset( $_POST['blink_lianxi'] ) ? trim(htmlspecialchars($_POST['blink_lianxi'], ENT_QUOTES)) : ''; // 联系方式*/
 $link_image = $_POST['blink_image']; 
 $link_description=$_POST['blink_jianjie'];
-$link_target = "_blank";
-$link_visible = "N";
+$link_target = "_blank"; // 表示链接默认不可见
+$link_visible = "N"; // 表示链接默认不可见
+// 表单项数据验证
 if ( empty($link_name) || mb_strlen($link_name) > 20 ){
 wp_die('连接名称必须填写，且长度不得超过30字');
 }
 if ( empty($link_url) || strlen($link_url) > 60 || !preg_match("/\b(?:(?:https?|ftp):\/\/|www\.)[-a-z0-9+&@#\/%?=~_|!:,.;]*[-a-z0-9+&@#\/%=~_|]/i", $link_url))
+//验证url
 {
 wp_die('链接地址必须填写');
 }
@@ -33,6 +38,7 @@ array(
 
 $result = $wpdb->get_results($sql_link);
 Links_email_reminder();
+// wp_die('亲，友情链接提交成功，【等待站长审核中】！<a href='.$_SERVER["HTTP_REFERER"].'>点此返回</a>', '提交成功');
 ?>
 <script> alert("友情链接提交成功，【等待站长审核中】！");</script>
    <?php
